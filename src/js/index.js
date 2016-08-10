@@ -3,6 +3,20 @@
 (function() {
 	var IS_NUMERIC = new RegExp(/^\d+$/);
 
+	var modifyElementDisplay = function(element, display) {
+		element.style.display = display;
+	}
+
+  	var startCountdown = function(element, value) {
+    	var countDownTimer = setInterval(function() {
+      		if (value === 0) {
+        		clearInterval(countDownTimer);
+        		modifyElementDisplay(element, 'none');
+      		}
+      		element.innerHTML = value--;
+    	}, 1000);
+  	}
+
   	var isVisible = function(display) {  
     	if (display !== 'none' && display !== 'undefined') {
       		return true;
@@ -10,12 +24,13 @@
       		return false;
     	}
   	}
+
 	var togglePanel =  function(element) {
 	    var display = window.getComputedStyle(element,null).getPropertyValue("display");
 	    if (isVisible(display)) {
-	      	element.style.display = 'none';
+	      	modifyElementDisplay(element, 'none');
 	    } else {
-	      	element.style.display = 'flex';
+	      	modifyElementDisplay(element, 'flex');
 	    }
 	}
 
@@ -34,9 +49,15 @@
   		}
   	}
   
+  	// =======================================================
+
+    var countdown_panel = document.getElementById('countdown_panel');
+
   	var start_button = document.getElementById('start_button');
   	start_button.onclick = function() {
     	togglePanel(start_button.parentElement);
+    	modifyElementDisplay(countdown_panel, 'flex');
+  		startCountdown(countdown_panel, 3);
   	}
 
   	var submit_textfield = document.getElementById('submit_user_input');
@@ -44,4 +65,6 @@
   	submit_button.onclick = function() {
   		checkIfUserInputIsValid(submit_textfield);
   	}
+
+
 })();
