@@ -8,6 +8,12 @@
   </head>
   
   <body>
+    <div class="failPanel">
+      <div class="fail">
+        FAIL TRY AGAIN
+        <button class="button">Try Again</button>
+      </div>
+    </div>
     <div class="wrapper">
       <header id="header">
         <a href="html/index.html">
@@ -15,7 +21,7 @@
         </a>
 
         <nav id="navigation_bar">
-          <a href="#">How do you play</a>
+          <a id="how_to_play_link">How do you play</a>
           <a href="html/price_list.html">Price list</a>
         </nav>
       </header>
@@ -64,14 +70,28 @@
 
           <div id="countdown_panel"></div>
 
-          <picture class="image_area">
+          <!--<picture class="image_area">
             <div><img src="img/Iron_Branch_icon.png" class="image_area--image" /></div>
             <div><img src="img/Divine_Rapier_icon.png" class="image_area--image" /></div>
             <div><img src="img/Iron_Branch_icon.png" class="image_area--image" /></div>
             <div><img src="img/Iron_Branch_icon.png" class="image_area--image" /></div>
             <div><img src="img/Iron_Branch_icon.png" class="image_area--image" /></div>
             <div><img src="img/Iron_Branch_icon.png" class="image_area--image" /></div>
-          </picture>
+          </picture>-->
+
+          <div class="slider">
+            <h2 class="points">Points: 100</h2>
+            <div class="images_area">
+              <picture class="images">
+                <div><img src="img/Iron_Branch_icon.png" class="image" /></div>
+                <div><img src="img/Divine_Rapier_icon.png" class="image" /></div>
+                <div><img src="img/Iron_Branch_icon.png" class="image" /></div>
+                <div><img src="img/Iron_Branch_icon.png" class="image" /></div>
+                <div><img src="img/Iron_Branch_icon.png" class="image" /></div>
+                <div><img src="img/Iron_Branch_icon.png" class="image" /></div>
+              </picture>
+            </div>
+          </div>
 
           <div class="submit_area">
             <input type="text" id="submit_user_input" class="submit_user_input" name="submit_user_input" />
