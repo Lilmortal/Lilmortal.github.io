@@ -1,6 +1,24 @@
 "use strict";
 
 (function() {
+	function whichTransitionEvent(){
+	  var t,
+	      el = document.createElement("fakeelement");
+
+	  var transitions = {
+	    "transition"      : "transitionend",
+	    "OTransition"     : "oTransitionEnd",
+	    "MozTransition"   : "transitionend",
+	    "WebkitTransition": "webkitTransitionEnd"
+	  }
+
+	  for (t in transitions){
+	    if (el.style[t] !== undefined){
+	      return transitions[t];
+	    }
+	  }
+	}
+
 	var IS_NUMERIC = new RegExp(/^\d+$/);
 
 	var modifyElementDisplay = function(element, display) {
@@ -8,14 +26,15 @@
 	}
 
   	var startCountdown = function(element, value, callback) {
+  		element.innerHTML = "";
   		var body = document.getElementsByTagName('body')[0];
   		//body.style.webkitFilter = 'grayscale(100%) blur(3px)';
   		//element.style.webkitFilter = 'grayscale(0%) blur(0px)';
     	var countDownTimer = setInterval(function() {
       		if (value === 0) {
         		clearInterval(countDownTimer);
+        		
         		modifyElementDisplay(element, 'none');
-        		element.innerHTML = "";
         		callback();
       		}
       		element.innerHTML = value--;
@@ -54,16 +73,47 @@
   		}
   	}
 
+  	var restartPanel = function(element) {
+  		element.style.marginLeft = '100%';
+  		element.style.transition = '0s';
+  	}
+
+  	var restartImages = function(element) {
+  		console.log("ELement: " + element);
+  		for (var i = 0; i < element.length; i++) {
+  			console.log(element[i]);
+  			element[i].style.display = 'block';
+  		}
+  	}
+
+  	var restartSlider = function(element, image) {
+  		restartPanel(element);
+  		restartImages(image);
+  	}
+
   	var slider = function(element) {
-  		console.log(element.style);
-  	    element.style.transform = 'translate(-100%)';
-	    element.style.transition = 'transform 5s linear';
-	    //element.style.marginRight = '100%';
-	    //element.style.transition = '3s';
+  	    element.style.marginLeft = '0';
+	    element.style.transition = '3s linear';
+  	}
+
+  	var transitionEnd = function(element, callback) {
+	    var transitionEvent = whichTransitionEvent();
+	    element.addEventListener(transitionEvent, callback);
   	}
 
   	var destroy = function(image) {
-  		image.classList.add('destroy');
+  		image.style.display = 'none';
+  		//image.classList.add('destroy');
+  	}
+
+  	var displayFailPanel = function(panel) {
+  		panel.style.display = 'flex';
+  		var failText = document.getElementsByClassName('failText')[0];
+  		var tryAgainButton = document.getElementById('tryAgainButton');
+  		failText.classList.add('display_fail_text');
+  		tryAgainButton.style.display = 'block';
+  		/*tryAgainButton.style.transform = 'scale(2,2)';
+  		tryAgainButton.style.transition = 'transform 2s ease-in-out';*/
   	}
 
   	// =======================================================
@@ -74,6 +124,7 @@
   	var instruction_panel = document.getElementsByClassName('instruction')[0];
 	var images = document.getElementsByClassName('images')[0];
 	var points = document.getElementsByClassName('points')[0];
+	var failPanel = document.getElementsByClassName('failPanel')[0];
 
   	var start_button = document.getElementById('start_button');
   	start_button.onclick = function() {
@@ -81,11 +132,24 @@
     	modifyElementDisplay(countdown_panel, 'flex');
   		startCountdown(countdown_panel, 3, function() {
   			slider(images);
-  			//destroy(points);
+  			transitionEnd(images, function() {
+  				displayFailPanel(failPanel);
+  			})
   		});
   	}
 
-	//slider(images);
+  	var tryAgainButton = document.getElementById('tryAgainButton');
+  	tryAgainButton.onclick = function() {
+  		modifyElementDisplay(failPanel, 'none');
+  		modifyElementDisplay(countdown_panel, 'flex');
+  		restartSlider(images, image);
+  		startCountdown(countdown_panel, 3, function() {
+			slider(images);
+  			transitionEnd(images, function() {
+  				displayFailPanel(failPanel);
+  			});
+  		});
+  	}
 
 	var imageIteration = 0;
   	var submit_button = document.getElementById('submit_button');
@@ -107,11 +171,7 @@
 	  	instruction.style.display = 'none';		
   	}
 
-  	var hideFailPanel = function() {
-  		var failPanel = document.getElementsByClassName('failPanel')[0];
-  		failPanel.style.display = 'none';
-  	}
-
-  	hide();
-  	hideFailPanel();
+  	//hide();
+  	modifyElementDisplay(failPanel, 'none');
+  	//displayFailPanel(failPanel);
 })();
