@@ -6,6 +6,7 @@
 	height: 100%;
 	margin: 0;
 	box-sizing: border-box;
+	opacity: 1;
 }
 
 /* ============= HEADER ================== */
@@ -67,14 +68,15 @@ footer {
 	display: flex;
 	flex-direction: column;
 	background-image: url("../img/Shadow_Fiend_Wallpaper.jpg");
-	background-repeat: no-repeat;
-	background-color: black;
+	background-size: cover;
+
 }
 
 .main_area {
 	display: flex;
 	justify-content: center;
 	flex: 1;
+
 }
 
 .central_area {
@@ -85,33 +87,51 @@ footer {
 /* ============= INSTRUCTION ================== */
 
 .instruction {
-	border: 2px solid white;
+	border: 7px ridge gold;
+	border-radius: 5px;
 	width: 100%;
-	min-height: 80%;
+	height: 95%;
 	position: absolute;
-	color: white;
-	background-color: gray;
+	color: black;
+	background-color: #F0FFFF;
 	padding-left: 20px;
 	display: flex;
 	flex-direction: column;
+	top: auto;
 	z-index: 2;
+	box-shadow: 0px 0px 50px gold;
+	overflow-y: auto;
 }
 
 #start_button {
-	margin: 0 auto;
+	padding: 20px;
+	margin: 20px auto;
+
 }
 
 /* ============= COUNTDOWN ================== */
 
 #countdown_panel {
-	width: 100%;
-	min-height: 80%;
+	min-width: 100%;
+	min-height: 100%;
 	position: absolute;
 	color: white;
 	align-items: center;
 	justify-content: center;
 	display: none;
-	font-size: 5em;
+	font-size: 10em;
+	z-index: 3;
+}
+
+.grayscale_background {
+	animation: GRAYSCALE_BACKGROUND 4s;
+}
+
+@keyframes GRAYSCALE_BACKGROUND {
+	100% {
+		-webkit-filter: grayscale(1);
+		filter: grayscale(1);
+	}
 }
 
 /* ============= SLIDER ================== */
@@ -136,10 +156,10 @@ footer {
 	display: flex;
 	width: 100%;
 	border: 5px double gold;
-	-webkit-border-radius: 3px;
+	/*-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	border-radius: 3px;
-	box-shadow: 0px 0px 100px gold;
+	box-shadow: 0px 0px 100px gold;*/
 	overflow:hidden;
 }
 
@@ -147,7 +167,7 @@ footer {
   	display: flex;
   	justify-content: flex-end;
   	margin-left: 100%;
-  	border: 3px solid green;
+  	border: 0;
 }
 
 .image {
@@ -208,7 +228,7 @@ footer {
 
 /* ============= FAIL ================== */
 
-.failPanel {
+.failBackground {
 	display: none;
 	align-items: center;
 	min-width: 100%;
@@ -216,49 +236,60 @@ footer {
 	position: absolute;
 	z-index: 3;
 	background-color: black;
-	opacity: 0.7;
+	animation: ANIMATE_FAIL_BACKGROUND 1s;
+	animation-fill-mode: forwards;
 }
 
-.fail {
+.failPanel {
 	width: 100%;
 	display: flex;
 	flex-direction: column;
-	height: 50%;
 	align-items: center;
 	justify-content: center;
 	background-color: white;
 	color: black;
-	position: absolute;
 	z-index: 3;
 	font-size: 5em;
+	animation: ANIMATE_FAIL_PANEL 1s;
+	animation-fill-mode: forwards;
 }
 
-#tryAgainButton {
-	display: none;
+.failText {
+	animation: ANIMATE_FAIL_TEXT 1.5s;
+	animation-fill-mode: forwards;
 }
 
-/* ============= HELPER ================== */
+@keyframes ANIMATE_FAIL_BACKGROUND {
+	0% {
+		opacity: 0;
+	}
 
-.destroy {
-	border: 2px solid red;
-	/*visibility: none;*/
-	display: none;
-	opacity: 0;
-	/*transition: visibility 0s, opacity 0.5s linear;*/
+	100% {
+		opacity: 0.7;
+		transition: opacity 0.5s ease-in-out;
+	}
+}
+
+@keyframes ANIMATE_FAIL_PANEL {
+
+	100% {
+		height: 100%;
+		padding: 40px;
+		transition: padding 0.5s ease-in-out;
+	}
+}
+
+@keyframes ANIMATE_FAIL_TEXT {
+	0% {
+		transform: skewX(-50deg) translateX(-100%);
+	}
+
+	100% {
+		transform: skewX(0deg);
+	}
 }
 
 /* ============= ANIMATION ================== */
-
-@keyframes DISPLAY_FAIL_TEXT {
-  0% {
-  	font-style: italic;
-  	transform: translateX(-100%);
-  }
-
-  100% {
-  	font-style: italic;
-  }
-}
 
 @keyframes SHAKE_TEXTFIELD {
   10%, 90% {
@@ -280,10 +311,6 @@ footer {
   100% {
   	display: none;
   }
-}
-
-.display_fail_text {
-	animation: DISPLAY_FAIL_TEXT 1s;
 }
 
 .shake_textfield {
