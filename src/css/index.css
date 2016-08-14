@@ -3,10 +3,11 @@
 }
 
 .wrapper, body, html {
-	height: 100%;
+	height: 100vh;
 	margin: 0;
+	overflow: hidden;
 	box-sizing: border-box;
-	opacity: 1;
+	font-family: "Arial", Sans-Serif;
 }
 
 /* ============= HEADER ================== */
@@ -106,7 +107,6 @@ footer {
 #start_button {
 	padding: 20px;
 	margin: 20px auto;
-
 }
 
 /* ============= COUNTDOWN ================== */
@@ -129,8 +129,8 @@ footer {
 
 @keyframes GRAYSCALE_BACKGROUND {
 	100% {
-		-webkit-filter: grayscale(1);
-		filter: grayscale(1);
+		-webkit-filter: grayscale(1) blur(3px);
+		filter: grayscale(1) blur(3px);
 	}
 }
 
@@ -148,6 +148,33 @@ footer {
 .points {
 	font-size: 3em;
 	color: white;
+	position: relative;
+}
+
+.addPoints {
+	position: absolute;
+	left: 58%;
+	bottom: 30%;
+}
+
+.add_points_animation {
+	animation: ADD_POINTS 1s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes ADD_POINTS {
+	0% {
+		opacity: 0;
+	}
+
+	50% {
+		opacity: 1;
+	}
+
+	100% {
+		opacity : 0;
+		bottom: 70%;
+	}
 }
 
 /* ============= IMAGES ================== */
@@ -156,11 +183,12 @@ footer {
 	display: flex;
 	width: 100%;
 	border: 5px double gold;
-	/*-webkit-border-radius: 3px;
+	-webkit-border-radius: 3px;
 	-moz-border-radius: 3px;
 	border-radius: 3px;
-	box-shadow: 0px 0px 100px gold;*/
 	overflow:hidden;
+	background-color: black;
+	animation-iteration-count: infinite;
 }
 
 .images {
@@ -173,6 +201,101 @@ footer {
 .image {
 	min-width: 150px;
 	min-height: 50px;
+	border-left: 1px dashed white;
+	border-right: 1px dashed white;
+}
+
+.error {
+	animation: ERROR_SHADOW 3s;
+	animation-iteration-count: infinite;
+}
+
+.warning {
+	animation: WARNING_SHADOW 3s;
+	animation-iteration-count: infinite;
+}
+
+.normal {
+	animation: DEFAULT_SHADOW 3s;
+	animation-iteration-count: infinite;
+}
+
+.red_text {
+	animation: RED_TEXT 2s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes RED_TEXT {
+	100% {
+		color: #8B0000;
+		transition: color 2s ease-in;
+	}
+}
+
+@keyframes ERROR_SHADOW {
+	0% {
+		box-shadow: 0px 0px 150px red;
+	}
+
+	25% {
+		box-shadow: 0px 0px 150px #8B0000;
+	}
+
+	50% {
+		box-shadow: 0px 0px 150px red;
+	}
+
+	75% {
+		box-shadow: 0px 0px 150px #8B0000;
+	}
+
+	100% {
+		box-shadow: 0px 0px 150px red;
+	}
+}
+
+@keyframes WARNING_SHADOW {
+	0% {
+		box-shadow: 0px 0px 50px gold;
+	}
+
+	25% {
+		box-shadow: 0px 0px 50px red;
+	}
+
+	50% {
+		box-shadow: 0px 0px 50px gold;
+	}
+
+	75% {
+		box-shadow: 0px 0px 50px red;
+	}
+
+	100% {
+		box-shadow: 0px 0px 50px gold;
+	}
+}
+
+@keyframes DEFAULT_SHADOW {
+	0% {
+		box-shadow: 0px 0px 50px gold;
+	}
+
+	25% {
+		box-shadow: 0px 0px 50px yellow;
+	}
+
+	50% {
+		box-shadow: 0px 0px 50px gold;
+	}
+
+	75% {
+		box-shadow: 0px 0px 50px yellow;
+	}
+
+	100% {
+		box-shadow: 0px 0px 50px gold;
+	}
 }
 
 /* ============= SUBMIT ================== */
@@ -207,6 +330,33 @@ footer {
 	margin-left: 20px;
 }
 
+.shake_textfield {
+	border: 4px solid red;
+	animation: SHAKE_TEXTFIELD 0.5s;
+}
+
+@keyframes SHAKE_TEXTFIELD {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0);
+  }
+  
+  20%, 80% {
+    transform: translate3d(2px, 0, 0);
+  }
+
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0);
+  }
+
+  40%, 60% {
+    transform: translate3d(4px, 0, 0);
+  }
+
+  100% {
+  	display: none;
+  }
+}
+
 /* ============= BUTTON ================== */
 
 .button {
@@ -219,6 +369,7 @@ footer {
 	border: 2px solid white;
 	box-shadow: 2px 2px 3px white;
 	outline: 0;
+	cursor: pointer;
 }
 
 .button:active {
@@ -255,8 +406,13 @@ footer {
 }
 
 .failText {
-	animation: ANIMATE_FAIL_TEXT 1.5s;
+	animation: ANIMATE_FAIL_TEXT 1s;
 	animation-fill-mode: forwards;
+}
+
+#tryAgainButton {
+	padding: 20px;
+	opacity: 1 !important;
 }
 
 @keyframes ANIMATE_FAIL_BACKGROUND {
@@ -271,9 +427,7 @@ footer {
 }
 
 @keyframes ANIMATE_FAIL_PANEL {
-
 	100% {
-		height: 100%;
 		padding: 40px;
 		transition: padding 0.5s ease-in-out;
 	}
@@ -287,33 +441,4 @@ footer {
 	100% {
 		transform: skewX(0deg);
 	}
-}
-
-/* ============= ANIMATION ================== */
-
-@keyframes SHAKE_TEXTFIELD {
-  10%, 90% {
-    transform: translate3d(-1px, 0, 0);
-  }
-  
-  20%, 80% {
-    transform: translate3d(2px, 0, 0);
-  }
-
-  30%, 50%, 70% {
-    transform: translate3d(-4px, 0, 0);
-  }
-
-  40%, 60% {
-    transform: translate3d(4px, 0, 0);
-  }
-
-  100% {
-  	display: none;
-  }
-}
-
-.shake_textfield {
-	border: 4px solid red;
-	animation: SHAKE_TEXTFIELD 0.5s;
 }

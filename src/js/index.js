@@ -19,6 +19,32 @@
 	  }
 	}
 
+	function getPosition(el) {
+		var xPos = 0;
+		var yPos = 0;
+
+		while (el) {
+			if (el.tagName == "BODY") {
+				// deal with browser quirks with body/window/document and page scroll
+				var xScroll = el.scrollLeft || document.documentElement.scrollLeft;
+				var yScroll = el.scrollTop || document.documentElement.scrollTop;
+
+				xPos += (el.offsetLeft - xScroll + el.clientLeft);
+				yPos += (el.offsetTop - yScroll + el.clientTop);
+			} else {
+				// for all other non-BODY elements
+				xPos += (el.offsetLeft - el.scrollLeft + el.clientLeft);
+				yPos += (el.offsetTop - el.scrollTop + el.clientTop);
+			}
+			el = el.offsetParent;
+		}
+
+		return {
+			x: xPos,
+			y: yPos
+		};
+	}
+
 	var IS_NUMERIC = new RegExp(/^\d+$/);
 
 	var enableElement = function(element) {
@@ -66,9 +92,7 @@
   	}
 
   	var restartImages = function(element) {
-  		console.log("ELement: " + element);
   		for (var i = 0; i < element.length; i++) {
-  			console.log(element[i]);
   			element[i].style.display = 'block';
   		}
   	}
@@ -78,9 +102,46 @@
   		restartImages(image);
   	}
 
-  	var slider = function(element) {
+  	var slider = function(element, panel) {
   	    element.style.marginLeft = '0';
-	    element.style.transition = '3s linear';
+	    element.style.transition = '10s linear';
+
+	    var points = document.getElementsByClassName('points')[0];
+		var screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+	    var defaultWidth = (screenWidth - panel.offsetWidth/ 2) + panel.offsetWidth;
+	    var warningWidth = defaultWidth * 45 / 100;
+	    var errorWidth = defaultWidth * 30 / 100;
+	    var timer;
+	    var startWarningAnimation = false;
+	    var startErrorAnimation = false;
+	    panel.classList.add('normal');
+    	panel.style.border = '5px double gold';
+    	if (points.classList.contains('red_text')) {
+  			points.classList.remove('red_text');
+  			// weird hack rule - https://css-tricks.com/restart-css-animation/
+  			void points.offsetWidth;
+  		}
+
+	    timer = setInterval(function() {
+	    	if (getPosition(element).x <= warningWidth) {
+	    		if (!startWarningAnimation) {
+	    			panel.classList.remove('normal');
+	    			void element.offsetWidth; 
+	    			panel.classList.add('warning');
+	    			startWarningAnimation = true;
+	    		}
+	    	}
+	    	if (getPosition(element).x <= errorWidth) {
+	    		if (!startErrorAnimation) {
+	    			panel.style.border = '5px double #8B0000';
+	    			points.classList.add('red_text');
+	    			panel.classList.remove('warning');
+	    			void element.offsetWidth; 
+	    			panel.classList.add('error');
+	    			startErrorAnimation = true;
+	    		}
+	    	}
+	    }, 1000);
   	}
 
   	var transitionEnd = function(element, callback) {
@@ -97,8 +158,9 @@
 	var images = document.getElementsByClassName('images')[0];
 	var points = document.getElementsByClassName('points')[0];
 	var failPanel = document.getElementsByClassName('failBackground')[0];
-	
+	var sliderParent = document.getElementsByClassName('images_area')[0];
 	var wrapper = document.getElementsByClassName('wrapper')[0];
+	var addPoints = document.getElementsByClassName('addPoints')[0];
 
   	var start_button = document.getElementById('start_button');
   	start_button.onclick = function() {
@@ -106,7 +168,7 @@
     	disableElement(instruction_panel);
     	enableElement(countdown_panel);
   		startCountdown(countdown_panel, 3, function() {
-  			slider(images);
+  			slider(images, sliderParent);
   			transitionEnd(images, function() {
   				enableElement(failPanel);
   			})
@@ -120,7 +182,7 @@
   		enableElement(countdown_panel);
   		restartSlider(images, image);
   		startCountdown(countdown_panel, 3, function() {
-			slider(images);
+			slider(images, sliderParent);
   			transitionEnd(images, function() {
   				enableElement(failPanel);
   			});
@@ -133,6 +195,8 @@
   		if (!checkIfUserInputIsValid(submit_textfield)) {
   			disableElement(image[imageIteration]);
   			imageIteration++;
+  			addPoints.innerHTML = "+200";
+  			toggleClass(addPoints, 'add_points_animation');
   		}
   	}
 
@@ -141,13 +205,13 @@
 		enableElement(instruction_panel);
   	};
 
-  	var hide = function() {
+  	// For testing purposes
+  	var hideInstructionAndCountdownPanel = function() {
 	  	countdown_panel.style.display = 'none';
 	  	var instruction = document.getElementsByClassName('instruction')[0];
 	  	instruction.style.display = 'none';		
   	}
 
-  	//hide();
-  	//disableElement(failPanel);
+  	//hideInstructionAndCountdownPanel();
   	//enableElement(failPanel);
 })();
