@@ -55,13 +55,21 @@
 		element.style.display = 'none';
 	}
 
-	var toggleClass = function(element, className) {
-		if (element.classList.contains(className)) {
+	var addClass = function(element, className) {
+		element.classList.add(className);
+	}
+
+	var removeClass = function(element, className) {
   			element.classList.remove(className);
   			// weird hack rule - https://css-tricks.com/restart-css-animation/
-  			void element.offsetWidth;
+  			void element.offsetWidth;		
+	}
+
+	var toggleClass = function(element, className) {
+		if (element.classList.contains(className)) {
+			removeClass(element, className);
   		}
-  		element.classList.add(className);
+  		addClass(element, className);
 	}
 
   	var startCountdown = function(element, value, callback) {
@@ -105,6 +113,9 @@
   	var slider = function(element, panel) {
   	    element.style.marginLeft = '0';
 	    element.style.transition = '10s linear';
+  	    
+	    // this animation is not working for some reason
+  	    //toggleClass(element, 'slider_animation');
 
 	    var points = document.getElementsByClassName('points')[0];
 		var screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
@@ -114,30 +125,25 @@
 	    var timer;
 	    var startWarningAnimation = false;
 	    var startErrorAnimation = false;
-	    panel.classList.add('normal');
+	    
     	panel.style.border = '5px double gold';
-    	if (points.classList.contains('red_text')) {
-  			points.classList.remove('red_text');
-  			// weird hack rule - https://css-tricks.com/restart-css-animation/
-  			void points.offsetWidth;
-  		}
+  		removeClass(points, 'red_text_animation');
+  		addClass(panel, 'normal_animation');
 
 	    timer = setInterval(function() {
 	    	if (getPosition(element).x <= warningWidth) {
 	    		if (!startWarningAnimation) {
-	    			panel.classList.remove('normal');
-	    			void element.offsetWidth; 
-	    			panel.classList.add('warning');
+	    			removeClass(panel, 'normal_animation');
+	    			addClass(panel, 'warning_animation');
 	    			startWarningAnimation = true;
 	    		}
 	    	}
 	    	if (getPosition(element).x <= errorWidth) {
 	    		if (!startErrorAnimation) {
 	    			panel.style.border = '5px double #8B0000';
-	    			points.classList.add('red_text');
-	    			panel.classList.remove('warning');
-	    			void element.offsetWidth; 
-	    			panel.classList.add('error');
+	    			removeClass(panel, 'warning_animation');
+	    			addClass(points, 'red_text_animation');
+	    			addClass(panel, 'error_animation');
 	    			startErrorAnimation = true;
 	    		}
 	    	}
@@ -164,7 +170,7 @@
 
   	var start_button = document.getElementById('start_button');
   	start_button.onclick = function() {
-  		toggleClass(wrapper, 'grayscale_background');
+  		toggleClass(wrapper, 'grayscale_background_animation');
     	disableElement(instruction_panel);
     	enableElement(countdown_panel);
   		startCountdown(countdown_panel, 3, function() {
@@ -177,7 +183,7 @@
 
   	var tryAgainButton = document.getElementById('tryAgainButton');
   	tryAgainButton.onclick = function() {
-  		toggleClass(wrapper, 'grayscale_background');
+  		toggleClass(wrapper, 'grayscale_background_animation');
   		disableElement(failPanel);
   		enableElement(countdown_panel);
   		restartSlider(images, image);

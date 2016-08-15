@@ -123,11 +123,11 @@ footer {
 	z-index: 3;
 }
 
-.grayscale_background {
-	animation: GRAYSCALE_BACKGROUND 4s;
+.grayscale_background_animation {
+	animation: GRAYSCALE_BACKGROUND_ANIMATION 4s;
 }
 
-@keyframes GRAYSCALE_BACKGROUND {
+@keyframes GRAYSCALE_BACKGROUND_ANIMATION {
 	100% {
 		-webkit-filter: grayscale(1) blur(3px);
 		filter: grayscale(1) blur(3px);
@@ -158,11 +158,23 @@ footer {
 }
 
 .add_points_animation {
-	animation: ADD_POINTS 1s;
+	animation: ADD_POINTS_ANIMATION 1s;
 	animation-fill-mode: forwards;
 }
 
-@keyframes ADD_POINTS {
+.slider_animation {
+	animation: SLIDER_ANIMATION 3s;
+	-webkit-animation-timing-function: linear;
+}
+
+@keyframes SLIDER_ANIMATION {
+	100% {
+		margin-left: 0;
+		transition: margin-left 3s linear;
+	}
+}
+
+@keyframes ADD_POINTS_ANIMATION {
 	0% {
 		opacity: 0;
 	}
@@ -205,36 +217,49 @@ footer {
 	border-right: 1px dashed white;
 }
 
-.error {
-	animation: ERROR_SHADOW 3s;
+.error_animation {
+	animation: ERROR_BOX_SHADOW_ANIMATION 3s;
 	animation-iteration-count: infinite;
 }
 
-.warning {
-	animation: WARNING_SHADOW 3s;
+.warning_animation {
+	animation: WARNING_BOX_SHADOW_ANIMATION 3s;
 	animation-iteration-count: infinite;
 }
 
-.normal {
-	animation: DEFAULT_SHADOW 3s;
+.normal_animation {
+	animation: DEFAULT_BOX_SHADOW_ANIMATION 3s;
 	animation-iteration-count: infinite;
 }
 
-.red_text {
-	animation: RED_TEXT 2s;
+.red_text_animation {
+	animation: RED_TEXT_ANIMATION 2s;
 	animation-fill-mode: forwards;
 }
 
-@keyframes RED_TEXT {
+.red_border_animation {
+	animation: RED_BORDER_ANIMATION 2s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes RED_TEXT_ANIMATION {
 	100% {
 		color: #8B0000;
-		transition: color 2s ease-in;
+		transition: color 2s linear;
 	}
 }
 
-@keyframes ERROR_SHADOW {
+@keyframes RED_BORDER_ANIMATION {
+	100% {
+		border: 5px double red;
+		transition: border 2s linear;
+	}
+}
+
+@keyframes ERROR_BOX_SHADOW_ANIMATION {
 	0% {
 		box-shadow: 0px 0px 150px red;
+		transition: box-shadow 1s linear;
 	}
 
 	25% {
@@ -254,7 +279,7 @@ footer {
 	}
 }
 
-@keyframes WARNING_SHADOW {
+@keyframes WARNING_BOX_SHADOW_ANIMATION {
 	0% {
 		box-shadow: 0px 0px 50px gold;
 	}
@@ -276,7 +301,7 @@ footer {
 	}
 }
 
-@keyframes DEFAULT_SHADOW {
+@keyframes DEFAULT_BOX_SHADOW_ANIMATION {
 	0% {
 		box-shadow: 0px 0px 50px gold;
 	}
@@ -330,12 +355,12 @@ footer {
 	margin-left: 20px;
 }
 
-.shake_textfield {
+.shake_textfield_animation {
 	border: 4px solid red;
-	animation: SHAKE_TEXTFIELD 0.5s;
+	animation: SHAKE_TEXTFIELD_ANIMATION 0.5s;
 }
 
-@keyframes SHAKE_TEXTFIELD {
+@keyframes SHAKE_TEXTFIELD_ANIMATION {
   10%, 90% {
     transform: translate3d(-1px, 0, 0);
   }
@@ -387,7 +412,7 @@ footer {
 	position: absolute;
 	z-index: 3;
 	background-color: black;
-	animation: ANIMATE_FAIL_BACKGROUND 1s;
+	animation: FAIL_BACKGROUND_ANIMATION 1s;
 	animation-fill-mode: forwards;
 }
 
@@ -401,12 +426,12 @@ footer {
 	color: black;
 	z-index: 3;
 	font-size: 5em;
-	animation: ANIMATE_FAIL_PANEL 1s;
+	animation: FAIL_PANEL_ANIMATION 1s;
 	animation-fill-mode: forwards;
 }
 
 .failText {
-	animation: ANIMATE_FAIL_TEXT 1s;
+	animation: FAIL_TEXT_ANIMATION 1s;
 	animation-fill-mode: forwards;
 }
 
@@ -415,7 +440,7 @@ footer {
 	opacity: 1 !important;
 }
 
-@keyframes ANIMATE_FAIL_BACKGROUND {
+@keyframes FAIL_BACKGROUND_ANIMATION {
 	0% {
 		opacity: 0;
 	}
@@ -426,14 +451,14 @@ footer {
 	}
 }
 
-@keyframes ANIMATE_FAIL_PANEL {
+@keyframes FAIL_PANEL_ANIMATION {
 	100% {
 		padding: 40px;
 		transition: padding 0.5s ease-in-out;
 	}
 }
 
-@keyframes ANIMATE_FAIL_TEXT {
+@keyframes FAIL_TEXT_ANIMATION {
 	0% {
 		transform: skewX(-50deg) translateX(-100%);
 	}
