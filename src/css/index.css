@@ -30,7 +30,7 @@
 	max-width: 200px;
 }
 
-#navigation_bar {
+#navigationBar {
 	width: 100%;
 	display: flex;
 	justify-content: flex-end;
@@ -38,7 +38,7 @@
 	padding-right: 20px;
 }
 
-#navigation_bar a {
+#navigationBar a {
 	color: white;
 	text-decoration: none;
 	border-left: 3px solid white;
@@ -46,11 +46,11 @@
 	cursor: pointer;
 }
 
-#navigation_bar a:hover {
+#navigationBar a:hover {
 	text-shadow: 4px 4px red;
 }
 
-#navigation_bar a:first-child {
+#navigationBar a:first-child {
 	border: 0;
 }
 
@@ -73,21 +73,20 @@ footer {
 
 }
 
-.main_area {
+.mainPanel {
 	display: flex;
 	justify-content: center;
 	flex: 1;
-
 }
 
-.central_area {
+.centralPanel {
 	width: 60%;
 	position: relative;
 }
 
 /* ============= INSTRUCTION ================== */
 
-.instruction {
+.instructionPanel {
 	border: 7px ridge gold;
 	border-radius: 5px;
 	width: 100%;
@@ -104,14 +103,14 @@ footer {
 	overflow-y: auto;
 }
 
-#start_button {
+#startButton {
 	padding: 20px;
 	margin: 20px auto;
 }
 
 /* ============= COUNTDOWN ================== */
 
-#countdown_panel {
+#countdownPanel {
 	min-width: 100%;
 	min-height: 100%;
 	position: absolute;
@@ -123,7 +122,7 @@ footer {
 	z-index: 3;
 }
 
-.grayscale_background_animation {
+.grayscaleBackgroundAnimation {
 	animation: GRAYSCALE_BACKGROUND_ANIMATION 4s;
 }
 
@@ -136,7 +135,7 @@ footer {
 
 /* ============= SLIDER ================== */
 
-.slider {
+.sliderPanel {
 	width: 100%;
 	height: 60%;
 	display: flex;
@@ -157,21 +156,9 @@ footer {
 	bottom: 30%;
 }
 
-.add_points_animation {
+.addPointsAnimation {
 	animation: ADD_POINTS_ANIMATION 1s;
 	animation-fill-mode: forwards;
-}
-
-.slider_animation {
-	animation: SLIDER_ANIMATION 3s;
-	-webkit-animation-timing-function: linear;
-}
-
-@keyframes SLIDER_ANIMATION {
-	100% {
-		margin-left: 0;
-		transition: 3s linear;
-	}
 }
 
 @keyframes ADD_POINTS_ANIMATION {
@@ -191,7 +178,7 @@ footer {
 
 /* ============= IMAGES ================== */
 
-.images_area {
+.imagesPanel {
 	display: flex;
 	width: 100%;
 	border: 5px double gold;
@@ -217,120 +204,43 @@ footer {
 	border-right: 1px dashed white;
 }
 
-.error_animation {
-	animation: ERROR_BOX_SHADOW_ANIMATION 3s;
-	animation-iteration-count: infinite;
-}
-
-.warning_animation {
+.warningAnimation {
 	animation: WARNING_BOX_SHADOW_ANIMATION 3s;
 	animation-iteration-count: infinite;
-}
-
-.normal_animation {
-	animation: DEFAULT_BOX_SHADOW_ANIMATION 3s;
-	animation-iteration-count: infinite;
-}
-
-.red_text_animation {
-	animation: RED_TEXT_ANIMATION 2s;
-	animation-fill-mode: forwards;
-}
-
-.red_border_animation {
-	animation: RED_BORDER_ANIMATION 2s;
-	animation-fill-mode: forwards;
-}
-
-@keyframes RED_TEXT_ANIMATION {
-	100% {
-		color: #8B0000;
-		transition: color 2s linear;
-	}
-}
-
-@keyframes RED_BORDER_ANIMATION {
-	100% {
-		border: 5px double red;
-		transition: border 2s linear;
-	}
-}
-
-@keyframes ERROR_BOX_SHADOW_ANIMATION {
-	0% {
-		box-shadow: 0px 0px 150px red;
-		transition: box-shadow 1s linear;
-	}
-
-	25% {
-		box-shadow: 0px 0px 150px #8B0000;
-	}
-
-	50% {
-		box-shadow: 0px 0px 150px red;
-	}
-
-	75% {
-		box-shadow: 0px 0px 150px #8B0000;
-	}
-
-	100% {
-		box-shadow: 0px 0px 150px red;
-	}
+	border: 5px solid red;
+	transition: border 0.5s ease-in-out;
 }
 
 @keyframes WARNING_BOX_SHADOW_ANIMATION {
 	0% {
-		box-shadow: 0px 0px 50px gold;
+		box-shadow: 0px 0px 50px #641E16;
 	}
 
 	25% {
-		box-shadow: 0px 0px 50px red;
+		box-shadow: 0px 0px 50px #F1948A;
 	}
 
 	50% {
-		box-shadow: 0px 0px 50px gold;
+		box-shadow: 0px 0px 50px #641E16;
 	}
 
 	75% {
-		box-shadow: 0px 0px 50px red;
+		box-shadow: 0px 0px 50px #F1948A;
 	}
 
 	100% {
-		box-shadow: 0px 0px 50px gold;
-	}
-}
-
-@keyframes DEFAULT_BOX_SHADOW_ANIMATION {
-	0% {
-		box-shadow: 0px 0px 50px gold;
-	}
-
-	25% {
-		box-shadow: 0px 0px 50px yellow;
-	}
-
-	50% {
-		box-shadow: 0px 0px 50px gold;
-	}
-
-	75% {
-		box-shadow: 0px 0px 50px yellow;
-	}
-
-	100% {
-		box-shadow: 0px 0px 50px gold;
+		box-shadow: 0px 0px 50px #641E16;
 	}
 }
 
 /* ============= SUBMIT ================== */
 
-.submit_area {
+.submitPanel {
 	display: flex;
 	justify-content: center;
 } 
 
-.submit_user_input {
+.submitTextfield {
 	border: 4px solid #3F3835;
 	-webkit-border-radius: 5px;
 	-moz-border-radius: 5px;
@@ -346,16 +256,16 @@ footer {
 	outline: 0;
 }
 
-.submit_user_input:focus {
+.submitTextfield:focus {
 	border: 4px solid black;
 	box-shadow: inset 0px 0px 20px black;
 }
 
-#submit_button {
+#submitButton {
 	margin-left: 20px;
 }
 
-.shake_textfield_animation {
+.shakeTextfieldAnimation {
 	border: 4px solid red;
 	animation: SHAKE_TEXTFIELD_ANIMATION 0.5s;
 }
