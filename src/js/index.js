@@ -1,10 +1,19 @@
 "use strict";
 
+/**
+ * The main objective of this game is the users must quickly type in the exact value for the first dota item that is displayed amongst a list of dota
+ * images; that value is the price of that item currently. If the user did not type the correct value in time before the images reaches the end, the
+ * game loses.
+ * @author Jack Tan
+ */
 (function() {
 	var IS_NUMERIC = new RegExp(/^\d+$/);
 	var COUNTDOWN_NUMBER = 3;
 
-	// https://jonsuh.com/blog/detect-the-end-of-css-animations-and-transitions-with-javascript/
+	/**
+	 * Find which CSS transition events end.
+	 * https://jonsuh.com/blog/detect-the-end-of-css-animations-and-transitions-with-javascript/
+	 */
 	function whichTransitionEvent(){
 	  var t,
 	      el = document.createElement("fakeelement");
@@ -23,7 +32,10 @@
 	  }
 	}
 
-	// https://www.kirupa.com/html5/get_element_position_using_javascript.htm
+	/**
+	 * @param {Object} el - The element that we want to find the current position is relative to the window.
+	 * https://www.kirupa.com/html5/get_element_position_using_javascript.htm
+	 */
 	function getPosition(el) {
 		var xPos = 0;
 		var yPos = 0;
@@ -50,29 +62,57 @@
 		};
 	}
 
+	/**
+	 * Bind the focused element; it will call the callback when transition ends.
+	 * @param  {Object} the object which will be binded by a transition end listener
+	 * @param  {Function} the callback that will be called when transition end
+	 */
   	function transitionEnd(element, callback) {
 	    var transitionEvent = whichTransitionEvent();
 	    element.addEventListener(transitionEvent, callback);
   	}
 
+	/**
+	 * Display the element.
+	 * @param  {Object} The element that will be displayed.
+	 */
 	function showElement(element) {
 		element.style.display = 'flex';
 	}
 
+	/**
+	 * Hide the element.
+	 * @param  {Object} The element that will be hidden.
+	 */
 	function hideElement(element) {
 		element.style.display = 'none';
 	}
 
+	/**
+	 * Add a CSS class to an element.
+	 * @param  {Object} The element that will have the added CSS class.
+	 * @param  {String} className - The CSS class name
+	 */
 	function addClass(element, className) {
 		element.classList.add(className);
 	}
 
+	/**
+	 * Remove a CSS class from an element.
+	 * @param  {Object} The element that will have the specified CSS class removed.
+	 * @param  {String} className - The CSS class name
+	 */
 	function removeClass(element, className) {
 		element.classList.remove(className);
 		// weird hack rule - https://css-tricks.com/restart-css-animation/
 		void element.offsetWidth;		
 	}
 
+	/**
+	 * Toggle whether to add or remove CSS class.
+	 * @param  {Object} The element that will add or remove the CSS class.
+	 * @param  {String} className - The CSS class name
+	 */
 	function toggleClass(element, className) {
 		if (element.classList.contains(className)) {
 			removeClass(element, className);
@@ -80,6 +120,10 @@
   		addClass(element, className);
 	}
 
+	/**
+	 * Validate if user input is an integer only.
+	 * @param  {Object} The textfield that will be validated.
+	 */
   	function checkIfUserInputIsValid(element) {
 		if (IS_NUMERIC.test(element.value)) {
 			return true;
@@ -89,12 +133,20 @@
   		}
   	}
 
+	/**
+	 * This is the slider that will be displayed after the countdown. It will display an endless stream of dota images that were retrieved via Dota API.
+	 * It will constantly transition to the left until it reaches the starting position of the panel that holds the images, which in that case the game
+	 * lose. 
+	 */
 	var Slider = function() {
 		this.element = document.getElementsByClassName('images')[0];
 		this.panel = document.getElementsByClassName('images_area')[0];
 		this.failPanel = document.getElementsByClassName('failBackground')[0];
 	}
 
+	/**
+	 * Transition effect on the images.
+	 */
 	Slider.prototype.slide = function() {
   	    this.element.style.marginLeft = '0';
 	    this.element.style.transition = '3s linear';
@@ -135,6 +187,9 @@
 	    }, 1000);*/
 	}
 
+	/**
+	 * Start the slider transition, display the fail panel when the transition ends.
+	 */
 	Slider.prototype.startSlider = function() {
 		var self = this;
 		this.slide();
@@ -143,10 +198,18 @@
 		});		
 	}
 
+	/**
+	 * This is the countdown panel; it will countdown until it reaches 0 before it displays the slider panel.
+	 */
 	var CountdownPanel = function(countdownPanel) {
 		this.countdownPanel = document.getElementById(countdownPanel);
 	};
 
+	/**
+	 * Start the countdown; it will countdown the number displayed on the screen until it reaches 0, which by then it will display the slider panel.
+	 * @param  {Integer} the countdown number, e.g. if 3, it will start the countdown from 3.
+	 * @param  {Function} The callback that will be called once the countdown reaches 0.
+	 */
 	CountdownPanel.prototype.startCountdownTimer = function(countdownNumber, callback) {
 		var self = this;
 		showElement(this.countdownPanel);
@@ -161,6 +224,10 @@
     	}, 1000);
 	}
 
+	/**
+	 * This is a generic button, which has a multitude of generic to specific functions for all possible scenarios.
+	 * @param {Object} Button
+	 */
 	var Button = function(button) {
 		this.imageIteration = 0;
 		this.button = document.getElementById(button);
@@ -175,6 +242,12 @@
 		this.wrapper = document.getElementsByClassName('wrapper')[0];
 	};
 
+	/**
+	 * When clicked, start the countdown panel.
+	 * @param  {Integer} Countdown number
+	 * @param  {Function} The function that will be called when the countdown number reaches 0.
+	 * @return {[type]}
+	 */
 	Button.prototype.startCountdownForSlider = function(countdownNumber, callback) {
 		var self = this;
 		this.button.addEventListener('click', function() {
@@ -184,6 +257,9 @@
 		});
 	}
 
+	/**
+	 * When clicked, check if the user input is valid; if it is valid, it will remove an image and add some points, else display a fail animation.
+	 */
 	Button.prototype.submit = function() {
 		var self = this;
 		this.button.addEventListener('click', function() {
@@ -196,6 +272,10 @@
 		});
 	}
 
+	/**
+	 * Constructor for when the start button is clicked.
+	 * @param  {Integer} countdown number.
+	 */
 	Button.prototype.initStart = function(countdownNumber) {
 		var self = this;
 		var callback = function() {
@@ -204,6 +284,10 @@
 		this.startCountdownForSlider(COUNTDOWN_NUMBER, callback);
 	}
 
+	/**
+	 * Constructor for when the fail button is clicked.
+	 * @param  {Integer} countdown number.
+	 */
 	Button.prototype.initFail = function(countdownNumber) {
 		var self = this;
 		var callback = function() {
@@ -228,6 +312,8 @@
   	var submitButton = new Button('submit_button');
   	submitButton.submit();
 
+
+// ========================================================================
   	// For testing purposes
   	var hideInstructionAndCountdownPanel = function() {
 	  	countdown_panel.style.display = 'none';
