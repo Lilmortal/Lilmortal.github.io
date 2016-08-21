@@ -170,7 +170,7 @@ footer {
 @keyframes SLIDER_ANIMATION {
 	100% {
 		margin-left: 0;
-		transition: margin-left 3s linear;
+		transition: 3s linear;
 	}
 }
 
@@ -430,14 +430,13 @@ footer {
 	animation-fill-mode: forwards;
 }
 
-.failText {
+.fail_text {
 	animation: FAIL_TEXT_ANIMATION 1s;
 	animation-fill-mode: forwards;
 }
 
-#tryAgainButton {
+#fail_button {
 	padding: 20px;
-	opacity: 1 !important;
 }
 
 @keyframes FAIL_BACKGROUND_ANIMATION {

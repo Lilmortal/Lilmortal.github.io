@@ -1,6 +1,10 @@
 "use strict";
 
 (function() {
+	var IS_NUMERIC = new RegExp(/^\d+$/);
+	var COUNTDOWN_NUMBER = 3;
+
+	// https://jonsuh.com/blog/detect-the-end-of-css-animations-and-transitions-with-javascript/
 	function whichTransitionEvent(){
 	  var t,
 	      el = document.createElement("fakeelement");
@@ -19,6 +23,7 @@
 	  }
 	}
 
+	// https://www.kirupa.com/html5/get_element_position_using_javascript.htm
 	function getPosition(el) {
 		var xPos = 0;
 		var yPos = 0;
@@ -45,171 +50,183 @@
 		};
 	}
 
-	var IS_NUMERIC = new RegExp(/^\d+$/);
+  	function transitionEnd(element, callback) {
+	    var transitionEvent = whichTransitionEvent();
+	    element.addEventListener(transitionEvent, callback);
+  	}
 
-	var enableElement = function(element) {
+	function showElement(element) {
 		element.style.display = 'flex';
 	}
 
-	var disableElement = function(element) {
+	function hideElement(element) {
 		element.style.display = 'none';
 	}
 
-	var addClass = function(element, className) {
+	function addClass(element, className) {
 		element.classList.add(className);
 	}
 
-	var removeClass = function(element, className) {
-  			element.classList.remove(className);
-  			// weird hack rule - https://css-tricks.com/restart-css-animation/
-  			void element.offsetWidth;		
+	function removeClass(element, className) {
+		element.classList.remove(className);
+		// weird hack rule - https://css-tricks.com/restart-css-animation/
+		void element.offsetWidth;		
 	}
 
-	var toggleClass = function(element, className) {
+	function toggleClass(element, className) {
 		if (element.classList.contains(className)) {
 			removeClass(element, className);
   		}
   		addClass(element, className);
 	}
 
-  	var startCountdown = function(element, value, callback) {
-  		element.innerHTML = "";
-    	var countDownTimer = setInterval(function() {
-      		if (value === 0) {
-        		clearInterval(countDownTimer);
-        		disableElement(element);
-        		callback();
-      		}
-      		element.innerHTML = value--;
-    	}, 1000);
-  	}
-
-  	var checkIfUserInputIsValid = function(element) {
-		var value = element.value;
-		if (IS_NUMERIC.test(value)) {
+  	function checkIfUserInputIsValid(element) {
+		if (IS_NUMERIC.test(element.value)) {
 			return true;
 		} else {
-			toggleClass(element, 'shake_textfield');
+			toggleClass(element, 'shake_textfield_animation');
 			return false;
   		}
   	}
 
-  	var restartPanel = function(element) {
-  		element.style.marginLeft = '100%';
-  		element.style.transition = '0s';
-  	}
+	var Slider = function() {
+		this.element = document.getElementsByClassName('images')[0];
+		this.panel = document.getElementsByClassName('images_area')[0];
+		this.failPanel = document.getElementsByClassName('failBackground')[0];
+	}
 
-  	var restartImages = function(element) {
-  		for (var i = 0; i < element.length; i++) {
-  			element[i].style.display = 'block';
-  		}
-  	}
-
-  	var restartSlider = function(element, image) {
-  		restartPanel(element);
-  		restartImages(image);
-  	}
-
-  	var slider = function(element, panel) {
-  	    element.style.marginLeft = '0';
-	    element.style.transition = '10s linear';
+	Slider.prototype.slide = function() {
+  	    this.element.style.marginLeft = '0';
+	    this.element.style.transition = '3s linear';
   	    
 	    // this animation is not working for some reason
   	    //toggleClass(element, 'slider_animation');
 
-	    var points = document.getElementsByClassName('points')[0];
+	    /*var points = document.getElementsByClassName('points')[0];
 		var screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-	    var defaultWidth = (screenWidth - panel.offsetWidth/ 2) + panel.offsetWidth;
+	    var defaultWidth = (screenWidth - this.panel.offsetWidth/ 2) + this.panel.offsetWidth;
 	    var warningWidth = defaultWidth * 45 / 100;
 	    var errorWidth = defaultWidth * 30 / 100;
 	    var timer;
 	    var startWarningAnimation = false;
 	    var startErrorAnimation = false;
 	    
-    	panel.style.border = '5px double gold';
+    	this.panel.style.border = '5px double gold';
   		removeClass(points, 'red_text_animation');
-  		addClass(panel, 'normal_animation');
+  		addClass(this.panel, 'normal_animation');
 
 	    timer = setInterval(function() {
-	    	if (getPosition(element).x <= warningWidth) {
+	    	if (getPosition(this.element).x <= warningWidth) {
 	    		if (!startWarningAnimation) {
-	    			removeClass(panel, 'normal_animation');
-	    			addClass(panel, 'warning_animation');
+	    			removeClass(this.panel, 'normal_animation');
+	    			addClass(this.panel, 'warning_animation');
 	    			startWarningAnimation = true;
 	    		}
 	    	}
-	    	if (getPosition(element).x <= errorWidth) {
+	    	if (getPosition(this.element).x <= errorWidth) {
 	    		if (!startErrorAnimation) {
-	    			panel.style.border = '5px double #8B0000';
-	    			removeClass(panel, 'warning_animation');
-	    			addClass(points, 'red_text_animation');
-	    			addClass(panel, 'error_animation');
+	    			this.panel.style.border = '5px double #8B0000';
+	    			removeClass(this.panel, 'warning_animation');
+	    			addClass(this.points, 'red_text_animation');
+	    			addClass(this.panel, 'error_animation');
 	    			startErrorAnimation = true;
 	    		}
 	    	}
-	    }, 1000);
-  	}
+	    }, 1000);*/
+	}
 
-  	var transitionEnd = function(element, callback) {
-	    var transitionEvent = whichTransitionEvent();
-	    element.addEventListener(transitionEvent, callback);
-  	}
+	Slider.prototype.startSlider = function() {
+		var self = this;
+		this.slide();
+		transitionEnd(this.element, function() {
+			showElement(self.failPanel);
+		});		
+	}
 
-  	// =======================================================
+	var CountdownPanel = function(countdownPanel) {
+		this.countdownPanel = document.getElementById(countdownPanel);
+	};
 
-    var countdown_panel = document.getElementById('countdown_panel');
-	var image = document.getElementsByClassName('image');
-  	var submit_textfield = document.getElementById('submit_user_input');
-  	var instruction_panel = document.getElementsByClassName('instruction')[0];
-	var images = document.getElementsByClassName('images')[0];
-	var points = document.getElementsByClassName('points')[0];
-	var failPanel = document.getElementsByClassName('failBackground')[0];
-	var sliderParent = document.getElementsByClassName('images_area')[0];
-	var wrapper = document.getElementsByClassName('wrapper')[0];
-	var addPoints = document.getElementsByClassName('addPoints')[0];
+	CountdownPanel.prototype.startCountdownTimer = function(countdownNumber, callback) {
+		var self = this;
+		showElement(this.countdownPanel);
+		this.countdownPanel.innerHTML = "";
+		var countDownTimer = setInterval(function() {
+      		if (countdownNumber === 0) {
+        		clearInterval(countDownTimer);
+        		hideElement(self.countdownPanel);
+        		callback();
+        	}
+        	self.countdownPanel.innerHTML = countdownNumber--;
+    	}, 1000);
+	}
 
-  	var start_button = document.getElementById('start_button');
-  	start_button.onclick = function() {
-  		toggleClass(wrapper, 'grayscale_background_animation');
-    	disableElement(instruction_panel);
-    	enableElement(countdown_panel);
-  		startCountdown(countdown_panel, 3, function() {
-  			slider(images, sliderParent);
-  			transitionEnd(images, function() {
-  				enableElement(failPanel);
-  			})
-  		});
-  	}
+	var Button = function(button) {
+		this.imageIteration = 0;
+		this.button = document.getElementById(button);
+		this.countdownPanel = new CountdownPanel('countdown_panel');
+		this.slider = new Slider();
+		this.submitTextfield = document.getElementById('submit_user_input');
+		this.failPanel = document.getElementsByClassName('failBackground')[0];
+		this.images = document.getElementsByClassName('images')[0];
+		this.image = document.getElementsByClassName('image');
+		this.instruction_panel = document.getElementsByClassName('instruction')[0];
+		this.addPoints = document.getElementsByClassName('addPoints')[0];
+		this.wrapper = document.getElementsByClassName('wrapper')[0];
+	};
 
-  	var tryAgainButton = document.getElementById('tryAgainButton');
-  	tryAgainButton.onclick = function() {
-  		toggleClass(wrapper, 'grayscale_background_animation');
-  		disableElement(failPanel);
-  		enableElement(countdown_panel);
-  		restartSlider(images, image);
-  		startCountdown(countdown_panel, 3, function() {
-			slider(images, sliderParent);
-  			transitionEnd(images, function() {
-  				enableElement(failPanel);
-  			});
-  		});
-  	}
+	Button.prototype.startCountdownForSlider = function(countdownNumber, callback) {
+		var self = this;
+		this.button.addEventListener('click', function() {
+			callback();
+			toggleClass(self.wrapper, 'grayscale_background_animation');
+			self.countdownPanel.startCountdownTimer(countdownNumber, self.slider.startSlider.bind(self.slider));
+		});
+	}
 
-	var imageIteration = 0;
-  	var submit_button = document.getElementById('submit_button');
-  	submit_button.onclick = function() {
-  		if (!checkIfUserInputIsValid(submit_textfield)) {
-  			disableElement(image[imageIteration]);
-  			imageIteration++;
-  			addPoints.innerHTML = "+200";
-  			toggleClass(addPoints, 'add_points_animation');
-  		}
-  	}
+	Button.prototype.submit = function() {
+		var self = this;
+		this.button.addEventListener('click', function() {
+	  		if (!checkIfUserInputIsValid(self.submitTextfield)) {
+	  			hideElement(self.image[self.imageIteration]);
+	  			self.imageIteration++;
+	  			self.addPoints.innerHTML = "+200";
+	  			toggleClass(self.addPoints, 'add_points_animation');
+	  		}
+		});
+	}
 
-  	var how_to_play_link = document.getElementById('how_to_play_link');
-  	how_to_play_link.onclick = function() {
-		enableElement(instruction_panel);
-  	};
+	Button.prototype.initStart = function(countdownNumber) {
+		var self = this;
+		var callback = function() {
+			hideElement(self.instruction_panel);
+		}
+		this.startCountdownForSlider(COUNTDOWN_NUMBER, callback);
+	}
+
+	Button.prototype.initFail = function(countdownNumber) {
+		var self = this;
+		var callback = function() {
+			hideElement(self.failPanel);
+
+			// reset the images
+			self.images.style.marginLeft = '100%';
+  			self.images.style.transition = '0s';
+  		  	for (var i = 0; i < self.image.length; i++) {
+  				self.image[i].style.display = 'block';
+  			}
+		}
+		this.startCountdownForSlider(COUNTDOWN_NUMBER, callback);
+	}
+
+	var startButton = new Button('start_button');
+	startButton.initStart();
+
+	var failButton = new Button('failButton');
+	failButton.initFail();
+
+  	var submitButton = new Button('submit_button');
+  	submitButton.submit();
 
   	// For testing purposes
   	var hideInstructionAndCountdownPanel = function() {
@@ -219,5 +236,5 @@
   	}
 
   	//hideInstructionAndCountdownPanel();
-  	//enableElement(failPanel);
+  	//showElement(failPanel);
 })();
