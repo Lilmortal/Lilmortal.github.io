@@ -1,0 +1,52 @@
+.imagesPanel {
+	display: flex;
+	width: 100%;
+	border: 5px double $color-panel-border;
+	@include border-radius(3px);
+	overflow:hidden;
+	background-color: $color-panel-background;
+	animation-iteration-count: infinite;
+}
+
+.images {
+  	display: flex;
+  	justify-content: flex-end;
+  	margin-left: 100%;
+  	border: 0;
+}
+
+.image {
+	min-width: 150px;
+	min-height: 50px;
+	border-left: 1px dashed white;
+	border-right: 1px dashed white;
+}
+
+.warningAnimation {
+	animation: WARNING_BOX_SHADOW_ANIMATION 3s;
+	animation-iteration-count: infinite;
+	border: 5px solid $color-warning-border;
+	transition: border 0.5s ease-in-out;
+}
+
+@keyframes WARNING_BOX_SHADOW_ANIMATION {
+	0% {
+		box-shadow: 0px 0px 50px $color-warning-box-shadow-toggle-one;
+	}
+
+	25% {
+		box-shadow: 0px 0px 50px $color-warning-box-shadow-toggle-two;
+	}
+
+	50% {
+		box-shadow: 0px 0px 50px $color-warning-box-shadow-toggle-one;
+	}
+
+	75% {
+		box-shadow: 0px 0px 50px $color-warning-box-shadow-toggle-two;
+	}
+
+	100% {
+		box-shadow: 0px 0px 50px $color-warning-box-shadow-toggle-one;
+	}
+}

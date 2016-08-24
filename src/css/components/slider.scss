@@ -1,0 +1,39 @@
+.sliderPanel {
+	width: 100%;
+	height: 60%;
+	display: flex;
+	align-items: center;
+	justify-content: center;
+	flex-direction: column;
+}
+
+.points {
+	font-size: 3em;
+	position: relative;
+}
+
+.addPoints {
+	position: absolute;
+	left: 58%;
+	bottom: 30%;
+}
+
+.addPointsAnimation {
+	animation: ADD_POINTS_ANIMATION 1s;
+	animation-fill-mode: forwards;
+}
+
+@keyframes ADD_POINTS_ANIMATION {
+	0% {
+		opacity: 0;
+	}
+
+	50% {
+		opacity: 1;
+	}
+
+	100% {
+		opacity : 0;
+		bottom: 70%;
+	}
+}

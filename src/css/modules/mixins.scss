@@ -1,0 +1,20 @@
+@mixin transition($seconds) {
+	-webkit-transition: all $seconds ease-in-out;
+	-moz-transition: all $seconds ease-in-out;
+	-ms-transition: all $seconds ease-in-out;
+	-o-transition: all $seconds ease-in-out;
+}
+
+@mixin border-radius($radius) {
+	-webkit-border-radius: $radius;
+	-moz-border-radius: $radius;
+	-ms-border-radius: $radius;
+	border-radius: $radius;
+}
+
+@mixin filter($grayscale: 0, $blur: 0px) {
+	-webkit-filter: grayscale($grayscale) blur($blur);
+	-moz-filter: grayscale($grayscale) blur($blur);
+	-ms-filter: grayscale($grayscale) blur($blur);
+	filter: grayscale($grayscale) blur($blur);
+}

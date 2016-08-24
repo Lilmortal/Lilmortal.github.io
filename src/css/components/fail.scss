@@ -1,0 +1,62 @@
+.failBackground {
+	display: none;
+	align-items: center;
+	min-width: 100%;
+	min-height: 100%;
+	position: absolute;
+	z-index: 3;
+	background-color: $color-fade-background;
+	animation: FAIL_BACKGROUND_ANIMATION 1s;
+	animation-fill-mode: forwards;
+}
+
+.failPanel {
+	width: 100%;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	justify-content: center;
+	background-color: $color-popup-background;
+	color: $color-popup-text;
+	z-index: 3;
+	font-size: 5em;
+	animation: FAIL_PANEL_ANIMATION 1s;
+	animation-fill-mode: forwards;
+}
+
+.fail_text {
+	animation: FAIL_TEXT_ANIMATION 1s;
+	animation-fill-mode: forwards;
+}
+
+#fail_button {
+	padding: 20px;
+}
+
+@keyframes FAIL_BACKGROUND_ANIMATION {
+	0% {
+		opacity: 0;
+	}
+
+	100% {
+		opacity: 0.7;
+		transition: opacity 0.5s ease-in-out;
+	}
+}
+
+@keyframes FAIL_PANEL_ANIMATION {
+	100% {
+		padding: 40px;
+		transition: padding 0.5s ease-in-out;
+	}
+}
+
+@keyframes FAIL_TEXT_ANIMATION {
+	0% {
+		transform: skewX(-50deg) translateX(-100%);
+	}
+
+	100% {
+		transform: skewX(0deg);
+	}
+}

@@ -1,0 +1,97 @@
+/*mixins*/
+@import 'modules/mixins';
+@import 'modules/color_palette';
+@import 'modules/typography';
+@import 'components/button';
+@import 'components/countdown';
+@import 'components/fail';
+@import 'components/images';
+@import 'components/instruction';
+@import 'components/slider';
+@import 'components/textfield';
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+.wrapper, body, html {
+	height: 100vh;
+	margin: 0;
+	overflow: hidden;
+	box-sizing: border-box;
+	// put a mixin for a full font familyy
+	font-family: $main-font;
+	color: $color-text;
+}
+
+/* ============= HEADER ================== */
+
+#header {
+	background-color: $color-main-background;
+	opacity: 0.4;
+	display: flex;
+}
+
+#header:hover {
+	@include transition(0.3s);
+	opacity: 0.9;
+}
+
+#logo {	
+	max-width: 200px;
+}
+
+#navigationBar {
+	width: 100%;
+	display: flex;
+	justify-content: flex-end;
+	align-items: center;
+	padding-right: 20px;
+}
+
+#navigationBar a {
+	text-decoration: none;
+	border-left: 3px solid $color-main-border;
+	padding: 20px;
+	cursor: pointer;
+}
+
+#navigationBar a:hover {
+	text-shadow: 4px 4px $color-main-text-shadow;
+}
+
+#navigationBar a:visited {
+	color: $color-text;
+}
+
+#navigationBar a:first-child {
+	border: 0;
+}
+
+/* ============= FOOTER ================== */
+
+footer {
+	background-color: $color-main-background;
+	display: flex;
+	justify-content: center;
+}
+
+/* ============= BODY ================== */
+
+.wrapper {
+	display: flex;
+	flex-direction: column;
+	background-image: url("../img/Shadow_Fiend_Wallpaper.jpg");
+	background-size: cover;
+}
+
+.mainPanel {
+	display: flex;
+	justify-content: center;
+	flex: 1;
+}
+
+.centralPanel {
+	width: 60%;
+	position: relative;
+}

@@ -1,0 +1,290 @@
+/*mixins*/
+.button {
+  width: 100px;
+  background-color: #330000;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  border-radius: 5px;
+  border: 2px solid white;
+  box-shadow: 2px 2px 3px white;
+  outline: 0;
+  cursor: pointer;
+  color: white; }
+
+.button:active {
+  border: 2px solid black;
+  box-shadow: 2px 2px 3px black; }
+
+#countdownPanel {
+  min-width: 100%;
+  min-height: 100%;
+  position: absolute;
+  align-items: center;
+  justify-content: center;
+  display: none;
+  font-size: 10em;
+  z-index: 3; }
+
+.grayscaleBackgroundAnimation {
+  animation: GRAYSCALE_BACKGROUND_ANIMATION 4s; }
+
+@keyframes GRAYSCALE_BACKGROUND_ANIMATION {
+  100% {
+    -webkit-filter: grayscale(1) blur(3px);
+    -moz-filter: grayscale(1) blur(3px);
+    -ms-filter: grayscale(1) blur(3px);
+    filter: grayscale(1) blur(3px); } }
+.failBackground {
+  display: none;
+  align-items: center;
+  min-width: 100%;
+  min-height: 100%;
+  position: absolute;
+  z-index: 3;
+  background-color: black;
+  animation: FAIL_BACKGROUND_ANIMATION 1s;
+  animation-fill-mode: forwards; }
+
+.failPanel {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  background-color: #F0FFFF;
+  color: black;
+  z-index: 3;
+  font-size: 5em;
+  animation: FAIL_PANEL_ANIMATION 1s;
+  animation-fill-mode: forwards; }
+
+.fail_text {
+  animation: FAIL_TEXT_ANIMATION 1s;
+  animation-fill-mode: forwards; }
+
+#fail_button {
+  padding: 20px; }
+
+@keyframes FAIL_BACKGROUND_ANIMATION {
+  0% {
+    opacity: 0; }
+  100% {
+    opacity: 0.7;
+    transition: opacity 0.5s ease-in-out; } }
+@keyframes FAIL_PANEL_ANIMATION {
+  100% {
+    padding: 40px;
+    transition: padding 0.5s ease-in-out; } }
+@keyframes FAIL_TEXT_ANIMATION {
+  0% {
+    transform: skewX(-50deg) translateX(-100%); }
+  100% {
+    transform: skewX(0deg); } }
+.imagesPanel {
+  display: flex;
+  width: 100%;
+  border: 5px double gold;
+  -webkit-border-radius: 3px;
+  -moz-border-radius: 3px;
+  -ms-border-radius: 3px;
+  border-radius: 3px;
+  overflow: hidden;
+  background-color: black;
+  animation-iteration-count: infinite; }
+
+.images {
+  display: flex;
+  justify-content: flex-end;
+  margin-left: 100%;
+  border: 0; }
+
+.image {
+  min-width: 150px;
+  min-height: 50px;
+  border-left: 1px dashed white;
+  border-right: 1px dashed white; }
+
+.warningAnimation {
+  animation: WARNING_BOX_SHADOW_ANIMATION 3s;
+  animation-iteration-count: infinite;
+  border: 5px solid red;
+  transition: border 0.5s ease-in-out; }
+
+@keyframes WARNING_BOX_SHADOW_ANIMATION {
+  0% {
+    box-shadow: 0px 0px 50px #641E16; }
+  25% {
+    box-shadow: 0px 0px 50px #F1948A; }
+  50% {
+    box-shadow: 0px 0px 50px #641E16; }
+  75% {
+    box-shadow: 0px 0px 50px #F1948A; }
+  100% {
+    box-shadow: 0px 0px 50px #641E16; } }
+.instructionPanel {
+  border: 7px ridge gold;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  border-radius: 5px;
+  width: 100%;
+  height: 95%;
+  position: absolute;
+  color: black;
+  background-color: #F0FFFF;
+  padding-left: 20px;
+  display: flex;
+  flex-direction: column;
+  top: auto;
+  z-index: 2;
+  box-shadow: 0px 0px 50px gold;
+  overflow-y: auto; }
+
+#startButton {
+  padding: 20px;
+  margin: 20px auto; }
+
+.sliderPanel {
+  width: 100%;
+  height: 60%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column; }
+
+.points {
+  font-size: 3em;
+  position: relative; }
+
+.addPoints {
+  position: absolute;
+  left: 58%;
+  bottom: 30%; }
+
+.addPointsAnimation {
+  animation: ADD_POINTS_ANIMATION 1s;
+  animation-fill-mode: forwards; }
+
+@keyframes ADD_POINTS_ANIMATION {
+  0% {
+    opacity: 0; }
+  50% {
+    opacity: 1; }
+  100% {
+    opacity: 0;
+    bottom: 70%; } }
+.submitPanel {
+  display: flex;
+  justify-content: center; }
+
+.submitTextfield {
+  border: 4px solid #3F3835;
+  -webkit-border-radius: 5px;
+  -moz-border-radius: 5px;
+  -ms-border-radius: 5px;
+  border-radius: 5px;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  height: 50px;
+  width: 300px;
+  font-size: 200%;
+  padding-left: 10px;
+  outline: 0; }
+
+.submitTextfield:focus {
+  border: 4px solid black;
+  box-shadow: inset 0px 0px 20px black; }
+
+#submitButton {
+  margin-left: 20px; }
+
+.shakeTextfieldAnimation {
+  border: 4px solid red;
+  animation: SHAKE_TEXTFIELD_ANIMATION 0.5s; }
+
+@keyframes SHAKE_TEXTFIELD_ANIMATION {
+  10%, 90% {
+    transform: translate3d(-1px, 0, 0); }
+  20%, 80% {
+    transform: translate3d(2px, 0, 0); }
+  30%, 50%, 70% {
+    transform: translate3d(-4px, 0, 0); }
+  40%, 60% {
+    transform: translate3d(4px, 0, 0); }
+  100% {
+    display: none; } }
+*, *:before, *:after {
+  box-sizing: inherit; }
+
+.wrapper, body, html {
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+  font-family: "Helvetica", Sans-serif;
+  color: white; }
+
+/* ============= HEADER ================== */
+#header {
+  background-color: black;
+  opacity: 0.4;
+  display: flex; }
+
+#header:hover {
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out;
+  opacity: 0.9; }
+
+#logo {
+  max-width: 200px; }
+
+#navigationBar {
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  padding-right: 20px; }
+
+#navigationBar a {
+  text-decoration: none;
+  border-left: 3px solid white;
+  padding: 20px;
+  cursor: pointer; }
+
+#navigationBar a:hover {
+  text-shadow: 4px 4px red; }
+
+#navigationBar a:visited {
+  color: white; }
+
+#navigationBar a:first-child {
+  border: 0; }
+
+/* ============= FOOTER ================== */
+footer {
+  background-color: black;
+  display: flex;
+  justify-content: center; }
+
+/* ============= BODY ================== */
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  background-image: url("../img/Shadow_Fiend_Wallpaper.jpg");
+  background-size: cover; }
+
+.mainPanel {
+  display: flex;
+  justify-content: center;
+  flex: 1; }
+
+.centralPanel {
+  width: 60%;
+  position: relative; }
+
+/*# sourceMappingURL=main.css.map */
