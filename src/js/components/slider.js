@@ -11,7 +11,7 @@ var Slider = (function() {
 
 	var images = document.getElementsByClassName('images')[0];
 	var imagesPanel = document.getElementsByClassName('imagesPanel')[0];
-	var failBackground = document.getElementsByClassName('failBackground')[0];4
+	var failBackground = document.getElementsByClassName('failBackground')[0];
 
 	function slider() {
 
