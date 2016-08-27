@@ -2,7 +2,7 @@
 /**
  * This is the countdown panel; it will countdown until it reaches 0 before it displays the slider panel.
  */
-var CountdownPanel = (function() {
+window.CountdownPanel = (function() {
 	function countdownPanel(id) {
 		this.countdownPanel = document.getElementById(id);
 	}

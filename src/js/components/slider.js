@@ -5,7 +5,7 @@
  * It will constantly transition to the left until it reaches the starting position of the panel that holds the images, which in that case the game
  * lose. 
  */
-var Slider = (function() {
+window.Slider = (function() {
 	var SLIDE_DURATION = 10;
 	var WARNING_THRESHOLD = 30;
 

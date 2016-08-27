@@ -1,10 +1,8 @@
-"use strict";
-
 /**
  * This is a generic button, which has a multitude of generic to specific functions for all possible scenarios.
  * @param {Object} Button
  */
-var Button = (function() {
+window.Button = (function() {
 	var COUNTDOWN_NUMBER = 3;
 	var imageIteration = 0;
 	var submitTextfield = document.getElementById('submitTextfield');

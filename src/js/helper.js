@@ -1,6 +1,6 @@
 "use strict";
 
-var Helper = (function() {
+window.Helper = (function() {
 	var IS_NUMERIC = new RegExp(/^\d+$/);
 
 	/**
