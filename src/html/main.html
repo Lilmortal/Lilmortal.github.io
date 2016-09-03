@@ -30,77 +30,41 @@
       </header>
       
       <div class="mainPanel">
-        <div class="centralPanel">
-          <div class="instructionPanel">
-            <h1><strong>HOW TO PLAY</strong></h1>
-            <p>
-              You will have x amount of time to determine what is the price of each dota items
-            </p>
-            <p>
-              You will have x amount of time to determine what is the price of each dota items
-              You will have x amount of time to determine what is the price of each dota items
-              You will have x amount of time to determine what is the price of each dota items
-              You will have x amount of time to determine what is the price of each dota items
-              You will have x amount of time to determine what is the price of each dota items
-              You will have x amount of time to determine what is the price of each dota items  
-            </p>
-            <p>
-              You will have x amount of time to determine what is the price of each dota items
-              You will have x amount of time to determine what is the price of each dota items
-              You will have x amount of time to determine what is the price of each dota items
-              You will have x amount of time to determine what is the price of each dota items
-              You will have x amount of time to determine what is the price of each dota items
-              You will have x amount of time to determine what is the price of each dota items  
-            </p>
-            <p>
-              You will have x amount of time to determine what is the price of each dota items
-              You will have x amount of time to determine what is the price of each dota items
-              You will have x amount of time to determine what is the price of each dota items
-              You will have x amount of time to determine what is the price of each dota items
-              You will have x amount of time to determine what is the price of each dota items
-              You will have x amount of time to determine what is the price of each dota items  
-            </p>
-            <p>
-              You will have x amount of time to determine what is the price of each dota items
-              You will have x amount of time to determine what is the price of each dota items
-              You will have x amount of time to determine what is the price of each dota items
-              You will have x amount of time to determine what is the price of each dota items
-              You will have x amount of time to determine what is the price of each dota items
-              You will have x amount of time to determine what is the price of each dota items  
-            </p>
-            <p>
-              You will have x amount of time to determine what is the price of each dota items
-              You will have x amount of time to determine what is the price of each dota items
-              You will have x amount of time to determine what is the price of each dota items
-              You will have x amount of time to determine what is the price of each dota items
-              You will have x amount of time to determine what is the price of each dota items
-              You will have x amount of time to determine what is the price of each dota items  
-            </p>
+        <div class="instructionPanel">
+          <h1><strong>HOW TO PLAY</strong></h1>
+          <p>
+            When the game starts, there will be a slider which contains images of dota heroes; the main objective of this game is to prevent the slider from reaching the end of the line.
+          </p>
+          <p>
+            You must quickly type the first dota hero name on the textfield; doing so correctly will destroy that image; but if you enter the incorrect input, nothing will happen and the slider will continue sliding its way towards the end. As time pass on, the slider will began to increase its speed. There is no end to this game; the images will continue going until the user loses the game.
+          </p>
+          <p>
+            Every correct answer earns you 100 points. In the future I might implement a high score system to see how well you do compared to other users who played this game.
+          </p>
 
-            <button id="startButton" class="button">START</button>
+          <button id="startButton" class="button">START</button>
+        </div>
+        <div class="sliderPanel">
+          <h2 class="points">
+            <div class="addPoints"></div>
+            Points: 100</h2>
+          <div class="imagesPanel">
+            <picture class="images">
+              <div><img src="img/Iron_Branch_icon.png" class="image" /></div>
+              <div><img src="img/Divine_Rapier_icon.png" class="image" /></div>
+              <div><img src="img/Animal_Courier_icon.png" class="image" /></div>
+              <div><img src="img/Desolator_icon.png" class="image" /></div>
+              <div><img src="img/Observer_Ward_icon.png" class="image" /></div>
+              <div><img src="img/Shadow_Blade_icon.png" class="image" /></div>
+            </picture>
           </div>
-
-          <div class="sliderPanel">
-            <h2 class="points">
-              <div class="addPoints"></div>
-              Points: 100</h2>
-            <div class="imagesPanel">
-              <picture class="images">
-                <div><img src="img/Iron_Branch_icon.png" class="image" /></div>
-                <div><img src="img/Divine_Rapier_icon.png" class="image" /></div>
-                <div><img src="img/Animal_Courier_icon.png" class="image" /></div>
-                <div><img src="img/Desolator_icon.png" class="image" /></div>
-                <div><img src="img/Observer_Ward_icon.png" class="image" /></div>
-                <div><img src="img/Shadow_Blade_icon.png" class="image" /></div>
-              </picture>
-            </div>
-          </div>
-
           <div class="submitPanel">
             <input type="text" id="submitTextfield" class="submitTextfield" name="submitTextfield" />
             <button id="submitButton" class="button">Submit</button>
           </div>
         </div>
+
+
       </div>
 
       <footer>

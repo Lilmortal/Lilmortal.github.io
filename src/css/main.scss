@@ -21,6 +21,7 @@
 	// put a mixin for a full font familyy
 	font-family: $main-font;
 	color: $color-text;
+	font-size: 1.1em;
 }
 
 /* ============= HEADER ================== */
@@ -80,17 +81,13 @@ footer {
 .wrapper {
 	display: flex;
 	flex-direction: column;
-	background-image: url("../img/Shadow_Fiend_Wallpaper.jpg");
+	background-image: url("../img/background_image.jpg");
 	background-size: cover;
 }
 
 .mainPanel {
 	display: flex;
+	flex-direction: column;
 	justify-content: center;
-	flex: 1;
-}
-
-.centralPanel {
-	width: 60%;
-	position: relative;
+	flex: 1;	
 }

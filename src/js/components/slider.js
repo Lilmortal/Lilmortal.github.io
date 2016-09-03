@@ -6,15 +6,15 @@
  * lose. 
  */
 window.Slider = (function() {
-	var SLIDE_DURATION = 10;
+	var SLIDE_DURATION = 3;
 	var WARNING_THRESHOLD = 30;
 
 	var images = document.getElementsByClassName('images')[0];
 	var imagesPanel = document.getElementsByClassName('imagesPanel')[0];
 	var failBackground = document.getElementsByClassName('failBackground')[0];
 
-	function slider() {
-
+	function slider(slider) {
+		this.slider = document.getElementsByClassName(slider)[0];
 	}
 
 	/**
@@ -43,6 +43,7 @@ window.Slider = (function() {
 	 * Start the slider transition, display the fail panel when the transition ends.
 	 */
 	slider.prototype.startSlider = function() {
+		Helper.showElement(this.slider);
 		this.slide();
 		Helper.transitionEnd(images, function() {
 			Helper.showElement(failBackground);

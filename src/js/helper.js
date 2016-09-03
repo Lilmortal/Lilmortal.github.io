@@ -82,7 +82,9 @@ window.Helper = (function() {
 	 * @param  {Object} The element that will be hidden.
 	 */
 	function hideElement(element) {
-		element.style.display = 'none';
+		for (let i = 0; i < arguments.length; i++) {
+			arguments[i].style.display = 'none';
+		}
 	}
 
 	/**

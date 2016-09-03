@@ -12,11 +12,12 @@ window.Button = (function() {
 	var instructionPanel = document.getElementsByClassName('instructionPanel')[0];
 	var addPoints = document.getElementsByClassName('addPoints')[0];
 	var wrapper = document.getElementsByClassName('wrapper')[0];
+	var sliderPanel = document.getElementsByClassName('sliderPanel')[0];
 
 	function Button(id) {
 		this.button = document.getElementById(id);
 		this.countdownPanel = new CountdownPanel('countdownPanel');
-		this.slider = new Slider();
+		this.slider = new Slider('sliderPanel');
 	};
 
 	/**
@@ -65,12 +66,11 @@ window.Button = (function() {
 	 */
 	Button.prototype.initFail = function(countdownNumber) {
 		var callback = function() {
-			Helper.hideElement(failBackground);
-
+			Helper.hideElement(failBackground, sliderPanel);
 			// reset the images
 			images.style.marginLeft = '100%';
   			images.style.transition = '0s';
-  		  	for (var i = 0; i < image.length; i++) {
+  		  	for (let i = 0; i < image.length; i++) {
   				image[i].style.display = 'block';
   			}
   			//find out how to remove error border

@@ -1,4 +1,3 @@
-/*mixins*/
 .button {
   width: 100px;
   background-color: #330000;
@@ -10,7 +9,8 @@
   box-shadow: 2px 2px 3px white;
   outline: 0;
   cursor: pointer;
-  color: white; }
+  color: white;
+  padding: 20px; }
 
 .button:active {
   border: 2px solid black;
@@ -23,25 +23,23 @@
   align-items: center;
   justify-content: center;
   display: none;
-  font-size: 10em;
+  font-size: 12em;
   z-index: 3; }
 
 .grayscaleBackgroundAnimation {
   animation: GRAYSCALE_BACKGROUND_ANIMATION 4s; }
 
 @keyframes GRAYSCALE_BACKGROUND_ANIMATION {
-  100% {
-    -webkit-filter: grayscale(1) blur(3px);
-    -moz-filter: grayscale(1) blur(3px);
-    -ms-filter: grayscale(1) blur(3px);
-    filter: grayscale(1) blur(3px); } }
+  20%, 100% {
+    -webkit-filter: grayscale(0.7) blur(3px);
+    -moz-filter: grayscale(0.7) blur(3px);
+    -ms-filter: grayscale(0.7) blur(3px);
+    filter: grayscale(0.7) blur(3px); } }
 .failBackground {
   display: none;
-  align-items: center;
   min-width: 100%;
   min-height: 100%;
   position: absolute;
-  z-index: 3;
   background-color: black;
   animation: FAIL_BACKGROUND_ANIMATION 1s;
   animation-fill-mode: forwards; }
@@ -63,9 +61,6 @@
   animation: FAIL_TEXT_ANIMATION 1s;
   animation-fill-mode: forwards; }
 
-#fail_button {
-  padding: 20px; }
-
 @keyframes FAIL_BACKGROUND_ANIMATION {
   0% {
     opacity: 0; }
@@ -73,7 +68,11 @@
     opacity: 0.7;
     transition: opacity 0.5s ease-in-out; } }
 @keyframes FAIL_PANEL_ANIMATION {
+  0% {
+    opacity: 1;
+    z-index: 2; }
   100% {
+    opacity: 1;
     padding: 40px;
     transition: padding 0.5s ease-in-out; } }
 @keyframes FAIL_TEXT_ANIMATION {
@@ -128,27 +127,20 @@
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
   border-radius: 5px;
-  width: 100%;
-  height: 95%;
-  position: absolute;
   color: black;
   background-color: #F0FFFF;
-  padding-left: 20px;
+  padding: 0 20px 20px 20px;
   display: flex;
   flex-direction: column;
-  top: auto;
+  align-items: center;
   z-index: 2;
   box-shadow: 0px 0px 50px gold;
   overflow-y: auto; }
 
-#startButton {
-  padding: 20px;
-  margin: 20px auto; }
-
 .sliderPanel {
   width: 100%;
   height: 60%;
-  display: flex;
+  display: none;
   align-items: center;
   justify-content: center;
   flex-direction: column; }
@@ -225,7 +217,8 @@
   overflow: hidden;
   box-sizing: border-box;
   font-family: "Helvetica", Sans-serif;
-  color: white; }
+  color: white;
+  font-size: 1.1em; }
 
 /* ============= HEADER ================== */
 #header {
@@ -275,16 +268,13 @@ footer {
 .wrapper {
   display: flex;
   flex-direction: column;
-  background-image: url("../img/Shadow_Fiend_Wallpaper.jpg");
+  background-image: url("../img/background_image.jpg");
   background-size: cover; }
 
 .mainPanel {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   flex: 1; }
-
-.centralPanel {
-  width: 60%;
-  position: relative; }
 
 /*# sourceMappingURL=main.css.map */
