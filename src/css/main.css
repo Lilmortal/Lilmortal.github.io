@@ -1,19 +1,17 @@
 .button {
   width: 100px;
   background-color: #330000;
-  -webkit-border-radius: 5px;
-  -moz-border-radius: 5px;
-  -ms-border-radius: 5px;
-  border-radius: 5px;
-  border: 2px solid white;
-  box-shadow: 2px 2px 3px white;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  border-radius: 10px;
+  border: 0px solid white;
   outline: 0;
   cursor: pointer;
   color: white;
   padding: 20px; }
 
 .button:active {
-  border: 2px solid black;
   box-shadow: 2px 2px 3px black; }
 
 #countdownPanel {
@@ -37,12 +35,14 @@
     filter: grayscale(0.7) blur(3px); } }
 .failBackground {
   display: none;
+  align-items: center;
   min-width: 100%;
   min-height: 100%;
   position: absolute;
   background-color: black;
   animation: FAIL_BACKGROUND_ANIMATION 1s;
-  animation-fill-mode: forwards; }
+  animation-fill-mode: forwards;
+  z-index: 1; }
 
 .failPanel {
   width: 100%;
@@ -52,7 +52,6 @@
   justify-content: center;
   background-color: #F0FFFF;
   color: black;
-  z-index: 3;
   font-size: 5em;
   animation: FAIL_PANEL_ANIMATION 1s;
   animation-fill-mode: forwards; }
@@ -65,14 +64,10 @@
   0% {
     opacity: 0; }
   100% {
-    opacity: 0.7;
+    opacity: 1;
     transition: opacity 0.5s ease-in-out; } }
 @keyframes FAIL_PANEL_ANIMATION {
-  0% {
-    opacity: 1;
-    z-index: 2; }
   100% {
-    opacity: 1;
     padding: 40px;
     transition: padding 0.5s ease-in-out; } }
 @keyframes FAIL_TEXT_ANIMATION {
@@ -101,8 +96,7 @@
 .image {
   min-width: 150px;
   min-height: 50px;
-  border-left: 1px dashed white;
-  border-right: 1px dashed white; }
+  border-left: 4px dashed gold; }
 
 .warningAnimation {
   animation: WARNING_BOX_SHADOW_ANIMATION 3s;
@@ -139,7 +133,6 @@
 
 .sliderPanel {
   width: 100%;
-  height: 60%;
   display: none;
   align-items: center;
   justify-content: center;
@@ -153,6 +146,9 @@
   position: absolute;
   left: 58%;
   bottom: 30%; }
+
+.submitPanel {
+  margin-top: 3em; }
 
 .addPointsAnimation {
   animation: ADD_POINTS_ANIMATION 1s;
@@ -180,8 +176,6 @@
   -moz-transition: all 0.3s ease-in-out;
   -ms-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
-  height: 50px;
-  width: 300px;
   font-size: 200%;
   padding-left: 10px;
   outline: 0; }
@@ -190,8 +184,8 @@
   border: 4px solid black;
   box-shadow: inset 0px 0px 20px black; }
 
-#submitButton {
-  margin-left: 20px; }
+.submitPanel button {
+  margin-left: 2em; }
 
 .shakeTextfieldAnimation {
   border: 4px solid red;

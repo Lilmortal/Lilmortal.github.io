@@ -7,8 +7,6 @@
 	border: 4px solid #3F3835;
 	@include border-radius(5px);
 	@include transition(0.30s);
-	height: 50px;
-	width: 300px;
 	font-size: 200%;
 	padding-left: 10px;
 	outline: 0;
@@ -19,8 +17,8 @@
 	box-shadow: inset 0px 0px 20px $color-textfield-box-shadow;
 }
 
-#submitButton {
-	margin-left: 20px;
+.submitPanel button {
+	margin-left: 2em;
 }
 
 .shakeTextfieldAnimation {

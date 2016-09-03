@@ -6,7 +6,7 @@
  * lose. 
  */
 window.Slider = (function() {
-	var SLIDE_DURATION = 3;
+	var SLIDE_DURATION = 10;
 	var WARNING_THRESHOLD = 30;
 
 	var images = document.getElementsByClassName('images')[0];

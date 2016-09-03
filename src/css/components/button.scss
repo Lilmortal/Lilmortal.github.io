@@ -1,9 +1,8 @@
 .button {
 	width: 100px;
 	background-color: $color-button-background;
-	@include border-radius(5px);
-	border: 2px solid $color-button-border;
-	box-shadow: 2px 2px 3px $color-button-box-shadow;
+	@include border-radius(10px);
+	border: 0px solid $color-button-border;
 	outline: 0;
 	cursor: pointer;
 	color: $color-button-color;
@@ -11,6 +10,6 @@
 }
 
 .button:active {
-	border: 2px solid $color-button-active-border;
+
 	box-shadow: 2px 2px 3px $color-button-active-box-shadow;
 }

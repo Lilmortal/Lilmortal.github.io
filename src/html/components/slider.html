@@ -1,0 +1,43 @@
+<head>
+  <meta charset="UTF-8">
+  <base href="../..">
+  <title>ReliableGoldApp</title>
+  <link rel="stylesheet" type="text/css" href="css/main.css">
+  <style>
+    body {
+      background-color: gray;
+    }
+    .sliderPanel {
+      display: flex;
+    }
+  </style>
+</head>
+
+<div class="sliderPanel">
+  <h2 class="points">
+    <div class="addPoints"></div>
+    Points: 100</h2>
+    <div class="imagesPanel">
+      <picture class="images">
+        <div><img src="img/Iron_Branch_icon.png" class="image" /></div>
+        <div><img src="img/Divine_Rapier_icon.png" class="image" /></div>
+        <div><img src="img/Animal_Courier_icon.png" class="image" /></div>
+        <div><img src="img/Desolator_icon.png" class="image" /></div>
+        <div><img src="img/Observer_Ward_icon.png" class="image" /></div>
+        <div><img src="img/Shadow_Blade_icon.png" class="image" /></div>
+      </picture>
+    </div>
+  <div class="submitPanel">
+    <input type="text" id="submitTextfield" class="submitTextfield" name="submitTextfield" />
+    <button id="submitButton" class="button">Submit</button>
+  </div>
+</div>
+
+<script src="js/main.js"></script>
+<script>
+  var submitButton = new Button('submitButton');
+  submitButton.submit();
+  
+  var slider = new Slider('sliderPanel');
+  slider.startSlider();
+</script>
