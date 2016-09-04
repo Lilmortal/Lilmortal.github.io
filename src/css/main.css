@@ -11,6 +11,9 @@
   color: white;
   padding: 20px; }
 
+.button:hover {
+  background-color: black; }
+
 .button:active {
   box-shadow: 2px 2px 3px black; }
 
@@ -22,7 +25,7 @@
   justify-content: center;
   display: none;
   font-size: 12em;
-  z-index: 3; }
+  z-index: 1; }
 
 .grayscaleBackgroundAnimation {
   animation: GRAYSCALE_BACKGROUND_ANIMATION 4s; }
@@ -56,25 +59,38 @@
   animation: FAIL_PANEL_ANIMATION 1s;
   animation-fill-mode: forwards; }
 
-.fail_text {
+.failPanel span {
   animation: FAIL_TEXT_ANIMATION 1s;
+  animation-fill-mode: forwards; }
+
+.failPanel button {
+  animation: FAIL_BUTTON_ANIMATION 1s;
   animation-fill-mode: forwards; }
 
 @keyframes FAIL_BACKGROUND_ANIMATION {
   0% {
+    background: transparent; }
+  100% {
+    background: rgba(0, 0, 0, 0.8);
+    transition: background 0.5s ease-in-out; } }
+@keyframes FAIL_PANEL_ANIMATION {
+  0% {
+    height: 0; }
+  100% {
+    height: 2em;
+    transition: 0.5s ease-in-out; } }
+@keyframes FAIL_TEXT_ANIMATION {
+  0%, 30% {
     opacity: 0; }
   100% {
     opacity: 1;
-    transition: opacity 0.5s ease-in-out; } }
-@keyframes FAIL_PANEL_ANIMATION {
+    transition: 0.5s ease-in-out; } }
+@keyframes FAIL_BUTTON_ANIMATION {
+  0%, 80% {
+    opacity: 0; }
   100% {
-    padding: 40px;
-    transition: padding 0.5s ease-in-out; } }
-@keyframes FAIL_TEXT_ANIMATION {
-  0% {
-    transform: skewX(-50deg) translateX(-100%); }
-  100% {
-    transform: skewX(0deg); } }
+    opacity: 1;
+    transition: 0.5s ease-in-out; } }
 .imagesPanel {
   display: flex;
   width: 100%;
@@ -96,7 +112,7 @@
 .image {
   min-width: 150px;
   min-height: 50px;
-  border-left: 4px dashed gold; }
+  border-left: 4px groove gold; }
 
 .warningAnimation {
   animation: WARNING_BOX_SHADOW_ANIMATION 3s;
@@ -123,10 +139,11 @@
   border-radius: 5px;
   color: black;
   background-color: #F0FFFF;
-  padding: 0 20px 20px 20px;
+  padding: 0 100px 20px 100px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  justify-content: center;
   z-index: 2;
   box-shadow: 0px 0px 50px gold;
   overflow-y: auto; }
@@ -216,19 +233,26 @@
 
 /* ============= HEADER ================== */
 #header {
-  background-color: black;
-  opacity: 0.4;
+  background: -webkit-linear-gradient(black, #130804);
+  /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(black, #130804);
+  /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(black, #130804);
+  /* For Firefox 3.6 to 15 */
+  background: linear-gradient(black, #130804);
+  /* Standard syntax (must be last) */
   display: flex; }
 
-#header:hover {
+#logo {
+  max-width: 208px;
+  opacity: 0.6; }
+
+#logo:hover {
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
   -ms-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out;
-  opacity: 0.9; }
-
-#logo {
-  max-width: 200px; }
+  opacity: 1; }
 
 #navigationBar {
   width: 100%;
@@ -238,16 +262,19 @@
   padding-right: 20px; }
 
 #navigationBar a {
+  color: gray;
   text-decoration: none;
   border-left: 3px solid white;
   padding: 20px;
   cursor: pointer; }
 
 #navigationBar a:hover {
-  text-shadow: 4px 4px red; }
-
-#navigationBar a:visited {
-  color: white; }
+  color: white;
+  text-shadow: 4px 4px gray;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out; }
 
 #navigationBar a:first-child {
   border: 0; }
@@ -267,8 +294,14 @@ footer {
 
 .mainPanel {
   display: flex;
-  flex-direction: column;
-  justify-content: center;
+  align-items: center;
   flex: 1; }
+
+.priceListPanel {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  font-size: 3em;
+  background-color: black; }
 
 /*# sourceMappingURL=main.css.map */

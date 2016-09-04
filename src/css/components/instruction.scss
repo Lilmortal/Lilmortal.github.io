@@ -3,10 +3,11 @@
 	@include border-radius(5px);
 	color: $color-popup-text;
 	background-color: $color-popup-background;
-	padding: 0 20px 20px 20px;
+	padding: 0 100px 20px 100px;
 	display: flex;
 	flex-direction: column;
 	align-items: center;
+	justify-content: center;
 	z-index: 2;
 	box-shadow: 0px 0px 50px $color-popup-box-shadow;
 	overflow-y: auto;

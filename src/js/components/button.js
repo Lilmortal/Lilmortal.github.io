@@ -76,6 +76,7 @@ window.Button = (function() {
   			//find out how to remove error border
   			//submitTextfield.style.border = '4x solid #3F3835';
 		}
+		//Helper.showElement(instructionPanel);
 		this.startCountdownForSlider(COUNTDOWN_NUMBER, callback);
 	}
 

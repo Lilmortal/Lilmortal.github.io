@@ -18,42 +18,62 @@
 	justify-content: center;
 	background-color: $color-popup-background;
 	color: $color-popup-text;
-
 	font-size: 5em;
 	animation: FAIL_PANEL_ANIMATION 1s;
 	animation-fill-mode: forwards;
 }
 
-.fail_text {
+.failPanel span {
 	animation: FAIL_TEXT_ANIMATION 1s;
+	animation-fill-mode: forwards;
+}
+
+.failPanel button {
+	animation: FAIL_BUTTON_ANIMATION 1s;
 	animation-fill-mode: forwards;
 }
 
 
 @keyframes FAIL_BACKGROUND_ANIMATION {
 	0% {
+		background: rgba(0, 0, 0, 0);
+	}
+
+	100% {
+		background: rgba(0, 0, 0, 0.8);
+		transition: background 0.5s ease-in-out;
+	}
+}
+
+@keyframes FAIL_PANEL_ANIMATION {
+	0% {
+		height: 0;
+	}
+
+	100% {
+		height: 2em;
+		transition: 0.5s ease-in-out;
+	}
+}
+
+@keyframes FAIL_TEXT_ANIMATION {
+	0%, 30% {
 		opacity: 0;
 	}
 
 	100% {
 		opacity: 1;
-		transition: opacity 0.5s ease-in-out;
+		transition: 0.5s ease-in-out;
 	}
 }
 
-@keyframes FAIL_PANEL_ANIMATION {
-	100% {
-		padding: 40px;
-		transition: padding 0.5s ease-in-out;
-	}
-}
-
-@keyframes FAIL_TEXT_ANIMATION {
-	0% {
-		transform: skewX(-50deg) translateX(-100%);
+@keyframes FAIL_BUTTON_ANIMATION {
+	0%, 80% {
+		opacity: 0;
 	}
 
 	100% {
-		transform: skewX(0deg);
+		opacity: 1;
+		transition: 0.5s ease-in-out;
 	}
 }

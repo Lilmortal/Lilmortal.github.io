@@ -27,18 +27,18 @@
 /* ============= HEADER ================== */
 
 #header {
-	background-color: $color-main-background;
-	opacity: 0.4;
+	@include verticalGradient(0,0,0,1,19,8,4,1);
 	display: flex;
 }
 
-#header:hover {
-	@include transition(0.3s);
-	opacity: 0.9;
+#logo {	
+	max-width: 208px;
+	opacity: 0.6;
 }
 
-#logo {	
-	max-width: 200px;
+#logo:hover {
+	@include transition(0.3s);
+	opacity: 1;
 }
 
 #navigationBar {
@@ -50,6 +50,7 @@
 }
 
 #navigationBar a {
+	color: gray;
 	text-decoration: none;
 	border-left: 3px solid $color-main-border;
 	padding: 20px;
@@ -57,11 +58,9 @@
 }
 
 #navigationBar a:hover {
+	color: white;
 	text-shadow: 4px 4px $color-main-text-shadow;
-}
-
-#navigationBar a:visited {
-	color: $color-text;
+	@include transition(0.3s);
 }
 
 #navigationBar a:first-child {
@@ -87,7 +86,14 @@ footer {
 
 .mainPanel {
 	display: flex;
-	flex-direction: column;
-	justify-content: center;
+	align-items: center;
 	flex: 1;	
+}
+
+.priceListPanel {
+	display: flex;
+	justify-content: center;
+	width: 100%;
+	font-size: 3em;
+	background-color: rgba(0, 0, 0, 1);
 }
