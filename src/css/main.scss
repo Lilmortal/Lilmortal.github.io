@@ -87,7 +87,8 @@ footer {
 .mainPanel {
 	display: flex;
 	align-items: center;
-	flex: 1;	
+	flex: 1;
+	overflow: auto;	
 }
 
 .priceListPanel {
