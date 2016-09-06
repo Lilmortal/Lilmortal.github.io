@@ -27,17 +27,22 @@
 /* ============= HEADER ================== */
 
 #header {
-	@include verticalGradient(0,0,0,1,19,8,4,1);
+	@include verticalGradient(0,0,0,0.5,19,8,4,0.5);
 	display: flex;
+	@include transition(0.3s);
+}
+
+#header:hover {
+	@include verticalGradient(0,0,0,1,19,8,4,1);
 }
 
 #logo {	
 	max-width: 208px;
 	opacity: 0.6;
+	@include transition(0.3s);
 }
 
 #logo:hover {
-	@include transition(0.3s);
 	opacity: 1;
 }
 
@@ -55,12 +60,12 @@
 	border-left: 3px solid $color-main-border;
 	padding: 20px;
 	cursor: pointer;
+	@include transition(0.3s);
 }
 
 #navigationBar a:hover {
 	color: white;
 	text-shadow: 4px 4px $color-main-text-shadow;
-	@include transition(0.3s);
 }
 
 #navigationBar a:first-child {

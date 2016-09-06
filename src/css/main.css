@@ -239,6 +239,21 @@
 
 /* ============= HEADER ================== */
 #header {
+  background: -webkit-linear-gradient(rgba(0, 0, 0, 0.5), rgba(19, 8, 4, 0.5));
+  /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(rgba(0, 0, 0, 0.5), rgba(19, 8, 4, 0.5));
+  /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(rgba(0, 0, 0, 0.5), rgba(19, 8, 4, 0.5));
+  /* For Firefox 3.6 to 15 */
+  background: linear-gradient(rgba(0, 0, 0, 0.5), rgba(19, 8, 4, 0.5));
+  /* Standard syntax (must be last) */
+  display: flex;
+  -webkit-transition: all 0.3s ease-in-out;
+  -moz-transition: all 0.3s ease-in-out;
+  -ms-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out; }
+
+#header:hover {
   background: -webkit-linear-gradient(black, #130804);
   /* For Safari 5.1 to 6.0 */
   background: -o-linear-gradient(black, #130804);
@@ -246,18 +261,17 @@
   background: -moz-linear-gradient(black, #130804);
   /* For Firefox 3.6 to 15 */
   background: linear-gradient(black, #130804);
-  /* Standard syntax (must be last) */
-  display: flex; }
+  /* Standard syntax (must be last) */ }
 
 #logo {
   max-width: 208px;
-  opacity: 0.6; }
-
-#logo:hover {
+  opacity: 0.6;
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
   -ms-transition: all 0.3s ease-in-out;
-  -o-transition: all 0.3s ease-in-out;
+  -o-transition: all 0.3s ease-in-out; }
+
+#logo:hover {
   opacity: 1; }
 
 #navigationBar {
@@ -272,15 +286,15 @@
   text-decoration: none;
   border-left: 3px solid white;
   padding: 20px;
-  cursor: pointer; }
-
-#navigationBar a:hover {
-  color: white;
-  text-shadow: 4px 4px gray;
+  cursor: pointer;
   -webkit-transition: all 0.3s ease-in-out;
   -moz-transition: all 0.3s ease-in-out;
   -ms-transition: all 0.3s ease-in-out;
   -o-transition: all 0.3s ease-in-out; }
+
+#navigationBar a:hover {
+  color: white;
+  text-shadow: 4px 4px gray; }
 
 #navigationBar a:first-child {
   border: 0; }
