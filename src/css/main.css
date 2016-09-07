@@ -187,8 +187,22 @@
     bottom: 70%; } }
 .submitPanel {
   display: flex;
-  justify-content: center; }
+  justify-content: center;
+  flex-direction: column;
+  width: 100%;
+  padding: 0 1em 0 1em; }
 
+.submitPanel button {
+  width: 100%;
+  margin: 2em 0 0 0; }
+
+@media (min-width: 630px) {
+  .submitPanel {
+    flex-direction: row;
+    width: initial; }
+
+  .submitPanel button {
+    margin: 0 0 0 2em; } }
 .submitTextfield {
   border: 4px solid #3F3835;
   -webkit-border-radius: 5px;
@@ -206,9 +220,6 @@
 .submitTextfield:focus {
   border: 4px solid black;
   box-shadow: inset 0px 0px 20px black; }
-
-.submitPanel button {
-  margin-left: 2em; }
 
 .shakeTextfieldAnimation {
   border: 4px solid red;
