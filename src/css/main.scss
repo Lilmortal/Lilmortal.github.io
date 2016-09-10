@@ -9,10 +9,6 @@
 @import 'components/slider';
 @import 'components/textfield';
 
-*, *:before, *:after {
-  box-sizing: inherit;
-}
-
 .wrapper, body, html {
 	height: 100vh;
 	margin: 0;
@@ -21,7 +17,6 @@
 	// put a mixin for a full font familyy
 	font-family: $main-font;
 	color: $color-text;
-	font-size: 1.1em;
 }
 
 /* ============= HEADER ================== */

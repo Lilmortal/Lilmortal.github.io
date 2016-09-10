@@ -1,5 +1,4 @@
 .button {
-  width: 100px;
   background-color: #330000;
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
@@ -55,14 +54,31 @@
   justify-content: center;
   background-color: #F0FFFF;
   color: black;
-  font-size: 5em;
   animation: FAIL_PANEL_ANIMATION 1s;
-  animation-fill-mode: forwards; }
+  animation-fill-mode: forwards;
+  padding: 20px 0 20px 0;
+  font-size: 0.67em; }
 
-.failPanel span {
+.failPanel h1 {
   animation: FAIL_TEXT_ANIMATION 1s;
   animation-fill-mode: forwards; }
 
+.failPanel h3 {
+  animation: FAIL_TEXT_ANIMATION 1s;
+  animation-fill-mode: forwards; }
+
+@media (min-width: 340px) {
+  .failPanel {
+    font-size: 1em; } }
+@media (min-width: 500px) {
+  .failPanel {
+    font-size: 1.2em; } }
+@media (min-width: 650px) {
+  .failPanel {
+    font-size: 1.5em; } }
+@media (min-width: 825px) {
+  .failPanel {
+    font-size: 2em; } }
 .failPanel button {
   animation: FAIL_BUTTON_ANIMATION 1s;
   animation-fill-mode: forwards; }
@@ -75,10 +91,11 @@
     transition: background 0.5s ease-in-out; } }
 @keyframes FAIL_PANEL_ANIMATION {
   0% {
-    height: 0; }
+    max-height: 0;
+    overflow: hidden; }
   100% {
-    height: 2em;
-    transition: 0.5s ease-in-out; } }
+    max-height: 400px;
+    transition: 1s ease-in-out; } }
 @keyframes FAIL_TEXT_ANIMATION {
   0%, 30% {
     opacity: 0; }
@@ -149,9 +166,10 @@
   overflow-y: auto;
   flex: 1;
   width: 100%;
-  margin: auto; }
+  margin: auto;
+  font-size: 1.1em; }
 
-@media (min-width: 530px) {
+@media (min-width: 720px) {
   .instructionPanel {
     padding: 0 100px 20px 100px; } }
 .sliderPanel {
@@ -176,6 +194,13 @@
 .addPointsAnimation {
   animation: ADD_POINTS_ANIMATION 1s;
   animation-fill-mode: forwards; }
+
+.timerPanel {
+  width: 99%;
+  border: 2px solid black;
+  margin: 0 0 1em 0;
+  background-color: red;
+  height: 40px; }
 
 @keyframes ADD_POINTS_ANIMATION {
   0% {
@@ -236,17 +261,13 @@
     transform: translate3d(4px, 0, 0); }
   100% {
     display: none; } }
-*, *:before, *:after {
-  box-sizing: inherit; }
-
 .wrapper, body, html {
   height: 100vh;
   margin: 0;
   overflow: hidden;
   box-sizing: border-box;
   font-family: "Helvetica", Sans-serif;
-  color: white;
-  font-size: 1.1em; }
+  color: white; }
 
 /* ============= HEADER ================== */
 #header {
