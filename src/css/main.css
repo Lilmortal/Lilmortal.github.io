@@ -1,20 +1,41 @@
 .button {
-  background-color: #330000;
+  background: -webkit-linear-gradient(#9b9b9b, black);
+  /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#9b9b9b, black);
+  /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#9b9b9b, black);
+  /* For Firefox 3.6 to 15 */
+  background: linear-gradient(#9b9b9b, black);
+  /* Standard syntax (must be last) */
   -webkit-border-radius: 10px;
   -moz-border-radius: 10px;
   -ms-border-radius: 10px;
   border-radius: 10px;
-  border: 0px solid white;
+  border: 1px solid #191919;
   outline: 0;
   cursor: pointer;
   color: white;
   padding: 20px; }
 
 .button:hover {
-  background-color: black; }
+  background: -webkit-linear-gradient(dimgray, black);
+  /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(dimgray, black);
+  /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(dimgray, black);
+  /* For Firefox 3.6 to 15 */
+  background: linear-gradient(dimgray, black);
+  /* Standard syntax (must be last) */ }
 
 .button:active {
-  box-shadow: 2px 2px 3px black; }
+  background: -webkit-linear-gradient(#555555, black);
+  /* For Safari 5.1 to 6.0 */
+  background: -o-linear-gradient(#555555, black);
+  /* For Opera 11.1 to 12.0 */
+  background: -moz-linear-gradient(#555555, black);
+  /* For Firefox 3.6 to 15 */
+  background: linear-gradient(#555555, black);
+  /* Standard syntax (must be last) */ }
 
 #countdownPanel {
   min-width: 100%;
@@ -44,7 +65,7 @@
   background-color: black;
   animation: FAIL_BACKGROUND_ANIMATION 1s;
   animation-fill-mode: forwards;
-  z-index: 1; }
+  z-index: 2; }
 
 .failPanel {
   width: 100%;
@@ -110,7 +131,7 @@
     transition: 0.5s ease-in-out; } }
 .imagesPanel {
   display: flex;
-  width: 100%;
+  width: 99%;
   border: 5px double gold;
   -webkit-border-radius: 3px;
   -moz-border-radius: 3px;
@@ -127,10 +148,30 @@
   border: 0; }
 
 .image {
-  min-width: 150px;
-  min-height: 50px;
+  min-width: 30px;
   border-left: 4px groove gold; }
 
+@media (min-width: 300px) {
+  .image {
+    min-width: 35px; } }
+@media (min-width: 400px) {
+  .image {
+    min-width: 45px; } }
+@media (min-width: 500px) {
+  .image {
+    min-width: 65px; } }
+@media (min-width: 600px) {
+  .image {
+    min-width: 80px; } }
+@media (min-width: 750px) {
+  .image {
+    min-width: 100px; } }
+@media (min-width: 1000px) {
+  .image {
+    min-width: 130px; } }
+@media (min-width: 1300px) {
+  .image {
+    min-width: 150px; } }
 .warningAnimation {
   animation: WARNING_BOX_SHADOW_ANIMATION 3s;
   animation-iteration-count: infinite;
@@ -195,13 +236,6 @@
   animation: ADD_POINTS_ANIMATION 1s;
   animation-fill-mode: forwards; }
 
-.timerPanel {
-  width: 99%;
-  border: 2px solid black;
-  margin: 0 0 1em 0;
-  background-color: red;
-  height: 40px; }
-
 @keyframes ADD_POINTS_ANIMATION {
   0% {
     opacity: 0; }
@@ -240,7 +274,8 @@
   -o-transition: all 0.3s ease-in-out;
   font-size: 200%;
   margin: 0 5% 0 5%;
-  outline: 0; }
+  outline: 0;
+  padding-left: 20px; }
 
 .submitTextfield:focus {
   border: 4px solid black;
@@ -387,7 +422,7 @@ footer {
   display: flex;
   align-items: center;
   flex: 1;
-  overflow: auto; }
+  overflow-y: auto; }
 
 .priceListPanel {
   display: flex;

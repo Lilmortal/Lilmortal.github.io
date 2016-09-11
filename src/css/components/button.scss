@@ -1,7 +1,7 @@
 .button {
-	background-color: $color-button-background;
+	@include verticalGradient(155,155,155,1,0,0,0,1);
 	@include border-radius(10px);
-	border: 0px solid $color-button-border;
+	border: 1px solid rgba(25,25,25,1);
 	outline: 0;
 	cursor: pointer;
 	color: $color-button-color;
@@ -9,9 +9,9 @@
 }
 
 .button:hover {
-	background-color: black;
+	@include verticalGradient(105,105,105,1,0,0,0,1);
 }
 
 .button:active {
-	box-shadow: 2px 2px 3px $color-button-active-box-shadow;
+	@include verticalGradient(85,85,85,1,0,0,0,1);
 }

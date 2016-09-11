@@ -26,14 +26,6 @@
 	animation-fill-mode: forwards;
 }
 
-.timerPanel {
-	width: 99%;
-	border: 2px solid black;
-	margin: 0 0 1em 0;
-	background-color: red;
-	height: 40px;
-}
-
 @keyframes ADD_POINTS_ANIMATION {
 	0% {
 		opacity: 0;
