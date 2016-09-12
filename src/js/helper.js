@@ -1,5 +1,7 @@
 "use strict";
 
+// TODO - Any other way other than exposing it to window? Look up CommonJS or AMD or ES6 import/export (can webpack help?)
+// What about instead of Helper.method(), use Object.create? Does this help?
 window.Helper = (function() {
 	var IS_NUMERIC = new RegExp(/^\d+$/);
 
@@ -61,7 +63,7 @@ window.Helper = (function() {
 	 * @param  {Function} the callback that will be called when transition end
 	 */
   	function transitionEnd(element, callback) {
-	    var transitionEvent = whichTransitionEvent();
+	    const transitionEvent = whichTransitionEvent();
 	    element.addEventListener(transitionEvent, callback);
   	}
 
@@ -133,13 +135,13 @@ window.Helper = (function() {
   	}
 
   	return {
-  		transitionEnd: transitionEnd,
-  		getPosition: getPosition,
-  		showElement: showElement,
-  		hideElement: hideElement,
-  		addClass: addClass,
-  		removeClass: removeClass,
-  		toggleClass: toggleClass,
-  		validateIfUserInputIsValid: validateIfUserInputIsValid
+  		transitionEnd,
+  		getPosition,
+  		showElement,
+  		hideElement,
+  		addClass,
+  		removeClass,
+  		toggleClass,
+  		validateIfUserInputIsValid
   	}
 })();

@@ -1,3 +1,4 @@
+//TODO - "use strict" better here or inside IIFE?
 "use strict";
 
 require('./helper.js');
@@ -6,12 +7,12 @@ require('./components/countdownpanel.js');
 require('./components/slider.js');
 
 (function() {
-  var startButton = new Button('startButton');
+  const startButton = new Button('startButton');
   startButton.initStart();
 
-  var failButton = new Button('failButton');
+  const failButton = new Button('failButton');
   failButton.initFail();
 
-  var submitButton = new Button('submitButton');
+  const submitButton = new Button('submitButton');
   submitButton.submit();
 })();

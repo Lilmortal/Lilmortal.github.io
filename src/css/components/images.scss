@@ -17,7 +17,7 @@
 
 .image {
 	min-width: 30px;
-	border-left: 4px groove gold;	
+	border-left: 4px groove $color-image-border;	
 }
 
 @media (min-width: 300px) {

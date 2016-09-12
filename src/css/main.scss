@@ -1,3 +1,6 @@
+// Adding this reset.scss late into this project screw things up, should of done it earlier; but it helps fix the inconsistencies between browsers
+// Then again find out how bootstrap fix this?
+/*@import 'reset';*/
 @import 'modules/mixins';
 @import 'modules/color_palette';
 @import 'modules/typography';
@@ -22,18 +25,8 @@
 /* ============= HEADER ================== */
 
 #header {
-	background-color: black;
+	background-color: $color-header-background;
 	display: flex;
-}
-
-@media (min-width: 400px) {
-	#header {
-		height: auto;
-	}
-
-	#logo {
-		height: auto;
-	}
 }
 
 #logo {	
@@ -55,7 +48,7 @@
 }
 
 .navigationLink a {
-	color: black;
+	color: $color-navigation-text;
 	text-decoration: none;
 	cursor: pointer;
 	@include transition(0.3s);
@@ -76,13 +69,13 @@
 
 .navigationLink {
 	padding: 10px 20px 10px 20px;
-	border: 2px solid white;
+	border: 2px solid $color-navigation-small-border;
 	justify-content: space-between;
 	flex-direction: row;
 	position: absolute;
 	z-index: 1;
 	right: 39px;
-	background-color: white;
+	background-color: $color-navigation-small-background;
 }
 
 #navigationIcon:not(:checked) ~ .navigationLink {
@@ -117,7 +110,7 @@
 	}
 
 	.navigationLink a:hover {
-		color: white;
+		color: $color-navigation-text-hover;
 	}
 
 	#navigationIconLabel {
@@ -144,7 +137,7 @@
 
 	100% {
 		padding: 10px 20px 10px 20px;
-		border: 2px solid white;
+		border: 2px solid $color-navigation-small-border;
 		transition: padding 1s ease-in-out;
 	}
 }
@@ -178,5 +171,5 @@ footer {
 	justify-content: center;
 	width: 100%;
 	font-size: 3em;
-	background-color: rgba(0, 0, 0, 1);
+	background-color: $color-pricelist-background;
 }

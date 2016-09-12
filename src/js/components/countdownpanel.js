@@ -13,10 +13,10 @@ window.CountdownPanel = (function() {
 	 * @param  {Function} The callback that will be called once the countdown reaches 0.
 	 */
 	countdownPanel.prototype.startCountdownTimer = function(countdownNumber, callback) {
-		var self = this;
+		const self = this;
 		Helper.showElement(this.countdownPanel);
 		this.countdownPanel.innerHTML = "";
-		var countDownTimer = setInterval(function() {
+		const countDownTimer = setInterval(function() {
       		if (countdownNumber === 0) {
         		clearInterval(countDownTimer);
         		Helper.hideElement(self.countdownPanel);

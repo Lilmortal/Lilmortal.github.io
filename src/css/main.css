@@ -1,3 +1,4 @@
+/*@import 'reset';*/
 .button {
   background: -webkit-linear-gradient(#9b9b9b, black);
   /* For Safari 5.1 to 6.0 */
@@ -218,7 +219,8 @@
   display: none;
   align-items: center;
   justify-content: center;
-  flex-direction: column; }
+  flex-direction: column;
+  overflow: hidden; }
 
 .points {
   font-size: 3em;
@@ -309,12 +311,6 @@
   background-color: black;
   display: flex; }
 
-@media (min-width: 400px) {
-  #header {
-    height: auto; }
-
-  #logo {
-    height: auto; } }
 #logo {
   opacity: 0.6;
   -webkit-transition: all 0.3s ease-in-out;

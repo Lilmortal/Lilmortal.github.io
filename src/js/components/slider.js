@@ -6,26 +6,30 @@
  * lose. 
  */
 window.Slider = (function() {
-	var SLIDE_DURATION = 10;
-	var WARNING_THRESHOLD = 30;
-
-	var images = document.getElementsByClassName('images')[0];
-	var imagesPanel = document.getElementsByClassName('imagesPanel')[0];
-	var failBackground = document.getElementsByClassName('failBackground')[0];
+	const SLIDE_DURATION = 10;
+	const WARNING_THRESHOLD = 30;
+	const images = document.getElementsByClassName('images')[0];
+	const imagesPanel = document.getElementsByClassName('imagesPanel')[0];
+	const failBackground = document.getElementsByClassName('failBackground')[0];
 
 	function slider(slider) {
 		this.slider = document.getElementsByClassName(slider)[0];
+	}
+
+	slider.prototype.getImages = function() {
+		// TODO - Get list of dota images using AJAX, look up Promises and Generators
+		// Promises - asychronous calls, do this, then do this
+		// Generators - something about waiting indefinitely until it gets it (uses the keyword 'yield')
 	}
 
 	/**
 	 * Transition effect on the images.
 	 */
 	slider.prototype.slide = function() {
-		var screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-	    var defaultWidth = (screenWidth - imagesPanel.offsetWidth/ 2) + imagesPanel.offsetWidth;
-	    var warningWidth = defaultWidth * WARNING_THRESHOLD / 100;
-	    var startWarningAnimation = false;
-	    var timer;
+		const screenWidth = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+	    const defaultWidth = (screenWidth - imagesPanel.offsetWidth/ 2) + imagesPanel.offsetWidth;
+	    const warningWidth = defaultWidth * WARNING_THRESHOLD / 100;
+	    let timer;
 
 		images.style.marginLeft = '0';
 	    images.style.transition = SLIDE_DURATION + 's linear';

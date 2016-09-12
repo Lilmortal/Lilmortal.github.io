@@ -3,16 +3,17 @@
  * @param {Object} Button
  */
 window.Button = (function() {
-	var COUNTDOWN_NUMBER = 3;
-	var imageIteration = 0;
-	var submitTextfield = document.getElementById('submitTextfield');
-	var failBackground = document.getElementsByClassName('failBackground')[0];
-	var images = document.getElementsByClassName('images')[0];
-	var image = document.getElementsByClassName('image');
-	var instructionPanel = document.getElementsByClassName('instructionPanel')[0];
-	var addPoints = document.getElementsByClassName('addPoints')[0];
-	var wrapper = document.getElementsByClassName('wrapper')[0];
-	var sliderPanel = document.getElementsByClassName('sliderPanel')[0];
+	const COUNTDOWN_NUMBER = 3;
+	//TODO - document.querySelector is better or nah? Heard performance is worse but how bad is it? why queryselector over getelement?
+	// THIS IS TOO SHIT, ITS TOO DEPENDENT ON HARD CODED VARIABLES; CAN ANGULAR 2 HELP OR OTHER WAY VANILLA JS CAN HELP?
+	const submitTextfield = document.getElementById('submitTextfield');
+	const failBackground = document.getElementsByClassName('failBackground')[0];
+	const images = document.getElementsByClassName('images')[0];
+	const image = document.getElementsByClassName('image');
+	const instructionPanel = document.getElementsByClassName('instructionPanel')[0];
+	const addPoints = document.getElementsByClassName('addPoints')[0];
+	const wrapper = document.getElementsByClassName('wrapper')[0];
+	const sliderPanel = document.getElementsByClassName('sliderPanel')[0];
 
 	function Button(id) {
 		this.button = document.getElementById(id);
@@ -27,7 +28,7 @@ window.Button = (function() {
 	 * @return {[type]}
 	 */
 	Button.prototype.startCountdownForSlider = function(countdownNumber, callback) {
-		var self = this;
+		const self = this;
 		this.button.addEventListener('click', function() {
 			callback();
 			Helper.toggleClass(wrapper, 'grayscaleBackgroundAnimation');
@@ -39,6 +40,7 @@ window.Button = (function() {
 	 * When clicked, check if the user input is valid; if it is valid, it will remove an image and add some points, else display a fail animation.
 	 */
 	Button.prototype.submit = function() {
+		let imageIteration = 0;
 		this.button.addEventListener('click', function() {
 	  		if (!Helper.validateIfUserInputIsValid(self.submitTextfield)) {
 	  			Helper.hideElement(image[imageIteration]);
@@ -54,7 +56,7 @@ window.Button = (function() {
 	 * @param  {Integer} countdown number.
 	 */
 	Button.prototype.initStart = function(countdownNumber) {
-		var callback = function() {
+		const callback = function() {
 			Helper.hideElement(instructionPanel);
 		}
 		this.startCountdownForSlider(COUNTDOWN_NUMBER, callback);
@@ -65,7 +67,7 @@ window.Button = (function() {
 	 * @param  {Integer} countdown number.
 	 */
 	Button.prototype.initFail = function(countdownNumber) {
-		var callback = function() {
+		const callback = function() {
 			Helper.hideElement(failBackground, sliderPanel);
 			// reset the images
 			images.style.marginLeft = '100%';
