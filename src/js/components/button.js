@@ -2,7 +2,10 @@
  * This is a generic button, which has a multitude of generic to specific functions for all possible scenarios.
  * @param {Object} Button
  */
-window.Button = (function() {
+module.exports = (function() {
+	const CountdownPanel = require('../components/countdownpanel.js');
+	const Slider = require('../components/slider.js');
+	const Helper = require('../helper.js');
 	const COUNTDOWN_NUMBER = 3;
 	//TODO - document.querySelector is better or nah? Heard performance is worse but how bad is it? why queryselector over getelement?
 	// THIS IS TOO SHIT, ITS TOO DEPENDENT ON HARD CODED VARIABLES; CAN ANGULAR 2 HELP OR OTHER WAY VANILLA JS CAN HELP?
@@ -27,6 +30,8 @@ window.Button = (function() {
 	 * @param  {Function} The function that will be called when the countdown number reaches 0.
 	 * @return {[type]}
 	 */
+	// THIS PROTOTYPE OR MODULE PATTERN IS BETTER??? WHAT ABOUT PUB/SUB IMPLEMENTATION?
+	// IF HAVE TIME, SEE IF ES6 ARROW FUNCTION IS MORE READABLE OR NOT
 	Button.prototype.startCountdownForSlider = function(countdownNumber, callback) {
 		const self = this;
 		this.button.addEventListener('click', function() {
@@ -56,6 +61,7 @@ window.Button = (function() {
 	 * @param  {Integer} countdown number.
 	 */
 	Button.prototype.initStart = function(countdownNumber) {
+		console.log(this);
 		const callback = function() {
 			Helper.hideElement(instructionPanel);
 		}

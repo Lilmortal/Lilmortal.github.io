@@ -5,7 +5,8 @@
  * It will constantly transition to the left until it reaches the starting position of the panel that holds the images, which in that case the game
  * lose. 
  */
-window.Slider = (function() {
+module.exports = (function() {
+	const Helper = require('../helper.js');
 	const SLIDE_DURATION = 10;
 	const WARNING_THRESHOLD = 30;
 	const images = document.getElementsByClassName('images')[0];

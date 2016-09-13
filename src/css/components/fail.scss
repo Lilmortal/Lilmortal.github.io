@@ -22,16 +22,16 @@
 	animation-fill-mode: forwards;
 	padding: 20px 0 20px 0;
 	font-size: 0.67em;
-}
 
-.failPanel h1 {
-	animation: FAIL_TEXT_ANIMATION 1s;
-	animation-fill-mode: forwards;
-}
+	& h1 {
+		animation: FAIL_TEXT_ANIMATION 1s;
+		animation-fill-mode: forwards;
+	}
 
-.failPanel h3 {
-	animation: FAIL_TEXT_ANIMATION 1s;
-	animation-fill-mode: forwards;
+	& h3 {
+		animation: FAIL_TEXT_ANIMATION 1s;
+		animation-fill-mode: forwards;
+	}
 }
 
 @media (min-width: 340px) {

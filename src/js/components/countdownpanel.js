@@ -2,7 +2,9 @@
 /**
  * This is the countdown panel; it will countdown until it reaches 0 before it displays the slider panel.
  */
-window.CountdownPanel = (function() {
+module.exports = (function() {
+	const Helper = require('../helper.js');
+	
 	function countdownPanel(id) {
 		this.countdownPanel = document.getElementById(id);
 	}
