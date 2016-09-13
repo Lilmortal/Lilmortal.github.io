@@ -32,37 +32,28 @@
 		animation: FAIL_TEXT_ANIMATION 1s;
 		animation-fill-mode: forwards;
 	}
-}
 
-@media (min-width: 340px) {
-	.failPanel {
+	@media (min-width: 340px) {
 		font-size: 1em;
 	}
-}
 
-@media (min-width: 500px) {
-	.failPanel {
+	@media (min-width: 500px) {
 		font-size: 1.2em;
 	}
-}
 
-@media (min-width: 650px) {
-	.failPanel {
+	@media (min-width: 650px) {
 		font-size: 1.5em;
 	}
-}
 
-@media (min-width: 825px) {
-	.failPanel {
+	@media (min-width: 825px) {
 		font-size: 2em;
 	}
-}
 
-.failPanel button {
-	animation: FAIL_BUTTON_ANIMATION 1s;
-	animation-fill-mode: forwards;
+	& button {
+		animation: FAIL_BUTTON_ANIMATION 1s;
+		animation-fill-mode: forwards;	
+	}
 }
-
 
 @keyframes FAIL_BACKGROUND_ANIMATION {
 	0% {

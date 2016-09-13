@@ -35,10 +35,10 @@
 	opacity: 0.6;
 	@include transition(0.3s);
 	max-width: 100%;
-}
 
-#logo:hover {
-	opacity: 1;
+	&:hover {
+		opacity: 1;
+	}
 }
 
 #navigationBar {
@@ -47,26 +47,6 @@
 	justify-content: flex-end;
 	align-items: center;
 	padding-right: 20px;
-}
-
-.navigationLink a {
-	color: $color-navigation-text;
-	text-decoration: none;
-	cursor: pointer;
-	@include transition(0.3s);
-	padding: 0 20px 0 20px;
-}
-
-.navigationLink a:hover {
-	text-shadow: 4px 4px $color-main-text-shadow;
-}
-
-.navigationLink a:first-child {
-	border: 0;
-}
-
-#navigationIcon {
-	display: none;
 }
 
 .navigationLink {
@@ -78,15 +58,53 @@
 	z-index: 1;
 	right: 39px;
 	background-color: $color-navigation-small-background;
+
+	& a {
+		color: $color-navigation-text;
+		text-decoration: none;
+		cursor: pointer;
+		@include transition(0.3s);
+		padding: 0 20px 0 20px;
+
+		&:hover {
+			text-shadow: 4px 4px $color-main-text-shadow;
+		}
+
+		&:first-child {
+			border: 0;
+		}
+	}
+
+	@media (min-width: 470px) {
+		display: flex !important;
+		flex-direction: row;
+		padding: 0 !important;
+		border: 0 !important;
+		background: none;
+
+		& a {
+			color: gray;
+			border-left: 3px solid $color-main-border;
+			padding: 20px;
+
+			&:hover {
+				color: $color-navigation-text-hover;	
+			}
+		}
+	}
 }
 
-#navigationIcon:not(:checked) ~ .navigationLink {
+#navigationIcon {
 	display: none;
-}
 
-//change tilde
-#navigationIcon:checked ~ .navigationLink {
-	display: flex;
+	&:not(:checked) ~ .navigationLink {
+		display: none;
+	}
+
+	// alternative to tilde?
+	&:checked ~ .navigationLink {
+		display: flex;		
+	}
 }
 
 #navigationIconLabel {
@@ -94,28 +112,8 @@
 	order: 1;
 	background-image: "img/Navigation_icon.svg";
 	cursor: pointer;
-}
 
-@media (min-width: 470px) {
-	.navigationLink {
-		display: flex !important;
-		flex-direction: row;
-		padding: 0 !important;
-		border: 0 !important;
-		background: none;
-	}
-
-	.navigationLink a {
-		color: gray;
-		border-left: 3px solid $color-main-border;
-		padding: 20px;
-	}
-
-	.navigationLink a:hover {
-		color: $color-navigation-text-hover;
-	}
-
-	#navigationIconLabel {
+	@media (min-width: 470px) {
 		display: none;
 	}
 }

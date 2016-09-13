@@ -6,12 +6,12 @@
 	cursor: pointer;
 	color: $color-button-color;
 	padding: 20px;
-}
 
-.button:hover {
-	@include verticalGradient(105,105,105,1,0,0,0,1);
-}
+	&:hover {
+		@include verticalGradient(105,105,105,1,0,0,0,1);
+	}
 
-.button:active {
-	@include verticalGradient(85,85,85,1,0,0,0,1);
+	&:active {
+		@include verticalGradient(85,85,85,1,0,0,0,1);
+	}
 }

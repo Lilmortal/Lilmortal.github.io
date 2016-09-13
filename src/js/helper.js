@@ -1,8 +1,6 @@
 "use strict";
 
-// FIND A WAY TO REPLACE THIS WINDOW. 
-// I have to use window because Webpack put this function inside another function, which means it is inaccesible to other functions. Even if it's
-// var Helper = (function() {}) is it really the best way to make all this components global objects??? a.k.a CommonJS/AMD/ES6 import/export
+// is it really the best way??? look up CommonJS/AMD/ES6 import/export (<-- I guess this is OK so far)
 // What about instead of Helper.method(), use Object.create? Does this help?
 module.exports = (function() {
 	var IS_NUMERIC = new RegExp(/^\d+$/);

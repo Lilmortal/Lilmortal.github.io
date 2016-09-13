@@ -15,10 +15,8 @@
 	width: 100%;
 	margin: auto;
 	font-size: 1.1em;
-}
 
-@media (min-width: 720px) {
-	.instructionPanel {
+	@media (min-width: 720px) {
 		padding: 0 100px 20px 100px;
-	}	
+	}
 }
