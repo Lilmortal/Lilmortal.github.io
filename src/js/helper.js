@@ -1,5 +1,7 @@
 // is it really the best way??? look up CommonJS/AMD/ES6 import/export (<-- I guess this is OK so far)
 // What about instead of Helper.method(), use Object.create? Does this help?
+// http://requirejs.org/docs/node.html#1
+// By using RequireJS on the server, you can use one format for all your modules, whether they are running server side or in the browser. (hmm...)
 module.exports = (function() {
 	"use strict";
 	

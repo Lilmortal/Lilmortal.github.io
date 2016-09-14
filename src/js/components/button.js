@@ -10,7 +10,8 @@ module.exports = (function() {
 	const Slider = require('../components/slider.js');
 	const Helper = require('../helper.js');
 	//TODO - document.querySelector is better or nah? Heard performance is worse but how bad is it? why queryselector over getelement?
-	// THIS IS TOO SHIT, ITS TOO DEPENDENT ON HARD CODED VARIABLES; CAN ANGULAR 2 HELP OR OTHER WAY VANILLA JS CAN HELP?
+	// THIS IS TOO SHIT, ITS TOO DEPENDENT ON HARD CODED VARIABLES; CAN ANGULAR 2 DEPENDENCY INJECTION HELP OR OTHER WAY VANILLA JS CAN HELP? I KNOW
+	// REACT CAN WITH ITS COMPONENT BASED LIBRARY; WHAT ABOUT EMBER? WHY ARE PEOPLE DITCHING EMBER? TOO OLD? KNOCKOUT MVVM HELPS??
 	const submitTextfield = document.getElementById('submitTextfield');
 	const failBackground = document.getElementsByClassName('failBackground')[0];
 	const images = document.getElementsByClassName('images')[0];
@@ -65,7 +66,6 @@ module.exports = (function() {
 	 * @param  {Integer} countdown number.
 	 */
 	Button.prototype.initStart = function(countdownNumber) {
-		console.log(this);
 		const callback = function() {
 			Helper.hideElement(instructionPanel);
 		}
@@ -85,11 +85,8 @@ module.exports = (function() {
   		  	for (let i = 0; i < image.length; i++) {
   				image[i].style.display = 'block';
   			}
-  			//find out how to remove error border
-  			//submitTextfield.style.border = '4x solid #3F3835';
 		}
-		Helper.showElement(instructionPanel);
-		//this.startCountdownForSlider(COUNTDOWN_NUMBER, callback);
+		this.startCountdownForSlider(COUNTDOWN_NUMBER, callback);
 	}
 
 	return Button;
