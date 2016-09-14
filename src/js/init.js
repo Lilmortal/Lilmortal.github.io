@@ -1,7 +1,7 @@
-//TODO - "use strict" better here or inside IIFE?
-"use strict";
-
 (function() {
+	//TODO - "use strict" better in this IIFE or outside?
+	"use strict";
+
 	const Button = require('./components/button.js');
 
 	const startButton = new Button('startButton');

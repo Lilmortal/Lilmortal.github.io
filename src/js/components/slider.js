@@ -1,11 +1,11 @@
-"use strict";
-
 /**
  * This is the slider that will be displayed after the countdown. It will display an endless stream of dota images that were retrieved via Dota API.
  * It will constantly transition to the left until it reaches the starting position of the panel that holds the images, which in that case the game
  * lose. 
  */
 module.exports = (function() {
+	"use strict";
+	
 	const Helper = require('../helper.js');
 	const SLIDE_DURATION = 10;
 	const WARNING_THRESHOLD = 30;

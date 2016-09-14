@@ -1,8 +1,8 @@
-"use strict";
-
 // is it really the best way??? look up CommonJS/AMD/ES6 import/export (<-- I guess this is OK so far)
 // What about instead of Helper.method(), use Object.create? Does this help?
 module.exports = (function() {
+	"use strict";
+	
 	var IS_NUMERIC = new RegExp(/^\d+$/);
 
 	/**

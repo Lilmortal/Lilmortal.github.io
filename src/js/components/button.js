@@ -3,10 +3,12 @@
  * @param {Object} Button
  */
 module.exports = (function() {
+	"use strict";
+
+	const COUNTDOWN_NUMBER = 3;
 	const CountdownPanel = require('../components/countdownpanel.js');
 	const Slider = require('../components/slider.js');
 	const Helper = require('../helper.js');
-	const COUNTDOWN_NUMBER = 3;
 	//TODO - document.querySelector is better or nah? Heard performance is worse but how bad is it? why queryselector over getelement?
 	// THIS IS TOO SHIT, ITS TOO DEPENDENT ON HARD CODED VARIABLES; CAN ANGULAR 2 HELP OR OTHER WAY VANILLA JS CAN HELP?
 	const submitTextfield = document.getElementById('submitTextfield');
@@ -32,7 +34,9 @@ module.exports = (function() {
 	 */
 	// THIS PROTOTYPE OR MODULE PATTERN IS BETTER??? WHAT ABOUT PUB/SUB IMPLEMENTATION?
 	// IF HAVE TIME, SEE IF ES6 ARROW FUNCTION IS MORE READABLE OR NOT
+	// AND ALL THIS METHODS...MAYBE SEPERATE IT INTO DIFFERENT COMPONENTS?
 	Button.prototype.startCountdownForSlider = function(countdownNumber, callback) {
+		// Is using self okay? Cause theres window.self...but will I ever use that???
 		const self = this;
 		this.button.addEventListener('click', function() {
 			callback();
@@ -84,8 +88,8 @@ module.exports = (function() {
   			//find out how to remove error border
   			//submitTextfield.style.border = '4x solid #3F3835';
 		}
-		//Helper.showElement(instructionPanel);
-		this.startCountdownForSlider(COUNTDOWN_NUMBER, callback);
+		Helper.showElement(instructionPanel);
+		//this.startCountdownForSlider(COUNTDOWN_NUMBER, callback);
 	}
 
 	return Button;

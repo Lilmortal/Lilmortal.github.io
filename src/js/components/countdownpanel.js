@@ -1,8 +1,9 @@
-"use strict";
 /**
  * This is the countdown panel; it will countdown until it reaches 0 before it displays the slider panel.
  */
 module.exports = (function() {
+	"use strict";
+	
 	const Helper = require('../helper.js');
 	
 	function countdownPanel(id) {
