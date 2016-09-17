@@ -6,7 +6,7 @@ module.exports = (function() {
 	"use strict";
 
 	const COUNTDOWN_NUMBER = 3;
-	const CountdownPanel = require('../components/countdownpanel.js');
+	const CountdownPanel = require('../components/countdown_panel.js');
 	const Slider = require('../components/slider.js');
 	const Helper = require('../helper.js');
 	//TODO - document.querySelector is better or nah? Heard performance is worse but how bad is it? why queryselector over getelement?

@@ -7,7 +7,7 @@ module.exports = (function() {
 	"use strict";
 	
 	const Helper = require('../helper.js');
-	const SLIDE_DURATION = 2;
+	const SLIDE_DURATION = 10;
 	const WARNING_THRESHOLD = 30;
 	const images = document.getElementsByClassName('images')[0];
 	const imagesPanel = document.getElementsByClassName('imagesPanel')[0];

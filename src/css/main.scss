@@ -3,7 +3,6 @@
 // Adding this reset.scss late into this project screw things up, should of done it earlier; but it helps fix the inconsistencies between browsers
 // Then again find out how bootstrap fix browser inconsistencies and quirks?? How did JQuery did this too?? 
 /*@import 'reset';*/
-@import 'contact.scss';
 @import 'modules/mixins';
 @import 'modules/color_palette';
 @import 'modules/typography';
@@ -14,6 +13,8 @@
 @import 'components/instruction';
 @import 'components/slider';
 @import 'components/textfield';
+@import 'price_list.scss';
+@import 'contact.scss';
 
 .wrapper, body, html {
 	height: 100vh;
@@ -23,6 +24,12 @@
 	// put a mixin for a full font family
 	font-family: $main-font;
 	color: $color-text;
+}
+
+q {
+	display: inline-block;
+	font-style: italic;
+	margin: 1em 0 1em 0;
 }
 
 /* ============= BODY ================== */
@@ -37,14 +44,6 @@
 .mainPanel {
 	display: flex;
 	flex: 1;
-}
-
-.priceListPanel {
-	display: flex;
-	justify-content: center;
-	width: 100%;
-	font-size: 3em;
-	background-color: $color-pricelist-background;
 }
 
 // Make a new file for header/body etc or nah???
