@@ -13,6 +13,8 @@
 @import 'components/instruction';
 @import 'components/slider';
 @import 'components/textfield';
+@import 'header.scss';
+@import 'footer.scss';
 @import 'price_list.scss';
 @import 'contact.scss';
 
@@ -21,7 +23,6 @@
 	margin: 0;
 	overflow: hidden;
 	box-sizing: border-box;
-	// put a mixin for a full font family
 	font-family: $main-font;
 	color: $color-text;
 }
@@ -31,8 +32,6 @@ q {
 	font-style: italic;
 	margin: 1em 0 1em 0;
 }
-
-/* ============= BODY ================== */
 
 .wrapper {
 	display: flex;
@@ -44,132 +43,4 @@ q {
 .mainPanel {
 	display: flex;
 	flex: 1;
-}
-
-// Make a new file for header/body etc or nah???
-/* ============= HEADER ================== */
-
-#header {
-	background-color: $color-header-background;
-	display: flex;
-}
-
-#logo {	
-	opacity: 0.6;
-	@include transition(0.3s);
-	max-width: 100%;
-
-	&:hover {
-		opacity: 1;
-	}
-}
-
-#navigationBar {
-	width: 100%;
-	display: flex;
-	justify-content: flex-end;
-	align-items: center;
-	padding-right: 20px;
-}
-
-.navigationLink {
-	padding: 10px 20px 10px 20px;
-	border: 2px solid $color-navigation-small-border;
-	justify-content: space-between;
-	flex-direction: row;
-	position: absolute;
-	z-index: 1;
-	right: 39px;
-	background-color: $color-navigation-small-background;
-
-	& a {
-		color: $color-navigation-text;
-		text-decoration: none;
-		cursor: pointer;
-		@include transition(0.3s);
-		padding: 0 20px 0 20px;
-
-		&:hover {
-			text-shadow: 4px 4px $color-main-text-shadow;
-		}
-
-		&:first-child {
-			border: 0;
-		}
-	}
-
-	@media (min-width: 470px) {
-		// Hmm.... is !important the ONLY SOLUTION?
-		display: flex !important;
-		flex-direction: row;
-		padding: 0 !important;
-		border: 0 !important;
-		background: none;
-
-		& a {
-			color: gray;
-			border-left: 3px solid $color-main-border;
-			padding: 20px;
-
-			&:hover {
-				color: $color-navigation-text-hover;	
-			}
-		}
-	}
-}
-
-#navigationIcon {
-	display: none;
-
-	&:not(:checked) ~ .navigationLink {
-		display: none;
-	}
-
-	// alternative to tilde?
-	&:checked ~ .navigationLink {
-		display: flex;		
-	}
-}
-
-#navigationIconLabel {
-	display: flex;
-	order: 1;
-	background-image: "img/Navigation_icon.svg";
-	cursor: pointer;
-
-	@media (min-width: 470px) {
-		display: none;
-	}
-}
-
-@keyframes NAVIGATION_ICON_IN_ANIMATION {
-	0% {
-		padding: 10px 20px 10px 20px;
-	}
-	
-	100% {
-		padding: 0;
-
-		transition: padding 1s ease-in-out;
-	}
-}
-
-@keyframes NAVIGATION_ICON_OUT_ANIMATION {
-	0% {
-		padding: 0;
-	}
-
-	100% {
-		padding: 10px 20px 10px 20px;
-		border: 2px solid $color-navigation-small-border;
-		transition: padding 1s ease-in-out;
-	}
-}
-
-/* ============= FOOTER ================== */
-
-footer {
-	background-color: $color-main-background;
-	display: flex;
-	justify-content: center;
 }

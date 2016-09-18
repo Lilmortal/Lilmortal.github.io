@@ -21,7 +21,7 @@ module.exports = {
   },
   output: {
     path: __dirname + "/src/js",
-    filename: "main.js"
+    filename: "bundle.js"
   },
   plugins: debug ? [] : [
     new webpack.optimize.DedupePlugin(),

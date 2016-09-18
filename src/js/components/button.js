@@ -20,6 +20,7 @@ module.exports = (function() {
 	const addPoints = document.getElementsByClassName('addPoints')[0];
 	const wrapper = document.getElementsByClassName('wrapper')[0];
 	const sliderPanel = document.getElementsByClassName('sliderPanel')[0];
+	const highScore = document.getElementsByClassName('highScore');
 
 	function Button(id) {
 		this.button = document.getElementById(id);
@@ -41,7 +42,7 @@ module.exports = (function() {
 		const self = this;
 		this.button.addEventListener('click', function() {
 			callback();
-			Helper.toggleClass(wrapper, 'grayscaleBackgroundAnimation');
+			Helper.toggleClassForAnimation(wrapper, 'grayscaleBackgroundAnimation');
 			self.countdownPanel.startCountdownTimer(countdownNumber, self.slider.startSlider.bind(self.slider));
 		});
 	}
@@ -52,11 +53,17 @@ module.exports = (function() {
 	Button.prototype.submit = function() {
 		let imageIteration = 0;
 		this.button.addEventListener('click', function() {
-	  		if (!Helper.validateIfUserInputIsValid(self.submitTextfield)) {
+	  		if (Helper.validateIfInputIsDotaHeroName(image[imageIteration], self.submitTextfield)) {
 	  			Helper.hideElement(image[imageIteration]);
 	  			imageIteration++;
-	  			addPoints.innerHTML = "+200";
-	  			Helper.toggleClass(addPoints, 'addPointsAnimation');
+	  			addPoints.innerHTML = "+100";
+	  			for (let i = 0; i < highScore.length; i++) {
+	  				highScore[i].innerHTML = parseInt(highScore[i].innerHTML) + 100;
+	  			}
+	  			Helper.toggleClassForAnimation(addPoints, 'addPointsAnimation');
+	  			Helper.removeClass(self.submitTextfield, 'shakeTextfieldAnimation');
+	  		} else {
+				Helper.addClass(self.submitTextfield, 'shakeTextfieldAnimation');
 	  		}
 		});
 	}

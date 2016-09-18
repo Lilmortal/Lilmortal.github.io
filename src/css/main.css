@@ -144,29 +144,33 @@
   border: 0; }
 
 .image {
-  min-width: 30px;
+  width: 48px;
+  height: 27px;
   border-left: 4px groove gold; }
-  @media (min-width: 300px) {
-    .image {
-      min-width: 35px; } }
   @media (min-width: 400px) {
     .image {
-      min-width: 45px; } }
+      width: 64px;
+      height: 36px; } }
   @media (min-width: 500px) {
     .image {
-      min-width: 65px; } }
+      width: 80px;
+      height: 45px; } }
   @media (min-width: 600px) {
     .image {
-      min-width: 80px; } }
+      width: 96px;
+      height: 54px; } }
   @media (min-width: 750px) {
     .image {
-      min-width: 100px; } }
+      width: 112px;
+      height: 63px; } }
   @media (min-width: 1000px) {
     .image {
-      min-width: 130px; } }
+      width: 128px;
+      height: 72px; } }
   @media (min-width: 1300px) {
     .image {
-      min-width: 150px; } }
+      width: 160px;
+      height: 90px; } }
 
 .warningAnimation {
   animation: WARNING_BOX_SHADOW_ANIMATION 3s;
@@ -286,60 +290,6 @@
     transform: translate3d(4px, 0, 0); }
   100% {
     display: none; } }
-.priceListPanel {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  width: 100%;
-  font-size: 3em;
-  background-color: black; }
-
-.contactPanel {
-  background-color: white;
-  opacity: 0.9;
-  color: black;
-  display: flex;
-  flex-direction: column;
-  width: 80%;
-  padding: 3em 4em 3em 4em;
-  margin: 0 auto; }
-
-.contactPicturesPanel {
-  margin: 1em 0 1em 0; }
-  .contactPicturesPanel img {
-    max-width: 480px;
-    max-height: 270px;
-    margin: 0 6em 0 6em; }
-
-q {
-  display: inline-block;
-  font-style: italic; }
-
-.wrapper, body, html {
-  height: 100vh;
-  margin: 0;
-  overflow: hidden;
-  box-sizing: border-box;
-  font-family: "Helvetica", Sans-serif;
-  color: white; }
-
-q {
-  display: inline-block;
-  font-style: italic;
-  margin: 1em 0 1em 0; }
-
-/* ============= BODY ================== */
-.wrapper {
-  display: flex;
-  flex-direction: column;
-  background-image: url("../img/background_image.jpg");
-  background-size: cover; }
-
-.mainPanel {
-  display: flex;
-  flex: 1; }
-
-/* ============= HEADER ================== */
 #header {
   background-color: black;
   display: flex; }
@@ -426,10 +376,57 @@ q {
     padding: 10px 20px 10px 20px;
     border: 2px solid white;
     transition: padding 1s ease-in-out; } }
-/* ============= FOOTER ================== */
 footer {
   background-color: black;
   display: flex;
   justify-content: center; }
+
+.priceListPanel {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  font-size: 3em;
+  background-color: black; }
+
+.contactPanel {
+  background-color: white;
+  opacity: 0.9;
+  color: black;
+  display: flex;
+  flex-direction: column;
+  width: 80%;
+  padding: 3em 4em 3em 4em;
+  margin: 0 auto; }
+
+.contactPicturesPanel {
+  margin: 1em 0 1em 0; }
+  .contactPicturesPanel img {
+    max-width: 480px;
+    max-height: 270px;
+    margin: 0 6em 0 6em; }
+
+.wrapper, body, html {
+  height: 100vh;
+  margin: 0;
+  overflow: hidden;
+  box-sizing: border-box;
+  font-family: "Helvetica", Sans-serif;
+  color: white; }
+
+q {
+  display: inline-block;
+  font-style: italic;
+  margin: 1em 0 1em 0; }
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  background-image: url("../img/background_image.jpg");
+  background-size: cover; }
+
+.mainPanel {
+  display: flex;
+  flex: 1; }
 
 /*# sourceMappingURL=main.css.map */
