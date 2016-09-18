@@ -10,8 +10,8 @@ module.exports = (function() {
 	const Slider = require('../components/slider.js');
 	const Helper = require('../helper.js');
 	//TODO - document.querySelector is better or nah? Heard performance is worse but how bad is it? why queryselector over getelement?
-	// THIS IS TOO SHIT, ITS TOO DEPENDENT ON HARD CODED VARIABLES; CAN ANGULAR 2 DEPENDENCY INJECTION HELP OR OTHER WAY VANILLA JS CAN HELP? I KNOW
-	// REACT CAN WITH ITS COMPONENT BASED LIBRARY; WHAT ABOUT EMBER? WHY ARE PEOPLE DITCHING EMBER? TOO OLD? KNOCKOUT MVVM HELPS??
+	// THIS IS TOO SHIT, ITS TOO DEPENDENT ON HARD CODED VARIABLES; CAN ANGULAR 2 DEPENDENCY INJECTION HELP? I KNOW
+	// REACT CAN WITH ITS COMPONENT BASED LIBRARY; WHAT ABOUT EMBER? WHY ARE PEOPLE DITCHING EMBER? TOO OLD? KNOCKOUT MVVM HELPS?? EQUIVALENT FOR VANILLA JS?
 	const submitTextfield = document.getElementById('submitTextfield');
 	const failBackground = document.getElementsByClassName('failBackground')[0];
 	const images = document.getElementsByClassName('images')[0];
@@ -38,7 +38,7 @@ module.exports = (function() {
 	 */
 	// THIS PROTOTYPE OR MODULE PATTERN IS BETTER??? WHAT ABOUT PUB/SUB IMPLEMENTATION?
 	// IF HAVE TIME, SEE IF ES6 ARROW FUNCTION IS MORE READABLE OR NOT
-	// AND ALL THIS METHODS...MAYBE SEPERATE IT INTO DIFFERENT COMPONENTS?
+	// AND ALL THIS FUNCTIONS...MAYBE SEPERATE IT INTO DIFFERENT COMPONENTS?
 	Button.prototype.startCountdownForSlider = function(countdownNumber, callback) {
 		// Is using self okay? Cause theres window.self...but will I ever use that???
 		const self = this;

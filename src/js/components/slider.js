@@ -18,7 +18,7 @@ module.exports = (function() {
 	}
 
 	/**
-	 * Get images from dota API; as well as appending it to a list of image DOM.
+	 * Get images from dota API, appending it to a list of generated image DOM element.
 	 */
 	slider.prototype.getImages = function() {
 		// TODO - Get list of dota images using AJAX, look up Promises and Generators

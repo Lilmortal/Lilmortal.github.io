@@ -6,6 +6,9 @@ module.exports = (function() {
 		this.button = button;
 	}
 
+	/**
+	 * Submit if user press 'enter'.
+	 */
 	Textfield.prototype.submit = function() {
 		var self = this;
 		this.textfield.addEventListener('keyup', function(event) {
