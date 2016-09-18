@@ -25,7 +25,7 @@ module.exports = (function() {
 		// Promises - asychronous calls, do this, then do this
 		// Generators - something about waiting indefinitely until it gets it (uses the keyword 'yield')
 		// APPARENTLY GENERATORS IS A HACK, ES7 'ASYNC' KEYWORD IS THE LEGIT WAY OR SOME SHIT; I THINK? 
-
+		// Using XMLHttpRequest on a remote server gives you 'Access-control-allow-origin' missing error; look up CORS; maybe create a Python script instead
 		/*var oReq = new XMLHttpRequest();
 		oReq.onload = function (e) {
 		    console.log(e.target.response.message);
@@ -34,13 +34,18 @@ module.exports = (function() {
 		oReq.responseType = 'json';
 		oReq.send();*/
 
+		// TODO: Fix this, it's been called everytime you start a new game which is very inefficient
 		const dotaHeroesJson = JSON.parse(this.stubDotaHeroes());
 		const fragment = document.createDocumentFragment();
 		const heroes = dotaHeroesJson.result.heroes;
 		for (let i = 0; i < heroes.length; i++) {
 			const image = document.createElement('img');
 			image.className = 'image';
-			image.src = '../img/divine_rapier_icon.png';
+			image.src = 'http://cdn.dota2.com/apps/dota2/images/heroes/' + heroes[i].name.replace('npc_dota_hero_', '') + '_lg.png';
+			//It should be Tuskar, not Tusk!
+			if (heroes[i].localized_name === 'Tusk') {
+				heroes[i].localized_name = 'Tuskar';
+			}
 			image.name = heroes[i].localized_name;
 			fragment.appendChild(image);
 		}
@@ -80,6 +85,7 @@ module.exports = (function() {
 		});
 	}
 
+	// Temporary until an actual call to API is made
 	slider.prototype.stubDotaHeroes = function() {
 		return `{
 		"result":{

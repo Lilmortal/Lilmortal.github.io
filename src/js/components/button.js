@@ -21,6 +21,8 @@ module.exports = (function() {
 	const wrapper = document.getElementsByClassName('wrapper')[0];
 	const sliderPanel = document.getElementsByClassName('sliderPanel')[0];
 	const highScore = document.getElementsByClassName('highScore');
+	const textfield = document.getElementById('submitTextfield');
+	let imageIteration = 0;
 
 	function Button(id) {
 		this.button = document.getElementById(id);
@@ -51,7 +53,6 @@ module.exports = (function() {
 	 * When clicked, check if the user input is valid; if it is valid, it will remove an image and add some points, else display a fail animation.
 	 */
 	Button.prototype.submit = function() {
-		let imageIteration = 0;
 		this.button.addEventListener('click', function() {
 	  		if (Helper.validateIfInputIsDotaHeroName(image[imageIteration], self.submitTextfield)) {
 	  			Helper.hideElement(image[imageIteration]);
@@ -65,6 +66,7 @@ module.exports = (function() {
 	  		} else {
 				Helper.addClass(self.submitTextfield, 'shakeTextfieldAnimation');
 	  		}
+	  		textfield.value = '';
 		});
 	}
 
@@ -92,6 +94,10 @@ module.exports = (function() {
   		  	for (let i = 0; i < image.length; i++) {
   				image[i].style.display = 'block';
   			}
+  			imageIteration = 0;
+			for (let i = 0; i < highScore.length; i++) {
+				highScore[i].innerHTML = 0;
+			}
 		}
 		this.startCountdownForSlider(COUNTDOWN_NUMBER, callback);
 	}
