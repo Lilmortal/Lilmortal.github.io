@@ -21,7 +21,6 @@ module.exports = (function() {
 	const wrapper = document.getElementsByClassName('wrapper')[0];
 	const sliderPanel = document.getElementsByClassName('sliderPanel')[0];
 	const highScore = document.getElementsByClassName('highScore');
-	const textfield = document.getElementById('submitTextfield');
 	let imageIteration = 0;
 
 	function Button(id) {
@@ -54,7 +53,7 @@ module.exports = (function() {
 	 */
 	Button.prototype.submit = function() {
 		this.button.addEventListener('click', function() {
-	  		if (Helper.validateIfInputIsDotaHeroName(image[imageIteration], self.submitTextfield)) {
+	  		if (Helper.validateIfInputIsDotaHeroName(image[imageIteration], submitTextfield)) {
 	  			Helper.hideElement(image[imageIteration]);
 	  			imageIteration++;
 	  			addPoints.innerHTML = "+100";
@@ -62,11 +61,11 @@ module.exports = (function() {
 	  				highScore[i].innerHTML = parseInt(highScore[i].innerHTML) + 100;
 	  			}
 	  			Helper.toggleClassForAnimation(addPoints, 'addPointsAnimation');
-	  			Helper.removeClass(self.submitTextfield, 'shakeTextfieldAnimation');
+	  			Helper.removeClass(submitTextfield, 'shakeTextfieldAnimation');
 	  		} else {
-				Helper.addClass(self.submitTextfield, 'shakeTextfieldAnimation');
+				Helper.toggleClassForAnimation(submitTextfield, 'shakeTextfieldAnimation');
 	  		}
-	  		textfield.value = '';
+	  		submitTextfield.value = '';
 	  		if (typeof image[imageIteration] === 'undefined') {
 	  			document.getElementsByClassName('resultText')[0].innerHTML = 'Ez Win!';
 	  			Helper.showElement(failBackground);
@@ -102,9 +101,10 @@ module.exports = (function() {
 			for (let i = 0; i < highScore.length; i++) {
 				highScore[i].innerHTML = 0;
 			}
-			textfield.value = '';
-			//Helper.removeClass(addPoints, 'addPointsAnimation');
+			submitTextfield.value = '';
 			Helper.removeClass(submitTextfield, 'shakeTextfieldAnimation');
+			Helper.removeClass(addPoints, 'addPointsAnimation');
+			addPoints.style.opacity = 0;
 		}
 		this.startCountdownForSlider(COUNTDOWN_NUMBER, callback);
 	}

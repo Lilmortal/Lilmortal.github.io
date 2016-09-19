@@ -276,7 +276,7 @@
     box-shadow: inset 0px 0px 20px black; }
 
 .shakeTextfieldAnimation {
-  border: 4px solid red;
+  border: 4px solid red !important;
   animation: SHAKE_TEXTFIELD_ANIMATION 0.5s; }
 
 @keyframes SHAKE_TEXTFIELD_ANIMATION {
@@ -400,10 +400,10 @@ footer {
   margin: 0 auto; }
 
 .contactPicturesPanel {
+  display: flex;
   margin: 1em 0 1em 0; }
   .contactPicturesPanel img {
-    max-width: 480px;
-    max-height: 270px;
+    max-width: 100%;
     margin: 0 6em 0 6em; }
 
 .wrapper, body, html {

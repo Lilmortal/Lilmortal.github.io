@@ -35,7 +35,7 @@
 }
 
 .shakeTextfieldAnimation {
-	border: 4px solid $color-textfield-animation;
+	border: 4px solid $color-textfield-animation !important;
 	animation: SHAKE_TEXTFIELD_ANIMATION 0.5s;
 }
 
