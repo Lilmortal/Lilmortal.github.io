@@ -67,6 +67,10 @@ module.exports = (function() {
 				Helper.addClass(self.submitTextfield, 'shakeTextfieldAnimation');
 	  		}
 	  		textfield.value = '';
+	  		if (typeof image[imageIteration] === 'undefined') {
+	  			document.getElementsByClassName('resultText')[0].innerHTML = 'Ez Win!';
+	  			Helper.showElement(failBackground);
+	  		}
 		});
 	}
 
@@ -98,6 +102,9 @@ module.exports = (function() {
 			for (let i = 0; i < highScore.length; i++) {
 				highScore[i].innerHTML = 0;
 			}
+			textfield.value = '';
+			//Helper.removeClass(addPoints, 'addPointsAnimation');
+			Helper.removeClass(submitTextfield, 'shakeTextfieldAnimation');
 		}
 		this.startCountdownForSlider(COUNTDOWN_NUMBER, callback);
 	}

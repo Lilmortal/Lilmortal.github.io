@@ -77,10 +77,13 @@ module.exports = (function() {
 	 * Initialize the slider transition, display the fail panel when the transition ends.
 	 */
 	slider.prototype.startSlider = function() {
-		this.getImages();
+		if (images.children.length === 0) {
+			this.getImages();
+		}
 		Helper.showElement(this.slider);
 		this.slide();
 		Helper.transitionEnd(images, function() {
+			document.getElementsByClassName('resultText')[0].innerHTML = 'You lose...';
 			Helper.showElement(failBackground);
 		});
 	}
