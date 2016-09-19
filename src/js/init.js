@@ -1,3 +1,5 @@
+require('../css/main.scss');
+require('../img/background_image.jpg');
 (function() {
 	//TODO - "use strict" better in this IIFE or outside?
 	"use strict";
