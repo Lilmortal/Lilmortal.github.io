@@ -1,8 +1,12 @@
+'use strict'
+var path = require('path');
+
 module.exports = {
 	entry: './src/js/init.js',
 	output: {
-		path: 'bin',
-		filename: 'bundle.js'
+		path: path.join(__dirname, 'src/bin'),
+		filename: 'bundle.js',
+		publicPath: './bin/'
 	},
 	module: {
 		loaders: [{
@@ -17,7 +21,7 @@ module.exports = {
 		},
 		{
 		test: /\jpg$/,
-		loader: "file-loader?name=[name].[ext]",
+		loader: "file-loader?name=[hash].[ext]",
 		exclude: /node_modules/}]
 	}
 };
