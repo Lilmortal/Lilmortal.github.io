@@ -1,3 +1,5 @@
+require('../css/main.scss');
+require('../img/background_image.jpg');
 (function() {
 	"use strict";
 
@@ -18,3 +20,4 @@
 	const submitTextfield = new Textfield('submitTextfield', submitButton);
 	submitTextfield.submit();
 })();
+
