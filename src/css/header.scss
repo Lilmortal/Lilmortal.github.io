@@ -13,7 +13,7 @@
 	}
 }
 
-#navigationBar {
+#navigation_bar {
 	width: 100%;
 	display: flex;
 	justify-content: flex-end;
@@ -21,7 +21,8 @@
 	padding-right: 20px;
 }
 
-.navigationLink {
+.navigation_link {
+	display: none;
 	padding: 10px 20px 10px 20px;
 	border: 2px solid $color-navigation-small-border;
 	justify-content: space-between;
@@ -67,23 +68,22 @@
 	}
 }
 
-#navigationIcon {
+#navigation_icon {
 	display: none;
 
-	&:not(:checked) ~ .navigationLink {
+	&:not(:checked) ~ .navigation_link {
 		display: none;
 	}
 
 	// alternative to tilde?
-	&:checked ~ .navigationLink {
-		display: flex;		
+	&:checked ~ .navigation_link {
+		display: flex;
 	}
 }
 
-#navigationIconLabel {
+#navigation_icon_label {
 	display: flex;
 	order: 1;
-	background-image: "img/Navigation_icon.svg";
 	cursor: pointer;
 
 	@media (min-width: 470px) {

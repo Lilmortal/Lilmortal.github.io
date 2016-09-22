@@ -1,4 +1,4 @@
-.imagesPanel {
+.images_panel {
 	display: flex;
 	width: 99%;
 	border: 5px double $color-panel-border;
@@ -51,7 +51,7 @@
 	}
 }
 
-.warningAnimation {
+.warning_animation {
 	animation: WARNING_BOX_SHADOW_ANIMATION 3s;
 	animation-iteration-count: infinite;
 	border: 5px solid $color-warning-border;

@@ -1,4 +1,4 @@
-.sliderPanel {
+.slider_panel {
 	width: 100%;
 	display: none;
 	align-items: center;
@@ -12,17 +12,17 @@
 	position: relative;
 }
 
-.addPoints {
+.add_points {
 	position: absolute;
 	left: 58%;
 	bottom: 30%;
 }
 
-.submitPanel {
+.submit_panel {
 	margin-top: 3em;
 }
 
-.addPointsAnimation {
+.add_points_animation {
 	animation: ADD_POINTS_ANIMATION 1s;
 	animation-fill-mode: forwards;
 }

@@ -8,15 +8,15 @@
   </head>
   
   <body>
-    <div class="failBackground">
-      <div class="failPanel">
-        <h1 class="resultText">FAIL</h1>
-        <h3>High score: <span class="highScore">0</span></h3>
-        <button id="failButton" class="button">Try Again</button>
+    <div class="fail_background">
+      <div class="fail_panel">
+        <h1 class="result_text">FAIL</h1>
+        <h3>High score: <span class="high_score">0</span></h3>
+        <button id="fail_button" class="button">Try Again</button>
       </div>
     </div>
 
-    <div id="countdownPanel"></div>
+    <div id="countdown_panel"></div>
 
     <div class="wrapper">
       <header id="header">
@@ -24,18 +24,18 @@
           <img src="img/ikuzo_logo.png" id="logo" alt="Ikuzo Logo" />
         </a>
 
-        <nav id="navigationBar">
-          <input type="checkbox" id="navigationIcon" name="navigationIcon" />
-          <label for="navigationIcon" id="navigationIconLabel"><img src="img/navigation_icon.svg" /></label>
-          <div class="navigationLink">
-            <a href="html/price_list.html">Price list</a>
+        <nav id="navigation_bar">
+          <input type="checkbox" id="navigation_icon" name="navigation_icon" />
+          <label for="navigation_icon" id="navigation_icon_label"><img src="img/navigation_icon.svg" /></label>
+          <div class="navigation_link">
+            <a href="html/hero_list.html">Hero list</a>
             <a href="html/contact.html">Contact</a>
           </div>
         </nav>
       </header>
       
-      <div class="mainPanel">
-        <div class="instructionPanel">
+      <div class="main_panel">
+        <div class="instruction_panel">
           <h1><strong>HOW TO PLAY</strong></h1>
           <p>
             When the game starts, there will be a slider which contains images of dota heroes; the main objective of this game is to prevent the slider from reaching the end of the line.
@@ -47,20 +47,20 @@
             Every correct answer earns you 100 points. In the future I might implement a high score system to see how well you do compared to other users who played this game.
           </p>
 
-          <button id="startButton" class="button">START</button>
+          <button id="start_button" class="button">START</button>
         </div>
-        <div class="sliderPanel">
+        <div class="slider_panel">
           <h2 class="points">
-            <div class="addPoints"></div>
-            Points: <span class="highScore">0</span>
+            <div class="add_points"></div>
+            Points: <span class="high_score">0</span>
           </h2>
-          <div class="imagesPanel">
+          <div class="images_panel">
             <picture class="images">
             </picture>
           </div>
-          <div class="submitPanel">
-            <input type="text" id="submitTextfield" class="submitTextfield" name="submitTextfield" tabindex="1" />
-            <button id="submitButton" class="button">Submit</button>
+          <div class="submit_panel">
+            <input type="text" id="submit_textfield" class="submit_textfield" name="submit_textfield" tabindex="1" />
+            <button id="submit_button" class="button">Submit</button>
           </div>
         </div>
       </div>

@@ -10,8 +10,8 @@ module.exports = (function() {
 	const SLIDE_DURATION = 10;
 	const WARNING_THRESHOLD = 30;
 	const images = document.getElementsByClassName('images')[0];
-	const imagesPanel = document.getElementsByClassName('imagesPanel')[0];
-	const failBackground = document.getElementsByClassName('failBackground')[0];
+	const imagesPanel = document.getElementsByClassName('images_panel')[0];
+	const failBackground = document.getElementsByClassName('fail_background')[0];
 
 	function slider(slider) {
 		this.slider = document.getElementsByClassName(slider)[0];
@@ -63,11 +63,11 @@ module.exports = (function() {
 
 		images.style.marginLeft = '0';
 	    images.style.transition = SLIDE_DURATION + 's linear';
-		Helper.removeClass(imagesPanel, 'warningAnimation');
+		Helper.removeClass(imagesPanel, 'warning_animation');
 
 	    timer = setInterval(function() {
 	    	if (Helper.getPosition(images).x <= warningWidth) {
-				Helper.addClass(imagesPanel, 'warningAnimation');
+				Helper.addClass(imagesPanel, 'warning_animation');
 				clearInterval(timer);
 	    	}
 	    }, 1000);
@@ -83,7 +83,7 @@ module.exports = (function() {
 		Helper.showElement(this.slider);
 		this.slide();
 		Helper.transitionEnd(images, function() {
-			document.getElementsByClassName('resultText')[0].innerHTML = 'You lose...';
+			document.getElementsByClassName('result_text')[0].innerHTML = 'You lose...';
 			Helper.showElement(failBackground);
 		});
 	}

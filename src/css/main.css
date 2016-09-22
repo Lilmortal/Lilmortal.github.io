@@ -36,7 +36,7 @@
     background: linear-gradient(#555555, black);
     /* Standard syntax (must be last) */ }
 
-#countdownPanel {
+#countdown_panel {
   min-width: 100%;
   min-height: 100%;
   position: absolute;
@@ -46,7 +46,7 @@
   font-size: 12em;
   z-index: 1; }
 
-.grayscaleBackgroundAnimation {
+.grayscale_background_animation {
   animation: GRAYSCALE_BACKGROUND_ANIMATION 4s; }
 
 @keyframes GRAYSCALE_BACKGROUND_ANIMATION {
@@ -55,7 +55,7 @@
     -moz-filter: grayscale(0.7) blur(3px);
     -ms-filter: grayscale(0.7) blur(3px);
     filter: grayscale(0.7) blur(3px); } }
-.failBackground {
+.fail_background {
   display: none;
   align-items: center;
   min-width: 100%;
@@ -66,7 +66,7 @@
   animation-fill-mode: forwards;
   z-index: 2; }
 
-.failPanel {
+.fail_panel {
   width: 100%;
   display: flex;
   flex-direction: column;
@@ -78,25 +78,25 @@
   animation-fill-mode: forwards;
   padding: 20px 0 20px 0;
   font-size: 0.67em; }
-  .failPanel h1 {
+  .fail_panel h1 {
     animation: FAIL_TEXT_ANIMATION 1s;
     animation-fill-mode: forwards; }
-  .failPanel h3 {
+  .fail_panel h3 {
     animation: FAIL_TEXT_ANIMATION 1s;
     animation-fill-mode: forwards; }
   @media (min-width: 340px) {
-    .failPanel {
+    .fail_panel {
       font-size: 1em; } }
   @media (min-width: 500px) {
-    .failPanel {
+    .fail_panel {
       font-size: 1.2em; } }
   @media (min-width: 650px) {
-    .failPanel {
+    .fail_panel {
       font-size: 1.5em; } }
   @media (min-width: 825px) {
-    .failPanel {
+    .fail_panel {
       font-size: 2em; } }
-  .failPanel button {
+  .fail_panel button {
     animation: FAIL_BUTTON_ANIMATION 1s;
     animation-fill-mode: forwards; }
 
@@ -125,7 +125,7 @@
   100% {
     opacity: 1;
     transition: 0.5s ease-in-out; } }
-.imagesPanel {
+.images_panel {
   display: flex;
   width: 99%;
   border: 5px double gold;
@@ -172,7 +172,7 @@
       width: 160px;
       height: 90px; } }
 
-.warningAnimation {
+.warning_animation {
   animation: WARNING_BOX_SHADOW_ANIMATION 3s;
   animation-iteration-count: infinite;
   border: 5px solid red;
@@ -189,8 +189,8 @@
     box-shadow: 0px 0px 50px #F1948A; }
   100% {
     box-shadow: 0px 0px 50px #641E16; } }
-.instructionPanel {
-  border: 7px ridge gold;
+.instruction_panel {
+  border: 3px ridge gold;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
   -ms-border-radius: 5px;
@@ -202,14 +202,13 @@
   flex-direction: column;
   align-items: center;
   box-shadow: 0px 0px 50px gold;
-  overflow-y: auto;
   margin: auto;
   font-size: 1.1em; }
   @media (min-width: 720px) {
-    .instructionPanel {
+    .instruction_panel {
       padding: 0 100px 20px 100px; } }
 
-.sliderPanel {
+.slider_panel {
   width: 100%;
   display: none;
   align-items: center;
@@ -221,15 +220,15 @@
   font-size: 3em;
   position: relative; }
 
-.addPoints {
+.add_points {
   position: absolute;
   left: 58%;
   bottom: 30%; }
 
-.submitPanel {
+.submit_panel {
   margin-top: 3em; }
 
-.addPointsAnimation {
+.add_points_animation {
   animation: ADD_POINTS_ANIMATION 1s;
   animation-fill-mode: forwards; }
 
@@ -241,23 +240,23 @@
   100% {
     opacity: 0;
     bottom: 70%; } }
-.submitPanel {
+.submit_panel {
   display: flex;
   justify-content: center;
   flex-direction: column;
   width: 100%;
   padding: 0 1em 0 1em; }
-  .submitPanel button {
+  .submit_panel button {
     width: 90%;
     margin: 2em 5% 0 5%; }
   @media (min-width: 630px) {
-    .submitPanel {
+    .submit_panel {
       flex-direction: row;
       width: initial; }
-      .submitPanel button {
+      .submit_panel button {
         margin: 0 0 0 2em; } }
 
-.submitTextfield {
+.submit_textfield {
   border: 4px solid #3F3835;
   -webkit-border-radius: 5px;
   -moz-border-radius: 5px;
@@ -271,11 +270,11 @@
   margin: 0 5% 0 5%;
   outline: 0;
   padding-left: 20px; }
-  .submitTextfield:focus {
+  .submit_textfield:focus {
     border: 4px solid black;
     box-shadow: inset 0px 0px 20px black; }
 
-.shakeTextfieldAnimation {
+.shake_textfield_animation {
   border: 4px solid red !important;
   animation: SHAKE_TEXTFIELD_ANIMATION 0.5s; }
 
@@ -304,14 +303,15 @@
   #logo:hover {
     opacity: 1; }
 
-#navigationBar {
+#navigation_bar {
   width: 100%;
   display: flex;
   justify-content: flex-end;
   align-items: center;
   padding-right: 20px; }
 
-.navigationLink {
+.navigation_link {
+  display: none;
   padding: 10px 20px 10px 20px;
   border: 2px solid white;
   justify-content: space-between;
@@ -320,7 +320,7 @@
   z-index: 1;
   right: 39px;
   background-color: white; }
-  .navigationLink a {
+  .navigation_link a {
     color: black;
     text-decoration: none;
     cursor: pointer;
@@ -329,38 +329,37 @@
     -ms-transition: all 0.3s ease-in-out;
     -o-transition: all 0.3s ease-in-out;
     padding: 0 20px 0 20px; }
-    .navigationLink a:hover {
+    .navigation_link a:hover {
       text-shadow: 4px 4px gray; }
-    .navigationLink a:first-child {
+    .navigation_link a:first-child {
       border: 0; }
   @media (min-width: 470px) {
-    .navigationLink {
+    .navigation_link {
       display: flex !important;
       flex-direction: row;
       padding: 0 !important;
       border: 0 !important;
       background: none; }
-      .navigationLink a {
+      .navigation_link a {
         color: gray;
         border-left: 3px solid white;
         padding: 20px; }
-        .navigationLink a:hover {
+        .navigation_link a:hover {
           color: white; } }
 
-#navigationIcon {
+#navigation_icon {
   display: none; }
-  #navigationIcon:not(:checked) ~ .navigationLink {
+  #navigation_icon:not(:checked) ~ .navigation_link {
     display: none; }
-  #navigationIcon:checked ~ .navigationLink {
+  #navigation_icon:checked ~ .navigation_link {
     display: flex; }
 
-#navigationIconLabel {
+#navigation_icon_label {
   display: flex;
   order: 1;
-  background-image: "img/Navigation_icon.svg";
   cursor: pointer; }
   @media (min-width: 470px) {
-    #navigationIconLabel {
+    #navigation_icon_label {
       display: none; } }
 
 @keyframes NAVIGATION_ICON_IN_ANIMATION {
@@ -381,7 +380,7 @@ footer {
   display: flex;
   justify-content: center; }
 
-.priceListPanel {
+.hero_list_panel {
   display: flex;
   justify-content: center;
   align-items: center;
@@ -389,25 +388,29 @@ footer {
   font-size: 3em;
   background-color: black; }
 
-.contactPanel {
+.contact_panel {
   background-color: white;
   color: black;
   padding: 3em 4em 3em 4em;
+  width: 100%;
   margin: 0 auto;
   overflow-y: auto; }
+  @media (min-width: 900px) {
+    .contact_panel {
+      width: 80%; } }
 
-.contactPicturesPanel {
+.contact_pictures_panel {
   padding: 1em 0 1em 0;
   flex-flow: row wrap;
   display: flex; }
-  .contactPicturesPanel img {
+  .contact_pictures_panel img {
     flex: auto;
     margin: 1em 0 1em 0;
     max-width: 250px;
     width: 100%;
     height: 100%; }
     @media (min-width: 420px) {
-      .contactPicturesPanel img {
+      .contact_pictures_panel img {
         margin: 1em; } }
 
 .wrapper, body, html {
@@ -429,8 +432,9 @@ q {
   background-image: url("../img/background_image.jpg");
   background-size: cover; }
 
-.mainPanel {
+.main_panel {
   display: flex;
-  flex: 1; }
+  flex: 1;
+  overflow-y: auto; }
 
 /*# sourceMappingURL=main.css.map */

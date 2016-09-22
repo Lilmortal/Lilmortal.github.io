@@ -1,12 +1,18 @@
-.contactPanel {
+.contact_panel {
 	background-color: white;
 	color: black;
 	padding: 3em 4em 3em 4em;
+	width: 100%;
 	margin: 0 auto;
 	overflow-y: auto;
+
+	@media (min-width: 900px)
+	{
+		width: 80%;
+	}
 }
 
-.contactPicturesPanel {
+.contact_pictures_panel {
 	padding: 1em 0 1em 0;
 	flex-flow: row wrap; 
 	display: flex;

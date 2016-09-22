@@ -12,21 +12,21 @@ module.exports = (function() {
 	//TODO - document.querySelector is better or nah? Heard performance is worse but how bad is it? why queryselector over getelement?
 	// THIS IS TOO SHIT, ITS TOO DEPENDENT ON HARD CODED VARIABLES; CAN ANGULAR 2 DEPENDENCY INJECTION HELP? I KNOW
 	// REACT CAN WITH ITS COMPONENT BASED LIBRARY; WHAT ABOUT EMBER? WHY ARE PEOPLE DITCHING EMBER? TOO OLD? KNOCKOUT MVVM HELPS?? EQUIVALENT FOR VANILLA JS?
-	const submitTextfield = document.getElementById('submitTextfield');
-	const failBackground = document.getElementsByClassName('failBackground')[0];
+	const submitTextfield = document.getElementById('submit_textfield');
+	const failBackground = document.getElementsByClassName('fail_background')[0];
 	const images = document.getElementsByClassName('images')[0];
 	const image = document.getElementsByClassName('image');
-	const instructionPanel = document.getElementsByClassName('instructionPanel')[0];
-	const addPoints = document.getElementsByClassName('addPoints')[0];
+	const instructionPanel = document.getElementsByClassName('instruction_panel')[0];
+	const addPoints = document.getElementsByClassName('add_points')[0];
 	const wrapper = document.getElementsByClassName('wrapper')[0];
-	const sliderPanel = document.getElementsByClassName('sliderPanel')[0];
-	const highScore = document.getElementsByClassName('highScore');
+	const sliderPanel = document.getElementsByClassName('slider_panel')[0];
+	const highScore = document.getElementsByClassName('high_score');
 	let imageIteration = 0;
 
 	function Button(id) {
 		this.button = document.getElementById(id);
-		this.countdownPanel = new CountdownPanel('countdownPanel');
-		this.slider = new Slider('sliderPanel');
+		this.countdownPanel = new CountdownPanel('countdown_panel');
+		this.slider = new Slider('slider_panel');
 	};
 
 	/**
@@ -43,7 +43,7 @@ module.exports = (function() {
 		const self = this;
 		this.button.addEventListener('click', function() {
 			callback();
-			Helper.toggleClassForAnimation(wrapper, 'grayscaleBackgroundAnimation');
+			Helper.toggleClassForAnimation(wrapper, 'grayscale_background_animation');
 			self.countdownPanel.startCountdownTimer(countdownNumber, self.slider.startSlider.bind(self.slider));
 		});
 	}
@@ -60,14 +60,14 @@ module.exports = (function() {
 	  			for (let i = 0; i < highScore.length; i++) {
 	  				highScore[i].innerHTML = parseInt(highScore[i].innerHTML) + 100;
 	  			}
-	  			Helper.toggleClassForAnimation(addPoints, 'addPointsAnimation');
-	  			Helper.removeClass(submitTextfield, 'shakeTextfieldAnimation');
+	  			Helper.toggleClassForAnimation(addPoints, 'add_points_animation');
+	  			Helper.removeClass(submitTextfield, 'shake_textfield_animation');
 	  		} else {
-				Helper.toggleClassForAnimation(submitTextfield, 'shakeTextfieldAnimation');
+				Helper.toggleClassForAnimation(submitTextfield, 'shake_textfield_animation');
 	  		}
 	  		submitTextfield.value = '';
 	  		if (typeof image[imageIteration] === 'undefined') {
-	  			document.getElementsByClassName('resultText')[0].innerHTML = 'Ez Win!';
+	  			document.getElementsByClassName('result_text')[0].innerHTML = 'Ez Win!';
 	  			Helper.showElement(failBackground);
 	  		}
 		});
@@ -102,8 +102,8 @@ module.exports = (function() {
 				highScore[i].innerHTML = 0;
 			}
 			submitTextfield.value = '';
-			Helper.removeClass(submitTextfield, 'shakeTextfieldAnimation');
-			Helper.removeClass(addPoints, 'addPointsAnimation');
+			Helper.removeClass(submitTextfield, 'shake_textfield_animation');
+			Helper.removeClass(addPoints, 'add_points_animation');
 			addPoints.style.opacity = 0;
 		}
 		this.startCountdownForSlider(COUNTDOWN_NUMBER, callback);

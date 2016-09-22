@@ -1,4 +1,4 @@
-.submitPanel {
+.submit_panel {
 	display: flex;
 	justify-content: center;
   flex-direction: column;
@@ -19,7 +19,7 @@
   }
 } 
 
-.submitTextfield {
+.submit_textfield {
 	border: 4px solid #3F3835;
 	@include border-radius(5px);
 	@include transition(0.30s);
@@ -34,7 +34,7 @@
   }
 }
 
-.shakeTextfieldAnimation {
+.shake_textfield_animation {
 	border: 4px solid $color-textfield-animation !important;
 	animation: SHAKE_TEXTFIELD_ANIMATION 0.5s;
 }
