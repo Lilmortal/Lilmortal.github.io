@@ -418,11 +418,11 @@ footer {
   margin: 0;
   overflow: hidden;
   box-sizing: border-box;
-  font-family: "Helvetica", Sans-serif;
+  font-family: "Segoe UI", sans-serif;
   color: white; }
 
 q {
-  display: inline-block;
+  display: block;
   font-style: italic;
   margin: 1em 0 1em 0; }
 
