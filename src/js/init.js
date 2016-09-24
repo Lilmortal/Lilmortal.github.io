@@ -6,15 +6,15 @@
 
 	//document.getElementById().initStart better? use "this"?
 	// OR TRY USE FACTORY PATTERN ON THIS? 
-	const startButton = new Button('start_button');
-	startButton.initStart();
+	const start_button = Button.create_button('start_button');
+	start_button.if_clicked('start');
 
-	const failButton = new Button('fail_button');
-	failButton.initFail();
+	const fail_button = Button.create_button('fail_button');
+	fail_button.if_clicked('fail');
 
-	const submitButton = new Button('submit_button');
-	submitButton.submit();
+	const submit_button = Button.create_button('submit_button');
+	submit_button.if_clicked('submit');
 
-	const submitTextfield = new Textfield('submit_textfield', submitButton);
-	submitTextfield.submit();
+	const submit_textfield = Textfield.create_textfield('submit_textfield');
+	submit_textfield.submit();
 })();

@@ -1,75 +1,68 @@
 <!DOCTYPE html>
-<html>
-  <head>
-    <meta charset="UTF-8">
-    <base href="..">
-    <title>Ikuzo</title>
-    <link rel="stylesheet" type="text/css" href="css/main.css">
-  </head>
+<meta charset="UTF-8">
+<base href="..">
+<title>Ikuzo</title>
+<link rel="stylesheet" type="text/css" href="css/main.css">
+
+<div class="fail_background">
+  <div class="fail_panel">
+    <h1 class="result_text">FAIL</h1>
+    <h3>High score: <span class="high_score">0</span></h3>
+    <button id="fail_button" class="button">Try Again</button>
+  </div>
+</div>
+
+<div id="countdown_panel"></div>
+
+<div class="wrapper">
+  <header id="header">
+    <a href="html/main.html">
+      <img src="img/ikuzo_logo.png" id="logo" alt="Ikuzo Logo" />
+    </a>
+
+    <nav id="navigation_bar">
+      <input type="checkbox" id="navigation_icon" name="navigation_icon" />
+      <label for="navigation_icon" id="navigation_icon_label"><img src="img/navigation_icon.svg" /></label>
+      <div class="navigation_link">
+        <a href="html/hero_list.html">Hero list</a>
+        <a href="html/contact.html">Contact</a>
+      </div>
+    </nav>
+  </header>
   
-  <body>
-    <div class="fail_background">
-      <div class="fail_panel">
-        <h1 class="result_text">FAIL</h1>
-        <h3>High score: <span class="high_score">0</span></h3>
-        <button id="fail_button" class="button">Try Again</button>
+  <div class="main_panel">
+    <div class="instruction_panel">
+      <h1><strong>HOW TO PLAY</strong></h1>
+      <p>
+        When the game starts, there will be a slider which contains images of dota heroes; the main objective of this game is to prevent the slider from reaching the end of the line.
+      </p>
+      <p>
+        You must quickly type the first dota hero name on the textfield; doing so correctly will destroy that image; but if you enter the incorrect input, nothing will happen and the slider will continue sliding its way towards the end. As time pass on, the slider will began to increase its speed. There is no end to this game; the images will continue going until the user loses the game.
+      </p>
+      <p>
+        Every correct answer earns you 100 points. In the future I might implement a high score system to see how well you do compared to other users who played this game.
+      </p>
+
+      <button id="start_button" class="button">START</button>
+    </div>
+    <div class="slider_panel">
+      <h2 class="points">
+        <div class="add_points"></div>
+        Points: <span class="high_score">0</span>
+      </h2>
+      <div class="images_panel">
+        <picture class="images">
+        </picture>
+      </div>
+      <div class="submit_panel">
+        <input type="text" id="submit_textfield" class="submit_textfield" name="submit_textfield" tabindex="1" />
+        <button id="submit_button" class="button">Submit</button>
       </div>
     </div>
+  </div>
 
-    <div id="countdown_panel"></div>
-
-    <div class="wrapper">
-      <header id="header">
-        <a href="html/main.html">
-          <img src="img/ikuzo_logo.png" id="logo" alt="Ikuzo Logo" />
-        </a>
-
-        <nav id="navigation_bar">
-          <input type="checkbox" id="navigation_icon" name="navigation_icon" />
-          <label for="navigation_icon" id="navigation_icon_label"><img src="img/navigation_icon.svg" /></label>
-          <div class="navigation_link">
-            <a href="html/hero_list.html">Hero list</a>
-            <a href="html/contact.html">Contact</a>
-          </div>
-        </nav>
-      </header>
-      
-      <div class="main_panel">
-        <div class="instruction_panel">
-          <h1><strong>HOW TO PLAY</strong></h1>
-          <p>
-            When the game starts, there will be a slider which contains images of dota heroes; the main objective of this game is to prevent the slider from reaching the end of the line.
-          </p>
-          <p>
-            You must quickly type the first dota hero name on the textfield; doing so correctly will destroy that image; but if you enter the incorrect input, nothing will happen and the slider will continue sliding its way towards the end. As time pass on, the slider will began to increase its speed. There is no end to this game; the images will continue going until the user loses the game.
-          </p>
-          <p>
-            Every correct answer earns you 100 points. In the future I might implement a high score system to see how well you do compared to other users who played this game.
-          </p>
-
-          <button id="start_button" class="button">START</button>
-        </div>
-        <div class="slider_panel">
-          <h2 class="points">
-            <div class="add_points"></div>
-            Points: <span class="high_score">0</span>
-          </h2>
-          <div class="images_panel">
-            <picture class="images">
-            </picture>
-          </div>
-          <div class="submit_panel">
-            <input type="text" id="submit_textfield" class="submit_textfield" name="submit_textfield" tabindex="1" />
-            <button id="submit_button" class="button">Submit</button>
-          </div>
-        </div>
-      </div>
-
-      <footer>
-        <span>Made By Jack Tan...</span>
-      </footer>
-    </div>
-
-    <script src="js/bundle.js"></script>
-  </body>
-</html>
+  <footer>
+    <span>Made By Jack Tan...</span>
+  </footer>
+</div>
+<script src="js/bundle.js"></script>

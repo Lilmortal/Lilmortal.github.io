@@ -19,7 +19,7 @@ module.exports = (function() {
 	 * Find which CSS transition events end.
 	 * https://jonsuh.com/blog/detect-the-end-of-css-animations-and-transitions-with-javascript/
 	 */
-	function whichTransitionEvent(){
+	function which_transition_event(){
 	  var t,
 	      el = document.createElement("fakeelement");
 
@@ -41,7 +41,7 @@ module.exports = (function() {
 	 * @param {Object} el - The element that we want to find the current position is relative to the window.
 	 * https://www.kirupa.com/html5/get_element_position_using_javascript.htm
 	 */
-	function getPosition(el) {
+	function get_position(el) {
 		var xPos = 0;
 		var yPos = 0;
 
@@ -72,16 +72,16 @@ module.exports = (function() {
 	 * @param  {Object} the object which will be binded by a transition end listener
 	 * @param  {Function} the callback that will be called when transition end
 	 */
-  	function transitionEnd(element, callback) {
-	    const transitionEvent = whichTransitionEvent();
-	    element.addEventListener(transitionEvent, callback);
+  	function transition_end(element, callback) {
+	    const transition_event = which_transition_event();
+	    element.addEventListener(transition_event, callback);
   	}
 
 	/**
 	 * Display the element.
 	 * @param  {Object} The element that will be displayed.
 	 */
-	function showElement(element, display) {
+	function show_element(element, display) {
 		if (typeof display !== 'undefined' && display !== '') {
 			element.style.display = display;
 		} else {
@@ -93,7 +93,7 @@ module.exports = (function() {
 	 * Hide the element.
 	 * @param  {Object} The element that will be hidden.
 	 */
-	function hideElement(element) {
+	function hide_element(element) {
 		for (let i = 0; i < arguments.length; i++) {
 			arguments[i].style.display = 'none';
 		}
@@ -104,7 +104,7 @@ module.exports = (function() {
 	 * @param  {Object} The element that will have the added CSS class.
 	 * @param  {String} className - The CSS class name
 	 */
-	function addClass(element, className) {
+	function add_class(element, className) {
 		if (!element.classList.contains(className)) {
 			element.classList.add(className);
 		}
@@ -115,7 +115,7 @@ module.exports = (function() {
 	 * @param  {Object} The element that will have the specified CSS class removed.
 	 * @param  {String} className - The CSS class name
 	 */
-	function removeClass(element, className) {
+	function remove_class(element, className) {
 		if (element.classList.contains(className)) {
 			element.classList.remove(className);
 		}
@@ -128,11 +128,11 @@ module.exports = (function() {
 	 * @param  {Object} The element that will add or remove the CSS class.
 	 * @param  {String} className - The CSS class name
 	 */
-	function toggleClass(element, className) {
+	function toggle_class(element, className) {
 		if (element.classList.contains(className)) {
-			removeClass(element, className);
+			remove_class(element, className);
   		} else {
-  			addClass(element, className);			
+  			add_class(element, className);			
   		}
 	}
 
@@ -141,18 +141,18 @@ module.exports = (function() {
 	 * @param  {Object} The element that will add or remove the CSS class.
 	 * @param  {String} className - The CSS class name
 	 */
-	function toggleClassForAnimation(element, className) {
+	function toggle_class_for_animation(element, className) {
 		if (element.classList.contains(className)) {
-			removeClass(element, className);
+			remove_class(element, className);
   		}
-  		addClass(element, className);
+  		add_class(element, className);
 	}
 
 	/**
 	 * Validate if user input is a string.
 	 * @param  {Object} The textfield that will be validated.
 	 */
-  	function validateIfInputIsDotaHeroName(image, textfield) {
+  	function validate_if_input_is_dota_hero_name(image, textfield) {
 		if (image.name.toLowerCaseAndRemoveIllegalCharacters() === textfield.value.toLowerCaseAndRemoveIllegalCharacters()) {
 			return true;
 		}
@@ -160,14 +160,14 @@ module.exports = (function() {
   	}
 
   	return {
-  		transitionEnd,
-  		getPosition,
-  		showElement,
-  		hideElement,
-  		addClass,
-  		removeClass,
-  		toggleClass,
-  		toggleClassForAnimation,
-  		validateIfInputIsDotaHeroName
+  		transition_end,
+  		get_position,
+  		show_element,
+  		hide_element,
+  		add_class,
+  		remove_class,
+  		toggle_class,
+  		toggle_class_for_animation,
+  		validate_if_input_is_dota_hero_name
   	}
 })();

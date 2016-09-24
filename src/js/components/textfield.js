@@ -1,23 +1,25 @@
 module.exports = (function() {
 	"use strict";
+	const Button = require('./button.js');
+	const Textfield = {
+		create_textfield(callback) {
+			return Object.create(this.textfield[callback]);
+		},
 
-	function Textfield(id, button) {
-		this.textfield = document.getElementById(id);
-		this.button = button;
-	}
+		textfield: {
+			submit_textfield: {
+				submit() {
+					const text = document.getElementById('submit_textfield');
+					const submit_button = Button.create_button('submit_button');
 
-	/**
-	 * Submit if user press 'enter'.
-	 */
-	Textfield.prototype.submit = function() {
-		var self = this;
-		this.textfield.addEventListener('keyup', function(event) {
-			if (event.keyCode === 13) {
-				// LOL SELF.BUTTON.BUTTON??? FIX
-				self.button.button.click();
+					text.addEventListener('keyup', function(event) {
+						if (event.keyCode === 13) {
+							submit_button.submit();
+						}
+					});				
+				}
 			}
-		});
+		}
 	}
-
 	return Textfield;
 })();
