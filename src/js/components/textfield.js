@@ -1,6 +1,7 @@
 module.exports = (function() {
 	"use strict";
 	const Button = require('./button.js');
+	
 	const Textfield = {
 		create_textfield(callback) {
 			return Object.create(this.textfield[callback]);

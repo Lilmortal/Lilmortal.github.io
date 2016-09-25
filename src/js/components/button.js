@@ -5,13 +5,17 @@
 module.exports = (function() {
 	"use strict";
 
-	const COUNTDOWN_NUMBER = 3;
 	const Countdown_panel = require('./countdown_panel.js');
 	const Slider = require('./slider.js');
 	const Helper = require('../helper.js');
 	const Config = require('../config.js');
+
 	const config = Config.elements;
+	const constants = Config.constants;
+	const text = Config.text;
+	
 	let image_iteration = 0;
+
 	const Button = {
 		create_button(type) {
 			return Object.create(this.button[type]);
@@ -29,7 +33,7 @@ module.exports = (function() {
 					var self = this;
 					Helper.toggle_class_for_animation(config.wrapper, 'grayscale_background_animation');
 					Helper.hide_element(config.instruction_panel);
-					self.start_slider_countdown(COUNTDOWN_NUMBER).then(function(response) {
+					self.start_slider_countdown().then(function(response) {
 						self.start_slider().then(function(response) {
 							self.display_fail_panel(response);
 						})
@@ -76,7 +80,7 @@ module.exports = (function() {
 					config.add_points.style.opacity = 0;
 
 					Helper.toggle_class_for_animation(config.wrapper, 'grayscale_background_animation');
-					self.start_slider_countdown(COUNTDOWN_NUMBER).then(function(response) {
+					self.start_slider_countdown().then(function(response) {
 						self.start_slider().then(function(response) {
 							self.display_fail_panel(response);
 						})
@@ -92,7 +96,7 @@ module.exports = (function() {
 				},
 				display_fail_panel(images) {
 					Helper.transition_end(images, function() {
-						config.result_text.innerHTML = 'You lose...';
+						config.result_text.innerHTML = text.fail_message;
 						Helper.show_element(config.fail_background);
 					});					
 				}
@@ -108,9 +112,9 @@ module.exports = (function() {
 			  		if (Helper.validate_if_input_is_dota_hero_name(config.image[image_iteration], config.submit_textfield)) {
 			  			Helper.hide_element(config.image[image_iteration]);
 			  			image_iteration++;
-			  			config.add_points.innerHTML = "+100";
+			  			config.add_points.innerHTML = '+' + constants.POINTS_ADDED;
 			  			for (let i = 0; i < config.high_score.length; i++) {
-			  				config.high_score[i].innerHTML = parseInt(config.high_score[i].innerHTML) + 100;
+			  				config.high_score[i].innerHTML = parseInt(config.high_score[i].innerHTML) + parseInt(constants.POINTS_ADDED);
 			  			}
 			  			Helper.toggle_class_for_animation(config.add_points, 'add_points_animation');
 			  			Helper.remove_class(config.submit_textfield, 'shake_textfield_animation');
@@ -119,7 +123,7 @@ module.exports = (function() {
 			  		}
 			  		config.submit_textfield.value = '';
 			  		if (typeof config.image[image_iteration] === 'undefined') {
-			  			config.result_text.innerHTML = 'Ez Win!';
+			  			config.result_text.innerHTML = text.success_message;
 			  			Helper.show_element(config.fail_background);
 			  		}
 				}

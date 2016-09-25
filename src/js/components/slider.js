@@ -8,10 +8,11 @@ module.exports = (function() {
 	
 	const Helper = require('../helper.js');
 	const Config = require('../config.js');
+
 	const config = Config.elements;
-	const SLIDE_DURATION = 10;
-	const WARNING_THRESHOLD = 30;
-	const url = 'http://lilmortal-test.apigee.net/getdotaheroes?key=6C1CF76C90768388618F348BB73EE015&language=en_us&format=JSON';
+	const constants = Config.constants;
+	const text = Config.text;
+
 	const Slider = {	
 		create_slider() {
 			return Object.create(this.slider_panel);
@@ -30,7 +31,7 @@ module.exports = (function() {
 			},
 			load_images() {
 				var self = this;
-				fetch(url)
+				fetch(text.images_json_url)
 				.then(this.get_status)
 				.then(this.get_json)
 				.then(function (response) {
@@ -55,10 +56,10 @@ module.exports = (function() {
 				var self = this;
 				const screen_width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 			    const default_width = (screen_width - config.images_panel.offsetWidth/ 2) + config.images_panel.offsetWidth;
-			    const warning_width = default_width * WARNING_THRESHOLD / 100;
+			    const warning_width = default_width * constants.WARNING_THRESHOLD / 100;
 			    let timer;
 				config.images.style.marginLeft = '0';
-			    config.images.style.transition = SLIDE_DURATION + 's linear';
+			    config.images.style.transition = constants.SLIDE_DURATION + 's linear';
 				Helper.remove_class(config.images_panel, 'warning_animation');
 
 			    timer = setInterval(function() {
