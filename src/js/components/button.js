@@ -24,18 +24,16 @@ module.exports = (function() {
 		button: {
 			start_button: {	
 				if_clicked(callback) {
-					var self = this;
-					config.start_button.addEventListener('click', function() {
-						self[callback]();
+					config.start_button.addEventListener('click', () => {
+						this[callback]();
 					});
 				},
 				start() {
-					var self = this;
 					Helper.toggle_class_for_animation(config.wrapper, 'grayscale_background_animation');
 					Helper.hide_element(config.instruction_panel);
-					self.start_slider_countdown().then(function(response) {
-						self.start_slider().then(function(response) {
-							self.display_fail_panel(response);
+					this.start_slider_countdown().then((response) => {
+						this.start_slider().then((response) => {
+							this.display_fail_panel(response);
 						})
 					});
 				},
@@ -48,7 +46,7 @@ module.exports = (function() {
 					return slider.start_slider();
 				},
 				display_fail_panel(images) {
-					Helper.transition_end(images, function() {
+					Helper.transition_end(images, () => {
 						config.result_text.innerHTML = 'You lose...';
 						Helper.show_element(config.fail_background);
 					});					
@@ -56,13 +54,11 @@ module.exports = (function() {
 			},
 			fail_button: {
 				if_clicked(callback) {
-					var self = this;
-					config.fail_button.addEventListener('click', function() {
-						self[callback]();
+					config.fail_button.addEventListener('click', () => {
+						this[callback]();
 					});
 				},
 				fail() {
-					var self = this;
 					Helper.hide_element(config.fail_background, config.slider_panel);
 					// reset the images
 					config.images.style.marginLeft = '100%';
@@ -80,9 +76,9 @@ module.exports = (function() {
 					config.add_points.style.opacity = 0;
 
 					Helper.toggle_class_for_animation(config.wrapper, 'grayscale_background_animation');
-					self.start_slider_countdown().then(function(response) {
-						self.start_slider().then(function(response) {
-							self.display_fail_panel(response);
+					this.start_slider_countdown().then((response) => {
+						this.start_slider().then((response) => {
+							this.display_fail_panel(response);
 						})
 					});
 				},
@@ -95,7 +91,7 @@ module.exports = (function() {
 					return slider.start_slider();
 				},
 				display_fail_panel(images) {
-					Helper.transition_end(images, function() {
+					Helper.transition_end(images, () => {
 						config.result_text.innerHTML = text.fail_message;
 						Helper.show_element(config.fail_background);
 					});					
@@ -103,9 +99,8 @@ module.exports = (function() {
 			},
 			submit_button: {
 				if_clicked(callback) {
-					var self = this;
-					config.submit_button.addEventListener('click', function() {
-						self[callback]();
+					config.submit_button.addEventListener('click', () => {
+						this[callback]();
 					});
 				},
 				submit() {

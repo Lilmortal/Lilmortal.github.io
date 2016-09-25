@@ -17,10 +17,10 @@ module.exports = (function() {
 		countdown_panel: {
 			start_countdown_timer() {
 				let countdown_duration = constants.COUNTDOWN_DURATION;
-				const countdown_promise = new Promise(function(resolve, reject) {
+				const countdown_promise = new Promise((resolve, reject) => {
 					Helper.show_element(config.countdown_panel);
 					config.countdown_panel.innerHTML = "";
-					const countdown_timer = setInterval(function() {
+					const countdown_timer = setInterval(() => {
 			      		if (countdown_duration === 0) {
 			        		clearInterval(countdown_timer);
 			        		Helper.hide_element(config.countdown_panel);
