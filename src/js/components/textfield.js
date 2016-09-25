@@ -9,10 +9,9 @@ module.exports = (function() {
 		textfield: {
 			submit_textfield: {
 				submit() {
-					const text = document.getElementById('submit_textfield');
 					const submit_button = Button.create_button('submit_button');
 
-					text.addEventListener('keyup', function(event) {
+					config.submit_textfield.addEventListener('keyup', function(event) {
 						if (event.keyCode === 13) {
 							submit_button.submit();
 						}
