@@ -18,7 +18,6 @@ module.exports = (function() {
 			return response.json();
 		},
 		load_images() {
-			var self = this;
 			fetch(text.images_json_url)
 			.then(this.get_status)
 			.then(this.get_json)

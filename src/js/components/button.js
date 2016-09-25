@@ -37,9 +37,9 @@ module.exports = (function() {
 						})
 					});
 				},
-				start_slider_countdown(countdownNumber) {
+				start_slider_countdown() {
 					const countdown_panel = Countdown_panel.create_countdown_panel();
-					return countdown_panel.start_countdown_timer(countdownNumber);
+					return countdown_panel.start_countdown_timer();
 				},
 				start_slider() {
 					const slider = Slider.create_slider();
