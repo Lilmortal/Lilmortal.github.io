@@ -1,31 +1,28 @@
-var debug = process.env.NODE_ENV !== "production";
-var webpack = require('webpack');
+'use strict'
 var path = require('path');
 
 module.exports = {
-  context: path.join(__dirname, "src"),
-  devtool: debug ? "inline-sourcemap" : null,
-  entry: ['./js/init.js'],
-  module: {
-    loaders: [
-      {
-        test: /\.jsx?$/,
-        exclude: /(node_modules|bower_components)/,
-        loader: 'babel-loader',
-        query: {
-          presets: ['react', 'es2015', 'stage-0'],
-          plugins: ['react-html-attrs', 'transform-class-properties', 'transform-decorators-legacy'],
-        }
-      }
-    ]
-  },
-  output: {
-    path: __dirname + "/src/js",
-    filename: "bundle.js"
-  },
-  plugins: debug ? [] : [
-    new webpack.optimize.DedupePlugin(),
-    new webpack.optimize.OccurenceOrderPlugin(),
-    new webpack.optimize.UglifyJsPlugin({ mangle: false, sourcemap: false }),
-  ],
+	entry: './src/js/init.js',
+	output: {
+		path: path.join(__dirname, 'src/bin'),
+		filename: 'bundle.js',
+		publicPath: './bin/'
+	},
+	module: {
+		loaders: [{
+			test:/\.js$/,
+			exclude: /node_modules/,
+			loader: 'babel-loader'
+		},
+		{
+		test: /\.scss$/,
+		loaders: ['style', 'css', 'sass'],
+		exclude: /node_module/
+		},
+		{
+		test: /\jpg$/,
+		loader: "file-loader?name=[hash].[ext]",
+		exclude: /node_modules/}]
+	}
 };
+
