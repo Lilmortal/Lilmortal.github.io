@@ -1,5 +1,6 @@
 require('../css/main.scss');
 require('../img/background_image.jpg');
+require('../img/Navigation_icon.svg');
 (function() {
 	"use strict";
 
