@@ -20,7 +20,7 @@ module.exports = {
 		exclude: /node_module/
 		},
 		{
-		test: /\.(svg|jpg)$/,
+		test: /\jpg$/,
 		loader: "file-loader?name=[hash].[ext]",
 		exclude: /node_modules/}]
 	}
