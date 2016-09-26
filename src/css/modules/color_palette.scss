@@ -6,51 +6,58 @@ $gray: gray;
 $azure: #F0FFFF;
 $maroon: #641E16;
 $pink: #F1948A;
+$gray-chocolate: #3F3835;
 
 // Global
-$color-text: $white;
-
-// Main
-$color-main-background: $black;
-$color-main-border: $white;
-$color-main-text-shadow: $gray;
+$color-main-text: $white;
 
 // Header
 $color-header-background: $black;
-$color-navigation-text: $black;
-$color-navigation-small-border: $white;
+
+// Navigation
 $color-navigation-small-background: $white;
+$color-navigation-small-border: $white;
+$color-navigation-small-text: $black;
+$color-navigation-text-shadow-hover: $gray;
+$color-navigation-border: $white;
 $color-navigation-text-hover: $white;
+$color-navigation-text: $gray;
 
-// Popup
-$color-popup-text: $black;
-$color-popup-background: $white;
-$color-popup-box-shadow: $gold;
-$color-popup-border: $gold;
-$color-popup-background: $azure;
-$color-fade-background: $black;
+// Footer
+$color-footer-background: $black;
 
-// Panel
-$color-panel-background: $black;
-$color-panel-border: $gold;
-$color-warning-border: $red;
-$color-warning-box-shadow-toggle-one: $maroon;
-$color-warning-box-shadow-toggle-two: $pink;
+// Instruction
+$color-instruction-panel-background: $white;
+$color-instruction-panel-box-shadow: $gold;
+$color-instruction-panel-border: $gold;
+$color-instruction-panel-text: $black;
+
+// Fail
+$color-fail-background: $black;
+$color-fail-panel-background: $azure;
+$color-fail-panel-text: $black;
+
+// Images
+$color-images-panel-background: $black;
+$color-images-panel-border: $gold;
+$color-images-panel-warning-border: $red;
+$color-images-panel-warning-box-shadow-toggle-one: $maroon;
+$color-images-panel-warning-box-shadow-toggle-two: $pink;
 
 // Textfield
-$color-textfield-border: $black;
-$color-textfield-box-shadow: $black;
-$color-textfield-animation: $red;
+$color-textfield-box-shadow-focus: $black;
+$color-textfield-border: $gray-chocolate;
+$color-textfield-border-focus: $black;
+$color-textfield-border-shake-animation: $red;
 
 // Button
-$color-button-color: $white;
-$color-button-border: $white;
-$color-button-box-shadow: $white;
-$color-button-active-border: $black;
-$color-button-active-box-shadow: $black;
+$color-button-background: $white;
 
 // Image
 $color-image-border: $gold;
 
-// Price list
-$color-pricelist-background: $black;
+// Hero list
+$color-hero-list-background: $black;
+
+// Contact
+$color-contact-panel: $white;

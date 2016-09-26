@@ -3,13 +3,13 @@ module.exports = (function() {
 
 	const Config = require('../config.js');
 
-	const config = Config.elements;
+	const elements = Config.elements;
 	const text = Config.text;
 
 	const Images = {
 		get_status(response) {
 			if (response.status !== 200) {
-				return Promise.reject(new Error(response.statusText));
+				return Promise.reject(new Error("Failed to load images, error status: " + response.statusText));
 			} else {
 				return Promise.resolve(response);
 			}
@@ -28,7 +28,7 @@ module.exports = (function() {
 				for (let i = 0; i < heroes.length; i++) {
 					const image = document.createElement('img');
 					image.className = 'image';
-					image.src = 'http://cdn.dota2.com/apps/dota2/images/heroes/' + heroes[i].name.replace('npc_dota_hero_', '') + '_lg.png';
+					image.src = text.image_url + heroes[i].name.replace('npc_dota_hero_', '') + text.image_size;
 					//It should be Tuskar, not Tusk!
 					if (heroes[i].localized_name === 'Tusk') {
 						heroes[i].localized_name = 'Tuskar';
@@ -36,7 +36,7 @@ module.exports = (function() {
 					image.name = heroes[i].localized_name;
 					fragment.appendChild(image);
 				}
-				config.images.appendChild(fragment);
+				elements.images.appendChild(fragment);
 			})
 		}
 	}

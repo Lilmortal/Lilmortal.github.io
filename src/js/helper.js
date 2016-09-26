@@ -1,7 +1,4 @@
-// is it really the best way??? look up CommonJS/AMD/ES6 import/export (<-- I guess this is OK so far)
-// What about instead of Helper.method(), use Object.create? Does this help?
-// http://requirejs.org/docs/node.html#1
-// By using RequireJS on the server, you can use one format for all your modules, whether they are running server side or in the browser. (hmm...)
+// is it really the best way??? look up CommonJS/AMD (RequireJS)/ES6 import/export (<-- I guess this is OK so far)
 module.exports = (function() {
 	"use strict";
 	
@@ -69,8 +66,8 @@ module.exports = (function() {
 
 	/**
 	 * Bind the focused element; it will call the callback when transition ends.
-	 * @param  {Object} the object which will be binded by a transition end listener
-	 * @param  {Function} the callback that will be called when transition end
+	 * @param  {Object} element - the object which will be binded by a transition end listener.
+	 * @param  {Function} callback - the callback that will be called when transition end.
 	 */
   	function transition_end(element, callback) {
 	    const transition_event = which_transition_event();
@@ -79,7 +76,8 @@ module.exports = (function() {
 
 	/**
 	 * Display the element.
-	 * @param  {Object} The element that will be displayed.
+	 * @param  {Object} element - The element that will be displayed.
+	 * @param  {String} display - The display type.
 	 */
 	function show_element(element, display) {
 		if (typeof display !== 'undefined' && display !== '') {
@@ -91,7 +89,7 @@ module.exports = (function() {
 
 	/**
 	 * Hide the element.
-	 * @param  {Object} The element that will be hidden.
+	 * @param  {Object} element - The element that will be hidden.
 	 */
 	function hide_element(element) {
 		for (let i = 0; i < arguments.length; i++) {
@@ -101,8 +99,8 @@ module.exports = (function() {
 
 	/**
 	 * Add a CSS class to an element.
-	 * @param  {Object} The element that will have the added CSS class.
-	 * @param  {String} className - The CSS class name
+	 * @param  {Object} element - The element that will have the added CSS class.
+	 * @param  {String} className - The CSS class name.
 	 */
 	function add_class(element, className) {
 		if (!element.classList.contains(className)) {
@@ -112,8 +110,8 @@ module.exports = (function() {
 
 	/**
 	 * Remove a CSS class from an element.
-	 * @param  {Object} The element that will have the specified CSS class removed.
-	 * @param  {String} className - The CSS class name
+	 * @param  {Object} element - The element that will have the specified CSS class removed.
+	 * @param  {String} className - The CSS class name.
 	 */
 	function remove_class(element, className) {
 		if (element.classList.contains(className)) {
@@ -125,8 +123,8 @@ module.exports = (function() {
 
 	/**
 	 * Toggle whether to add or remove CSS class.
-	 * @param  {Object} The element that will add or remove the CSS class.
-	 * @param  {String} className - The CSS class name
+	 * @param  {Object} element - The element that will add or remove the CSS class.
+	 * @param  {String} className - The CSS class name.
 	 */
 	function toggle_class(element, className) {
 		if (element.classList.contains(className)) {
@@ -136,10 +134,11 @@ module.exports = (function() {
   		}
 	}
 
+	//IM TIRED, WHATS A GOOD NAME FOR THIS
 	/**
 	 * Toggle whether to add or remove CSS class.
-	 * @param  {Object} The element that will add or remove the CSS class.
-	 * @param  {String} className - The CSS class name
+	 * @param  {Object} element - The element that will add or remove the CSS class.
+	 * @param  {String} className - The CSS class name.
 	 */
 	function toggle_class_for_animation(element, className) {
 		if (element.classList.contains(className)) {
@@ -150,9 +149,10 @@ module.exports = (function() {
 
 	/**
 	 * Validate if user input is a string.
-	 * @param  {Object} The textfield that will be validated.
+	 * @param {Object} image - The image that is being validated.
+	 * @param  {Object} textfield - The textfield that has the user input.
 	 */
-  	function validate_if_input_is_dota_hero_name(image, textfield) {
+  	function validate_if_input_is_hero_name(image, textfield) {
 		if (image.name.toLowerCaseAndRemoveIllegalCharacters() === textfield.value.toLowerCaseAndRemoveIllegalCharacters()) {
 			return true;
 		}
@@ -168,6 +168,6 @@ module.exports = (function() {
   		remove_class,
   		toggle_class,
   		toggle_class_for_animation,
-  		validate_if_input_is_dota_hero_name
+  		validate_if_input_is_hero_name
   	}
 })();

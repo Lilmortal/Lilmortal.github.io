@@ -20,15 +20,15 @@
 }
 
 @mixin horizontalGradient($red1, $green1, $blue1, $opacity1, $red2, $green2, $blue2, $opacity2) {
-	background: -webkit-linear-gradient(left, rgba($red1, $green1, $blue1, $opacity1), rgba($red2, $green2, $blue2, $opacity2)); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(right, rgba($red1, $green1, $blue1, $opacity1), rgba($red2, $green2, $blue2, $opacity2)); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(right, rgba($red1, $green1, $blue1, $opacity1), rgba($red2, $green2, $blue2, $opacity2)); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(to right, rgba($red1, $green1, $blue1, $opacity1), rgba($red2, $green2, $blue2, $opacity2)); /* Standard syntax (must be last) */
+	background: -webkit-linear-gradient(left, rgba($red1, $green1, $blue1, $opacity1), rgba($red2, $green2, $blue2, $opacity2));
+    background: -o-linear-gradient(right, rgba($red1, $green1, $blue1, $opacity1), rgba($red2, $green2, $blue2, $opacity2));
+    background: -moz-linear-gradient(right, rgba($red1, $green1, $blue1, $opacity1), rgba($red2, $green2, $blue2, $opacity2));
+    background: linear-gradient(to right, rgba($red1, $green1, $blue1, $opacity1), rgba($red2, $green2, $blue2, $opacity2));
 }
 
 @mixin verticalGradient($red1, $green1, $blue1, $opacity1, $red2, $green2, $blue2, $opacity2) {
-    background: -webkit-linear-gradient(rgba($red1, $green1, $blue1, $opacity1), rgba($red2, $green2, $blue2, $opacity2)); /* For Safari 5.1 to 6.0 */
-    background: -o-linear-gradient(rgba($red1, $green1, $blue1, $opacity1), rgba($red2, $green2, $blue2, $opacity2)); /* For Opera 11.1 to 12.0 */
-    background: -moz-linear-gradient(rgba($red1, $green1, $blue1, $opacity1), rgba($red2, $green2, $blue2, $opacity2)); /* For Firefox 3.6 to 15 */
-    background: linear-gradient(rgba($red1, $green1, $blue1, $opacity1), rgba($red2, $green2, $blue2, $opacity2)); /* Standard syntax (must be last) */
+    background: -webkit-linear-gradient(rgba($red1, $green1, $blue1, $opacity1), rgba($red2, $green2, $blue2, $opacity2));
+    background: -o-linear-gradient(rgba($red1, $green1, $blue1, $opacity1), rgba($red2, $green2, $blue2, $opacity2));
+    background: -moz-linear-gradient(rgba($red1, $green1, $blue1, $opacity1), rgba($red2, $green2, $blue2, $opacity2));
+    background: linear-gradient(rgba($red1, $green1, $blue1, $opacity1), rgba($red2, $green2, $blue2, $opacity2));
 }

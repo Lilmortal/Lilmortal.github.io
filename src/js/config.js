@@ -45,7 +45,9 @@ module.exports = (function() {
 			//win
 			success_message: 'Ez Win!',
 
-			images_json_url: 'http://lilmortal-test.apigee.net/getdotaheroes?key=6C1CF76C90768388618F348BB73EE015&language=en_us&format=JSON'
+			images_json_url: 'https://lilmortal-test.apigee.net/getdotaheroes?key=6C1CF76C90768388618F348BB73EE015&language=en_us&format=JSON',
+			image_url: 'http://cdn.dota2.com/apps/dota2/images/heroes/',
+			image_size: '_lg.png'
 		}
 	}
 	return config;

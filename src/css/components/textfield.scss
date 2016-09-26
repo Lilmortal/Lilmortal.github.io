@@ -19,8 +19,8 @@
   }
 } 
 
-.submit_textfield {
-	border: 4px solid #3F3835;
+#submit_textfield {
+	border: 4px solid $color-textfield-border;
 	@include border-radius(5px);
 	@include transition(0.30s);
 	font-size: 200%;
@@ -29,13 +29,13 @@
   padding-left: 20px;
 
   &:focus {
-    border: 4px solid $color-textfield-border;
-    box-shadow: inset 0px 0px 20px $color-textfield-box-shadow;
+    border: 4px solid $color-textfield-border-focus;
+    box-shadow: inset 0px 0px 20px $color-textfield-box-shadow-focus;
   }
 }
 
 .shake_textfield_animation {
-	border: 4px solid $color-textfield-animation !important;
+	border: 4px solid $color-textfield-border-shake-animation !important;
 	animation: SHAKE_TEXTFIELD_ANIMATION 0.5s;
 }
 

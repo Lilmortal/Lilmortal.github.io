@@ -1,23 +1,23 @@
-require('../css/main.scss');
-require('../img/background_image.jpg');
 (function() {
 	"use strict";
 
+	require('../css/main.scss');
+	require('../img/background_image.jpg');
+
 	const Button = require('./components/button.js');
 	const Textfield = require('./components/textfield.js');
-	const Config = require('./config.js');
 	const Images = require('./components/images.js');
 
-	const images = Images.load_images();
+	Images.load_images();
 	
 	const start_button = Button.create_button('start_button');
-	start_button.if_clicked('start');
+	start_button.click('start_game');
 
 	const fail_button = Button.create_button('fail_button');
-	fail_button.if_clicked('fail');
+	fail_button.click('restart_game');
 
 	const submit_button = Button.create_button('submit_button');
-	submit_button.if_clicked('submit');
+	submit_button.click('submit');
 
 	const submit_textfield = Textfield.create_textfield('submit_textfield');
 	submit_textfield.submit();

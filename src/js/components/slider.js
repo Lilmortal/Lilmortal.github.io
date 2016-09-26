@@ -9,7 +9,7 @@ module.exports = (function() {
 	const Helper = require('../helper.js');
 	const Config = require('../config.js');
 
-	const config = Config.elements;
+	const elements = Config.elements;
 	const constants = Config.constants;
 	const text = Config.text;
 
@@ -21,25 +21,25 @@ module.exports = (function() {
 		slider_panel: {
 			slide() {
 				const screen_width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-			    const default_width = (screen_width - config.images_panel.offsetWidth/ 2) + config.images_panel.offsetWidth;
-			    const warning_width = default_width * constants.WARNING_THRESHOLD / 100;
+			    const images_panel_width = (screen_width - elements.images_panel.offsetWidth / 2) + elements.images_panel.offsetWidth;
+			    const warning_width_threshold = images_panel_width * constants.WARNING_THRESHOLD / 100;
 			    let timer;
-				config.images.style.marginLeft = '0';
-			    config.images.style.transition = constants.SLIDE_DURATION + 's linear';
-				Helper.remove_class(config.images_panel, 'warning_animation');
+				elements.images.style.marginLeft = '0';
+			    elements.images.style.transition = constants.SLIDE_DURATION + 's linear';
+				Helper.remove_class(elements.images_panel, 'warning_animation');
 
 			    timer = setInterval(() => {
-			    	if (Helper.get_position(config.images).x <= warning_width) {
-						Helper.add_class(config.images_panel, 'warning_animation');
+			    	if (Helper.get_position(elements.images).x <= warning_width_threshold) {
+						Helper.add_class(elements.images_panel, 'warning_animation');
 						clearInterval(timer);
 			    	}
 			    }, 1000);
 			},
 			start_slider() {
 				const slider_promise = new Promise((resolve, reject) => {
-					Helper.show_element(config.slider_panel);
+					Helper.show_element(elements.slider_panel);
 					this.slide();
-					resolve(config.images);
+					resolve();
 				});
 				return slider_promise;
 			}

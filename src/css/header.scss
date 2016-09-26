@@ -1,4 +1,4 @@
-#header {
+header {
 	background-color: $color-header-background;
 	display: flex;
 }
@@ -33,14 +33,14 @@
 	background-color: $color-navigation-small-background;
 
 	& a {
-		color: $color-navigation-text;
+		color: $color-navigation-small-text;
 		text-decoration: none;
 		cursor: pointer;
 		@include transition(0.3s);
 		padding: 0 20px 0 20px;
 
 		&:hover {
-			text-shadow: 4px 4px $color-main-text-shadow;
+			text-shadow: 4px 4px $color-navigation-text-shadow-hover;
 		}
 
 		&:first-child {
@@ -57,8 +57,8 @@
 		background: none;
 
 		& a {
-			color: gray;
-			border-left: 3px solid $color-main-border;
+			color: $color-navigation-text;
+			border-left: 3px solid $color-navigation-border;
 			padding: 20px;
 
 			&:hover {
@@ -88,29 +88,5 @@
 
 	@media (min-width: 470px) {
 		display: none;
-	}
-}
-
-@keyframes NAVIGATION_ICON_IN_ANIMATION {
-	0% {
-		padding: 10px 20px 10px 20px;
-	}
-	
-	100% {
-		padding: 0;
-
-		transition: padding 1s ease-in-out;
-	}
-}
-
-@keyframes NAVIGATION_ICON_OUT_ANIMATION {
-	0% {
-		padding: 0;
-	}
-
-	100% {
-		padding: 10px 20px 10px 20px;
-		border: 2px solid $color-navigation-small-border;
-		transition: padding 1s ease-in-out;
 	}
 }

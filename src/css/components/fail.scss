@@ -4,7 +4,7 @@
 	min-width: 100%;
 	min-height: 100%;
 	position: absolute;
-	background-color: $color-fade-background;
+	background-color: $color-fail-background;
 	animation: FAIL_BACKGROUND_ANIMATION 1s;
 	animation-fill-mode: forwards;
 	z-index: 2;
@@ -16,19 +16,14 @@
 	flex-direction: column;
 	align-items: center;
 	justify-content: center;
-	background-color: $color-popup-background;
-	color: $color-popup-text;
+	background-color: $color-fail-panel-background;
+	color: $color-fail-panel-text;
 	animation: FAIL_PANEL_ANIMATION 1s;
 	animation-fill-mode: forwards;
 	padding: 20px 0 20px 0;
 	font-size: 0.67em;
 
-	& h1 {
-		animation: FAIL_TEXT_ANIMATION 1s;
-		animation-fill-mode: forwards;
-	}
-
-	& h3 {
+	& h1, & h3 {
 		animation: FAIL_TEXT_ANIMATION 1s;
 		animation-fill-mode: forwards;
 	}

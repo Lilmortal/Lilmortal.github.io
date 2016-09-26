@@ -2,11 +2,10 @@
 <meta charset="UTF-8">
 <base href="..">
 <title>Ikuzo</title>
-<link rel="stylesheet" type="text/css" href="css/main.css">
 
 <div class="fail_background">
   <div class="fail_panel">
-    <h1 class="result_text">FAIL</h1>
+    <h1 class="result_text">You lose...</h1>
     <h3>High score: <span class="high_score">0</span></h3>
     <button id="fail_button" class="button">Try Again</button>
   </div>
@@ -15,7 +14,7 @@
 <div id="countdown_panel"></div>
 
 <div class="wrapper">
-  <header id="header">
+  <header>
     <a href="html/main.html">
       <img src="img/ikuzo_logo.png" id="logo" alt="Ikuzo Logo" />
     </a>
@@ -37,10 +36,10 @@
         When the game starts, there will be a slider which contains images of dota heroes; the main objective of this game is to prevent the slider from reaching the end of the line.
       </p>
       <p>
-        You must quickly type the first dota hero name on the textfield; doing so correctly will destroy that image; but if you enter the incorrect input, nothing will happen and the slider will continue sliding its way towards the end. As time pass on, the slider will began to increase its speed. There is no end to this game; the images will continue going until the user loses the game.
+        You must quickly type the first dota hero name on the textfield, doing so correctly will destroy that image. If you enter the incorrect input, nothing will happen and the slider will continue sliding its way towards the end.
       </p>
       <p>
-        Every correct answer earns you 100 points. In the future I might implement a high score system to see how well you do compared to other users who played this game.
+        Every correct answer earns you 100 points. In the future I might implement a high score system to see how well you do compared to other users who played this game if I feel like it.
       </p>
 
       <button id="start_button" class="button">START</button>
@@ -55,7 +54,8 @@
         </picture>
       </div>
       <div class="submit_panel">
-        <input type="text" id="submit_textfield" class="submit_textfield" name="submit_textfield" tabindex="1" />
+        <!-- tab index doesnt work! fix later -->
+        <input type="text" id="submit_textfield" name="submit_textfield" tabindex="0" />
         <button id="submit_button" class="button">Submit</button>
       </div>
     </div>
