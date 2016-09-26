@@ -44,27 +44,26 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	__webpack_require__(1);
-	__webpack_require__(4);
-	__webpack_require__(6);
 	(function () {
 		"use strict";
 
-		const Button = __webpack_require__(7);
-		const Textfield = __webpack_require__(12);
-		const Config = __webpack_require__(10);
-		const Images = __webpack_require__(13);
+		__webpack_require__(1);
+		__webpack_require__(4);
 
-		const images = Images.load_images();
+		const Button = __webpack_require__(6);
+		const Textfield = __webpack_require__(11);
+		const Images = __webpack_require__(12);
+
+		Images.load_images();
 
 		const start_button = Button.create_button('start_button');
-		start_button.if_clicked('start');
+		start_button.click('start_game');
 
 		const fail_button = Button.create_button('fail_button');
-		fail_button.if_clicked('fail');
+		fail_button.click('restart_game');
 
 		const submit_button = Button.create_button('submit_button');
-		submit_button.if_clicked('submit');
+		submit_button.click('submit');
 
 		const submit_textfield = Textfield.create_textfield('submit_textfield');
 		submit_textfield.submit();
@@ -105,7 +104,7 @@
 
 
 	// module
-	exports.push([module.id, "/*@import 'reset';*/\n.button {\n  background: -webkit-linear-gradient(#9b9b9b, black);\n  /* For Safari 5.1 to 6.0 */\n  background: -o-linear-gradient(#9b9b9b, black);\n  /* For Opera 11.1 to 12.0 */\n  background: -moz-linear-gradient(#9b9b9b, black);\n  /* For Firefox 3.6 to 15 */\n  background: linear-gradient(#9b9b9b, black);\n  /* Standard syntax (must be last) */\n  -webkit-border-radius: 10px;\n  -moz-border-radius: 10px;\n  -ms-border-radius: 10px;\n  border-radius: 10px;\n  border: 1px solid #191919;\n  outline: 0;\n  cursor: pointer;\n  color: white;\n  padding: 20px; }\n  .button:hover {\n    background: -webkit-linear-gradient(dimgray, black);\n    /* For Safari 5.1 to 6.0 */\n    background: -o-linear-gradient(dimgray, black);\n    /* For Opera 11.1 to 12.0 */\n    background: -moz-linear-gradient(dimgray, black);\n    /* For Firefox 3.6 to 15 */\n    background: linear-gradient(dimgray, black);\n    /* Standard syntax (must be last) */ }\n  .button:active {\n    background: -webkit-linear-gradient(#555555, black);\n    /* For Safari 5.1 to 6.0 */\n    background: -o-linear-gradient(#555555, black);\n    /* For Opera 11.1 to 12.0 */\n    background: -moz-linear-gradient(#555555, black);\n    /* For Firefox 3.6 to 15 */\n    background: linear-gradient(#555555, black);\n    /* Standard syntax (must be last) */ }\n\n#countdown_panel {\n  min-width: 100%;\n  min-height: 100%;\n  position: absolute;\n  align-items: center;\n  justify-content: center;\n  display: none;\n  font-size: 12em;\n  z-index: 1; }\n\n.grayscale_background_animation {\n  animation: GRAYSCALE_BACKGROUND_ANIMATION 4s; }\n\n@keyframes GRAYSCALE_BACKGROUND_ANIMATION {\n  20%, 100% {\n    -webkit-filter: grayscale(0.7) blur(3px);\n    -moz-filter: grayscale(0.7) blur(3px);\n    -ms-filter: grayscale(0.7) blur(3px);\n    filter: grayscale(0.7) blur(3px); } }\n\n.fail_background {\n  display: none;\n  align-items: center;\n  min-width: 100%;\n  min-height: 100%;\n  position: absolute;\n  background-color: black;\n  animation: FAIL_BACKGROUND_ANIMATION 1s;\n  animation-fill-mode: forwards;\n  z-index: 2; }\n\n.fail_panel {\n  width: 100%;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  background-color: #F0FFFF;\n  color: black;\n  animation: FAIL_PANEL_ANIMATION 1s;\n  animation-fill-mode: forwards;\n  padding: 20px 0 20px 0;\n  font-size: 0.67em; }\n  .fail_panel h1 {\n    animation: FAIL_TEXT_ANIMATION 1s;\n    animation-fill-mode: forwards; }\n  .fail_panel h3 {\n    animation: FAIL_TEXT_ANIMATION 1s;\n    animation-fill-mode: forwards; }\n  @media (min-width: 340px) {\n    .fail_panel {\n      font-size: 1em; } }\n  @media (min-width: 500px) {\n    .fail_panel {\n      font-size: 1.2em; } }\n  @media (min-width: 650px) {\n    .fail_panel {\n      font-size: 1.5em; } }\n  @media (min-width: 825px) {\n    .fail_panel {\n      font-size: 2em; } }\n  .fail_panel button {\n    animation: FAIL_BUTTON_ANIMATION 1s;\n    animation-fill-mode: forwards; }\n\n@keyframes FAIL_BACKGROUND_ANIMATION {\n  0% {\n    background: transparent; }\n  100% {\n    background: rgba(0, 0, 0, 0.8);\n    transition: background 0.5s ease-in-out; } }\n\n@keyframes FAIL_PANEL_ANIMATION {\n  0% {\n    max-height: 0;\n    overflow: hidden; }\n  100% {\n    max-height: 400px;\n    transition: 1s ease-in-out; } }\n\n@keyframes FAIL_TEXT_ANIMATION {\n  0%, 30% {\n    opacity: 0; }\n  100% {\n    opacity: 1;\n    transition: 0.5s ease-in-out; } }\n\n@keyframes FAIL_BUTTON_ANIMATION {\n  0%, 80% {\n    opacity: 0; }\n  100% {\n    opacity: 1;\n    transition: 0.5s ease-in-out; } }\n\n.images_panel {\n  display: flex;\n  width: 99%;\n  border: 5px double gold;\n  -webkit-border-radius: 3px;\n  -moz-border-radius: 3px;\n  -ms-border-radius: 3px;\n  border-radius: 3px;\n  overflow: hidden;\n  background-color: black;\n  animation-iteration-count: infinite; }\n\n.images {\n  display: flex;\n  justify-content: flex-end;\n  margin-left: 100%;\n  border: 0; }\n\n.image {\n  width: 48px;\n  height: 27px;\n  border-left: 4px groove gold; }\n  @media (min-width: 400px) {\n    .image {\n      width: 64px;\n      height: 36px; } }\n  @media (min-width: 500px) {\n    .image {\n      width: 80px;\n      height: 45px; } }\n  @media (min-width: 600px) {\n    .image {\n      width: 96px;\n      height: 54px; } }\n  @media (min-width: 750px) {\n    .image {\n      width: 112px;\n      height: 63px; } }\n  @media (min-width: 1000px) {\n    .image {\n      width: 128px;\n      height: 72px; } }\n  @media (min-width: 1300px) {\n    .image {\n      width: 160px;\n      height: 90px; } }\n\n.warning_animation {\n  animation: WARNING_BOX_SHADOW_ANIMATION 3s;\n  animation-iteration-count: infinite;\n  border: 5px solid red;\n  transition: border 0.5s ease-in-out; }\n\n@keyframes WARNING_BOX_SHADOW_ANIMATION {\n  0% {\n    box-shadow: 0px 0px 50px #641E16; }\n  25% {\n    box-shadow: 0px 0px 50px #F1948A; }\n  50% {\n    box-shadow: 0px 0px 50px #641E16; }\n  75% {\n    box-shadow: 0px 0px 50px #F1948A; }\n  100% {\n    box-shadow: 0px 0px 50px #641E16; } }\n\n.instruction_panel {\n  border: 3px ridge gold;\n  -webkit-border-radius: 5px;\n  -moz-border-radius: 5px;\n  -ms-border-radius: 5px;\n  border-radius: 5px;\n  color: black;\n  background-color: #F0FFFF;\n  padding: 0 20px 20px 20px;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  box-shadow: 0px 0px 50px gold;\n  margin: auto;\n  font-size: 1.1em; }\n  @media (min-width: 720px) {\n    .instruction_panel {\n      padding: 0 100px 20px 100px; } }\n\n.slider_panel {\n  width: 100%;\n  display: none;\n  align-items: center;\n  justify-content: center;\n  flex-direction: column;\n  overflow: hidden; }\n\n.points {\n  font-size: 3em;\n  position: relative; }\n\n.add_points {\n  position: absolute;\n  left: 58%;\n  bottom: 30%; }\n\n.submit_panel {\n  margin-top: 3em; }\n\n.add_points_animation {\n  animation: ADD_POINTS_ANIMATION 1s;\n  animation-fill-mode: forwards; }\n\n@keyframes ADD_POINTS_ANIMATION {\n  0% {\n    opacity: 0; }\n  50% {\n    opacity: 1; }\n  100% {\n    opacity: 0;\n    bottom: 70%; } }\n\n.submit_panel {\n  display: flex;\n  justify-content: center;\n  flex-direction: column;\n  width: 100%;\n  padding: 0 1em 0 1em; }\n  .submit_panel button {\n    width: 90%;\n    margin: 2em 5% 0 5%; }\n  @media (min-width: 630px) {\n    .submit_panel {\n      flex-direction: row;\n      width: initial; }\n      .submit_panel button {\n        margin: 0 0 0 2em; } }\n\n.submit_textfield {\n  border: 4px solid #3F3835;\n  -webkit-border-radius: 5px;\n  -moz-border-radius: 5px;\n  -ms-border-radius: 5px;\n  border-radius: 5px;\n  -webkit-transition: all 0.3s ease-in-out;\n  -moz-transition: all 0.3s ease-in-out;\n  -ms-transition: all 0.3s ease-in-out;\n  -o-transition: all 0.3s ease-in-out;\n  font-size: 200%;\n  margin: 0 5% 0 5%;\n  outline: 0;\n  padding-left: 20px; }\n  .submit_textfield:focus {\n    border: 4px solid black;\n    box-shadow: inset 0px 0px 20px black; }\n\n.shake_textfield_animation {\n  border: 4px solid red !important;\n  animation: SHAKE_TEXTFIELD_ANIMATION 0.5s; }\n\n@keyframes SHAKE_TEXTFIELD_ANIMATION {\n  10%, 90% {\n    transform: translate3d(-1px, 0, 0); }\n  20%, 80% {\n    transform: translate3d(2px, 0, 0); }\n  30%, 50%, 70% {\n    transform: translate3d(-4px, 0, 0); }\n  40%, 60% {\n    transform: translate3d(4px, 0, 0); }\n  100% {\n    display: none; } }\n\n#header {\n  background-color: black;\n  display: flex; }\n\n#logo {\n  opacity: 0.6;\n  -webkit-transition: all 0.3s ease-in-out;\n  -moz-transition: all 0.3s ease-in-out;\n  -ms-transition: all 0.3s ease-in-out;\n  -o-transition: all 0.3s ease-in-out;\n  max-width: 100%; }\n  #logo:hover {\n    opacity: 1; }\n\n#navigation_bar {\n  width: 100%;\n  display: flex;\n  justify-content: flex-end;\n  align-items: center;\n  padding-right: 20px; }\n\n.navigation_link {\n  display: none;\n  padding: 10px 20px 10px 20px;\n  border: 2px solid white;\n  justify-content: space-between;\n  flex-direction: row;\n  position: absolute;\n  z-index: 1;\n  right: 39px;\n  background-color: white; }\n  .navigation_link a {\n    color: black;\n    text-decoration: none;\n    cursor: pointer;\n    -webkit-transition: all 0.3s ease-in-out;\n    -moz-transition: all 0.3s ease-in-out;\n    -ms-transition: all 0.3s ease-in-out;\n    -o-transition: all 0.3s ease-in-out;\n    padding: 0 20px 0 20px; }\n    .navigation_link a:hover {\n      text-shadow: 4px 4px gray; }\n    .navigation_link a:first-child {\n      border: 0; }\n  @media (min-width: 470px) {\n    .navigation_link {\n      display: flex !important;\n      flex-direction: row;\n      padding: 0 !important;\n      border: 0 !important;\n      background: none; }\n      .navigation_link a {\n        color: gray;\n        border-left: 3px solid white;\n        padding: 20px; }\n        .navigation_link a:hover {\n          color: white; } }\n\n#navigation_icon {\n  display: none; }\n  #navigation_icon:not(:checked) ~ .navigation_link {\n    display: none; }\n  #navigation_icon:checked ~ .navigation_link {\n    display: flex; }\n\n#navigation_icon_label {\n  display: flex;\n  order: 1;\n  cursor: pointer; }\n  @media (min-width: 470px) {\n    #navigation_icon_label {\n      display: none; } }\n\n@keyframes NAVIGATION_ICON_IN_ANIMATION {\n  0% {\n    padding: 10px 20px 10px 20px; }\n  100% {\n    padding: 0;\n    transition: padding 1s ease-in-out; } }\n\n@keyframes NAVIGATION_ICON_OUT_ANIMATION {\n  0% {\n    padding: 0; }\n  100% {\n    padding: 10px 20px 10px 20px;\n    border: 2px solid white;\n    transition: padding 1s ease-in-out; } }\n\nfooter {\n  background-color: black;\n  display: flex;\n  justify-content: center; }\n\n.hero_list_panel {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  width: 100%;\n  font-size: 3em;\n  background-color: black; }\n\n.contact_panel {\n  background-color: white;\n  color: black;\n  padding: 3em 4em 3em 4em;\n  width: 100%;\n  margin: 0 auto;\n  overflow-y: auto; }\n  @media (min-width: 900px) {\n    .contact_panel {\n      width: 80%; } }\n\n.contact_pictures_panel {\n  padding: 1em 0 1em 0;\n  flex-flow: row wrap;\n  display: flex; }\n  .contact_pictures_panel img {\n    flex: auto;\n    margin: 1em 0 1em 0;\n    max-width: 250px;\n    width: 100%;\n    height: 100%; }\n    @media (min-width: 420px) {\n      .contact_pictures_panel img {\n        margin: 1em; } }\n\n.wrapper, body, html {\n  height: 100vh;\n  margin: 0;\n  overflow: hidden;\n  box-sizing: border-box;\n  font-family: \"Segoe UI\", sans-serif;\n  color: white; }\n\nq {\n  display: block;\n  font-style: italic;\n  margin: 1em 0 1em 0; }\n\n.wrapper {\n  display: flex;\n  flex-direction: column;\n  background-image: url(" + __webpack_require__(4) + ");\n  background-size: cover; }\n\n.main_panel {\n  display: flex;\n  flex: 1;\n  overflow-y: auto; }\n", ""]);
+	exports.push([module.id, "/*@import 'reset';*/\n.button {\n  background: -webkit-linear-gradient(#9b9b9b, black);\n  background: -o-linear-gradient(#9b9b9b, black);\n  background: -moz-linear-gradient(#9b9b9b, black);\n  background: linear-gradient(#9b9b9b, black);\n  -webkit-border-radius: 10px;\n  -moz-border-radius: 10px;\n  -ms-border-radius: 10px;\n  border-radius: 10px;\n  border: 1px solid #191919;\n  outline: 0;\n  cursor: pointer;\n  color: white;\n  padding: 20px; }\n  .button:hover {\n    background: -webkit-linear-gradient(dimgray, black);\n    background: -o-linear-gradient(dimgray, black);\n    background: -moz-linear-gradient(dimgray, black);\n    background: linear-gradient(dimgray, black); }\n  .button:active {\n    background: -webkit-linear-gradient(#555555, black);\n    background: -o-linear-gradient(#555555, black);\n    background: -moz-linear-gradient(#555555, black);\n    background: linear-gradient(#555555, black); }\n\n#countdown_panel {\n  min-width: 100%;\n  min-height: 100%;\n  position: absolute;\n  align-items: center;\n  justify-content: center;\n  display: none;\n  font-size: 12em;\n  z-index: 1; }\n\n.grayscale_background_animation {\n  animation: GRAYSCALE_BACKGROUND_ANIMATION 4s; }\n\n@keyframes GRAYSCALE_BACKGROUND_ANIMATION {\n  20%, 100% {\n    -webkit-filter: grayscale(0.7) blur(3px);\n    -moz-filter: grayscale(0.7) blur(3px);\n    -ms-filter: grayscale(0.7) blur(3px);\n    filter: grayscale(0.7) blur(3px); } }\n\n.fail_background {\n  display: none;\n  align-items: center;\n  min-width: 100%;\n  min-height: 100%;\n  position: absolute;\n  background-color: black;\n  animation: FAIL_BACKGROUND_ANIMATION 1s;\n  animation-fill-mode: forwards;\n  z-index: 2; }\n\n.fail_panel {\n  width: 100%;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  justify-content: center;\n  background-color: #F0FFFF;\n  color: black;\n  animation: FAIL_PANEL_ANIMATION 1s;\n  animation-fill-mode: forwards;\n  padding: 20px 0 20px 0;\n  font-size: 0.67em; }\n  .fail_panel h1, .fail_panel h3 {\n    animation: FAIL_TEXT_ANIMATION 1s;\n    animation-fill-mode: forwards; }\n  @media (min-width: 340px) {\n    .fail_panel {\n      font-size: 1em; } }\n  @media (min-width: 500px) {\n    .fail_panel {\n      font-size: 1.2em; } }\n  @media (min-width: 650px) {\n    .fail_panel {\n      font-size: 1.5em; } }\n  @media (min-width: 825px) {\n    .fail_panel {\n      font-size: 2em; } }\n  .fail_panel button {\n    animation: FAIL_BUTTON_ANIMATION 1s;\n    animation-fill-mode: forwards; }\n\n@keyframes FAIL_BACKGROUND_ANIMATION {\n  0% {\n    background: transparent; }\n  100% {\n    background: rgba(0, 0, 0, 0.8);\n    transition: background 0.5s ease-in-out; } }\n\n@keyframes FAIL_PANEL_ANIMATION {\n  0% {\n    max-height: 0;\n    overflow: hidden; }\n  100% {\n    max-height: 400px;\n    transition: 1s ease-in-out; } }\n\n@keyframes FAIL_TEXT_ANIMATION {\n  0%, 30% {\n    opacity: 0; }\n  100% {\n    opacity: 1;\n    transition: 0.5s ease-in-out; } }\n\n@keyframes FAIL_BUTTON_ANIMATION {\n  0%, 80% {\n    opacity: 0; }\n  100% {\n    opacity: 1;\n    transition: 0.5s ease-in-out; } }\n\n.images_panel {\n  display: flex;\n  width: 99%;\n  border: 5px double gold;\n  -webkit-border-radius: 3px;\n  -moz-border-radius: 3px;\n  -ms-border-radius: 3px;\n  border-radius: 3px;\n  overflow: hidden;\n  background-color: black;\n  animation-iteration-count: infinite; }\n\n.images {\n  display: flex;\n  justify-content: flex-end;\n  margin-left: 100%;\n  border: 0; }\n\n.image {\n  width: 48px;\n  height: 27px;\n  border-left: 4px groove gold; }\n  @media (min-width: 400px) {\n    .image {\n      width: 64px;\n      height: 36px; } }\n  @media (min-width: 500px) {\n    .image {\n      width: 80px;\n      height: 45px; } }\n  @media (min-width: 600px) {\n    .image {\n      width: 96px;\n      height: 54px; } }\n  @media (min-width: 750px) {\n    .image {\n      width: 112px;\n      height: 63px; } }\n  @media (min-width: 1000px) {\n    .image {\n      width: 128px;\n      height: 72px; } }\n  @media (min-width: 1300px) {\n    .image {\n      width: 160px;\n      height: 90px; } }\n\n.warning_animation {\n  animation: WARNING_BOX_SHADOW_ANIMATION 3s;\n  animation-iteration-count: infinite;\n  border: 5px solid red;\n  transition: border 0.5s ease-in-out; }\n\n@keyframes WARNING_BOX_SHADOW_ANIMATION {\n  0% {\n    box-shadow: 0px 0px 50px #641E16; }\n  25% {\n    box-shadow: 0px 0px 50px #F1948A; }\n  50% {\n    box-shadow: 0px 0px 50px #641E16; }\n  75% {\n    box-shadow: 0px 0px 50px #F1948A; }\n  100% {\n    box-shadow: 0px 0px 50px #641E16; } }\n\n.instruction_panel {\n  border: 3px ridge gold;\n  -webkit-border-radius: 5px;\n  -moz-border-radius: 5px;\n  -ms-border-radius: 5px;\n  border-radius: 5px;\n  color: black;\n  background-color: white;\n  padding: 0 20px 20px 20px;\n  display: flex;\n  flex-direction: column;\n  align-items: center;\n  box-shadow: 0px 0px 50px gold;\n  margin: auto;\n  font-size: 1.1em; }\n  @media (min-width: 720px) {\n    .instruction_panel {\n      padding: 0 100px 20px 100px; } }\n\n.slider_panel {\n  width: 100%;\n  display: none;\n  align-items: center;\n  justify-content: center;\n  flex-direction: column;\n  overflow: hidden; }\n\n.points {\n  font-size: 3em;\n  position: relative; }\n\n.add_points {\n  position: absolute;\n  left: 58%;\n  bottom: 30%; }\n\n.submit_panel {\n  margin-top: 3em; }\n\n.add_points_animation {\n  animation: ADD_POINTS_ANIMATION 1s;\n  animation-fill-mode: forwards; }\n\n@keyframes ADD_POINTS_ANIMATION {\n  0% {\n    opacity: 0; }\n  50% {\n    opacity: 1; }\n  100% {\n    opacity: 0;\n    bottom: 70%; } }\n\n.submit_panel {\n  display: flex;\n  justify-content: center;\n  flex-direction: column;\n  width: 100%;\n  padding: 0 1em 0 1em; }\n  .submit_panel button {\n    width: 90%;\n    margin: 2em 5% 0 5%; }\n  @media (min-width: 630px) {\n    .submit_panel {\n      flex-direction: row;\n      width: initial; }\n      .submit_panel button {\n        margin: 0 0 0 2em; } }\n\n#submit_textfield {\n  border: 4px solid #3F3835;\n  -webkit-border-radius: 5px;\n  -moz-border-radius: 5px;\n  -ms-border-radius: 5px;\n  border-radius: 5px;\n  -webkit-transition: all 0.3s ease-in-out;\n  -moz-transition: all 0.3s ease-in-out;\n  -ms-transition: all 0.3s ease-in-out;\n  -o-transition: all 0.3s ease-in-out;\n  font-size: 200%;\n  margin: 0 5% 0 5%;\n  outline: 0;\n  padding-left: 20px; }\n  #submit_textfield:focus {\n    border: 4px solid black;\n    box-shadow: inset 0px 0px 20px black; }\n\n.shake_textfield_animation {\n  border: 4px solid red !important;\n  animation: SHAKE_TEXTFIELD_ANIMATION 0.5s; }\n\n@keyframes SHAKE_TEXTFIELD_ANIMATION {\n  10%, 90% {\n    transform: translate3d(-1px, 0, 0); }\n  20%, 80% {\n    transform: translate3d(2px, 0, 0); }\n  30%, 50%, 70% {\n    transform: translate3d(-4px, 0, 0); }\n  40%, 60% {\n    transform: translate3d(4px, 0, 0); }\n  100% {\n    display: none; } }\n\nheader {\n  background-color: black;\n  display: flex; }\n\n#logo {\n  opacity: 0.6;\n  -webkit-transition: all 0.3s ease-in-out;\n  -moz-transition: all 0.3s ease-in-out;\n  -ms-transition: all 0.3s ease-in-out;\n  -o-transition: all 0.3s ease-in-out;\n  max-width: 100%; }\n  #logo:hover {\n    opacity: 1; }\n\n#navigation_bar {\n  width: 100%;\n  display: flex;\n  justify-content: flex-end;\n  align-items: center;\n  padding-right: 20px; }\n\n.navigation_link {\n  display: none;\n  padding: 10px 20px 10px 20px;\n  border: 2px solid white;\n  justify-content: space-between;\n  flex-direction: row;\n  position: absolute;\n  z-index: 1;\n  right: 39px;\n  background-color: white; }\n  .navigation_link a {\n    color: black;\n    text-decoration: none;\n    cursor: pointer;\n    -webkit-transition: all 0.3s ease-in-out;\n    -moz-transition: all 0.3s ease-in-out;\n    -ms-transition: all 0.3s ease-in-out;\n    -o-transition: all 0.3s ease-in-out;\n    padding: 0 20px 0 20px; }\n    .navigation_link a:hover {\n      text-shadow: 4px 4px gray; }\n    .navigation_link a:first-child {\n      border: 0; }\n  @media (min-width: 470px) {\n    .navigation_link {\n      display: flex !important;\n      flex-direction: row;\n      padding: 0 !important;\n      border: 0 !important;\n      background: none; }\n      .navigation_link a {\n        color: gray;\n        border-left: 3px solid white;\n        padding: 20px; }\n        .navigation_link a:hover {\n          color: white; } }\n\n#navigation_icon {\n  display: none; }\n  #navigation_icon:not(:checked) ~ .navigation_link {\n    display: none; }\n  #navigation_icon:checked ~ .navigation_link {\n    display: flex; }\n\n#navigation_icon_label {\n  display: flex;\n  order: 1;\n  cursor: pointer; }\n  @media (min-width: 470px) {\n    #navigation_icon_label {\n      display: none; } }\n\nfooter {\n  background-color: black;\n  display: flex;\n  justify-content: center; }\n\n.hero_list_panel {\n  display: flex;\n  justify-content: center;\n  align-items: center;\n  width: 100%;\n  font-size: 3em;\n  background-color: black; }\n\n.contact_panel {\n  background-color: white;\n  color: black;\n  padding: 3em 4em 3em 4em;\n  width: 100%;\n  margin: 0 auto;\n  overflow-y: auto; }\n  @media (min-width: 900px) {\n    .contact_panel {\n      width: 80%; } }\n\n.contact_pictures_panel {\n  padding: 1em 0 1em 0;\n  flex-flow: row wrap;\n  display: flex; }\n  .contact_pictures_panel img {\n    flex: auto;\n    margin: 1em 0 1em 0;\n    max-width: 250px;\n    width: 100%;\n    height: 100%; }\n    @media (min-width: 420px) {\n      .contact_pictures_panel img {\n        margin: 1em; } }\n\n.wrapper, body, html {\n  height: 100vh;\n  margin: 0;\n  overflow: hidden;\n  box-sizing: border-box;\n  font-family: \"Segoe UI\", sans-serif;\n  color: white; }\n\nq {\n  display: block;\n  font-style: italic;\n  margin: 1em 0 1em 0; }\n\n.wrapper {\n  display: flex;\n  flex-direction: column;\n  background-image: url(" + __webpack_require__(4) + ");\n  background-size: cover; }\n\n.main_panel {\n  display: flex;\n  flex: 1;\n  overflow-y: auto; }\n", ""]);
 
 	// exports
 
@@ -428,12 +427,6 @@
 /* 6 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__.p + "26e536ca3692d75cbd6a37bdf9cbfad1.svg";
-
-/***/ },
-/* 7 */
-/***/ function(module, exports, __webpack_require__) {
-
 	/**
 	 * This is a generic button, which has a multitude of generic to specific functions for all possible scenarios.
 	 * @param {Object} Button
@@ -441,12 +434,12 @@
 	module.exports = function () {
 		"use strict";
 
-		const Countdown_panel = __webpack_require__(8);
-		const Slider = __webpack_require__(11);
-		const Helper = __webpack_require__(9);
-		const Config = __webpack_require__(10);
+		const Countdown_panel = __webpack_require__(7);
+		const Slider = __webpack_require__(10);
+		const Helper = __webpack_require__(8);
+		const Config = __webpack_require__(9);
 
-		const config = Config.elements;
+		const elements = Config.elements;
 		const constants = Config.constants;
 		const text = Config.text;
 
@@ -459,113 +452,100 @@
 
 			button: {
 				start_button: {
-					if_clicked(callback) {
-						config.start_button.addEventListener('click', () => {
+					click(callback) {
+						elements.start_button.addEventListener('click', () => {
 							this[callback]();
 						});
 					},
-					start() {
-						Helper.toggle_class_for_animation(config.wrapper, 'grayscale_background_animation');
-						Helper.hide_element(config.instruction_panel);
-						this.start_slider_countdown().then(response => {
-							this.start_slider().then(response => {
-								this.display_fail_panel(response);
+					start_game() {
+						Helper.toggle_class_for_animation(elements.wrapper, 'grayscale_background_animation');
+						Helper.hide_element(elements.instruction_panel);
+						start_slider_countdown().then(response => {
+							start_slider().then(response => {
+								display_fail_panel(response);
 							});
-						});
-					},
-					start_slider_countdown() {
-						const countdown_panel = Countdown_panel.create_countdown_panel();
-						return countdown_panel.start_countdown_timer();
-					},
-					start_slider() {
-						const slider = Slider.create_slider();
-						return slider.start_slider();
-					},
-					display_fail_panel(images) {
-						Helper.transition_end(images, () => {
-							config.result_text.innerHTML = 'You lose...';
-							Helper.show_element(config.fail_background);
 						});
 					}
 				},
 				fail_button: {
-					if_clicked(callback) {
-						config.fail_button.addEventListener('click', () => {
+					click(callback) {
+						elements.fail_button.addEventListener('click', () => {
 							this[callback]();
 						});
 					},
-					fail() {
-						Helper.hide_element(config.fail_background, config.slider_panel);
-						// reset the images
-						config.images.style.marginLeft = '100%';
-						config.images.style.transition = '0s';
-						for (let i = 0; i < config.image.length; i++) {
-							config.image[i].style.display = 'block';
-						}
-						image_iteration = 0;
-						for (let i = 0; i < config.high_score.length; i++) {
-							config.high_score[i].innerHTML = 0;
-						}
-						config.submit_textfield.value = '';
-						Helper.remove_class(config.submit_textfield, 'shake_textfield_animation');
-						Helper.remove_class(config.add_points, 'add_points_animation');
-						config.add_points.style.opacity = 0;
-
-						Helper.toggle_class_for_animation(config.wrapper, 'grayscale_background_animation');
-						this.start_slider_countdown().then(response => {
-							this.start_slider().then(response => {
-								this.display_fail_panel(response);
-							});
-						});
-					},
-					start_slider_countdown(countdownNumber) {
-						const countdown_panel = Countdown_panel.create_countdown_panel();
-						return countdown_panel.start_countdown_timer(countdownNumber);
-					},
-					start_slider() {
-						const slider = Slider.create_slider();
-						return slider.start_slider();
-					},
-					display_fail_panel(images) {
-						Helper.transition_end(images, () => {
-							config.result_text.innerHTML = text.fail_message;
-							Helper.show_element(config.fail_background);
-						});
+					restart_game() {
+						Helper.hide_element(elements.fail_background, elements.slider_panel);
+						reset_images();
+						Helper.show_element(elements.instruction_panel);
 					}
 				},
 				submit_button: {
-					if_clicked(callback) {
-						config.submit_button.addEventListener('click', () => {
+					click(callback) {
+						elements.submit_button.addEventListener('click', () => {
 							this[callback]();
 						});
 					},
 					submit() {
-						if (Helper.validate_if_input_is_dota_hero_name(config.image[image_iteration], config.submit_textfield)) {
-							Helper.hide_element(config.image[image_iteration]);
+						if (Helper.validate_if_input_is_hero_name(elements.image[image_iteration], elements.submit_textfield)) {
+							Helper.hide_element(elements.image[image_iteration]);
 							image_iteration++;
-							config.add_points.innerHTML = '+' + constants.POINTS_ADDED;
-							for (let i = 0; i < config.high_score.length; i++) {
-								config.high_score[i].innerHTML = parseInt(config.high_score[i].innerHTML) + parseInt(constants.POINTS_ADDED);
+							elements.add_points.innerHTML = '+' + constants.POINTS_ADDED;
+							for (let i = 0; i < elements.high_score.length; i++) {
+								elements.high_score[i].innerHTML = parseInt(elements.high_score[i].innerHTML) + parseInt(constants.POINTS_ADDED);
 							}
-							Helper.toggle_class_for_animation(config.add_points, 'add_points_animation');
-							Helper.remove_class(config.submit_textfield, 'shake_textfield_animation');
+							Helper.toggle_class_for_animation(elements.add_points, 'add_points_animation');
+							Helper.remove_class(elements.submit_textfield, 'shake_textfield_animation');
 						} else {
-							Helper.toggle_class_for_animation(config.submit_textfield, 'shake_textfield_animation');
+							Helper.toggle_class_for_animation(elements.submit_textfield, 'shake_textfield_animation');
 						}
-						config.submit_textfield.value = '';
-						if (typeof config.image[image_iteration] === 'undefined') {
-							config.result_text.innerHTML = text.success_message;
-							Helper.show_element(config.fail_background);
+						elements.submit_textfield.value = '';
+						if (typeof elements.image[image_iteration] === 'undefined') {
+							elements.result_text.innerHTML = text.success_message;
+							Helper.show_element(elements.fail_background);
 						}
 					}
 				}
 			}
 		};
+
+		function start_slider_countdown() {
+			const countdown_panel = Countdown_panel.create_countdown_panel();
+			return countdown_panel.start_countdown_timer();
+		}
+
+		function start_slider() {
+			const slider = Slider.create_slider();
+			return slider.start_slider();
+		}
+
+		function display_fail_panel() {
+			Helper.transition_end(elements.images, () => {
+				elements.result_text.innerHTML = text.fail_message;
+				Helper.show_element(elements.fail_background);
+			});
+		}
+
+		function reset_images() {
+			elements.images.style.marginLeft = '100%';
+			elements.images.style.transition = '0s';
+			for (let i = 0; i < elements.image.length; i++) {
+				elements.image[i].style.display = 'block';
+			}
+			image_iteration = 0;
+			for (let i = 0; i < elements.high_score.length; i++) {
+				elements.high_score[i].innerHTML = 0;
+			}
+			elements.submit_textfield.value = '';
+			Helper.remove_class(elements.submit_textfield, 'shake_textfield_animation');
+			Helper.remove_class(elements.add_points, 'add_points_animation');
+			elements.add_points.style.opacity = 0;
+		}
+
 		return Button;
 	}();
 
 /***/ },
-/* 8 */
+/* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -574,10 +554,10 @@
 	module.exports = function () {
 		"use strict";
 
-		const Helper = __webpack_require__(9);
-		const Config = __webpack_require__(10);
+		const Helper = __webpack_require__(8);
+		const Config = __webpack_require__(9);
 
-		const config = Config.elements;
+		const elements = Config.elements;
 		const constants = Config.constants;
 
 		const Countdown_panel = {
@@ -588,15 +568,15 @@
 				start_countdown_timer() {
 					let countdown_duration = constants.COUNTDOWN_DURATION;
 					const countdown_promise = new Promise((resolve, reject) => {
-						Helper.show_element(config.countdown_panel);
-						config.countdown_panel.innerHTML = "";
+						Helper.show_element(elements.countdown_panel);
+						elements.countdown_panel.innerHTML = "";
 						const countdown_timer = setInterval(() => {
 							if (countdown_duration === 0) {
 								clearInterval(countdown_timer);
-								Helper.hide_element(config.countdown_panel);
-								resolve("Success");
+								Helper.hide_element(elements.countdown_panel);
+								resolve();
 							}
-							config.countdown_panel.innerHTML = countdown_duration--;
+							elements.countdown_panel.innerHTML = countdown_duration--;
 						}, 1000);
 					});
 					return countdown_promise;
@@ -607,13 +587,10 @@
 	}();
 
 /***/ },
-/* 9 */
+/* 8 */
 /***/ function(module, exports) {
 
-	// is it really the best way??? look up CommonJS/AMD/ES6 import/export (<-- I guess this is OK so far)
-	// What about instead of Helper.method(), use Object.create? Does this help?
-	// http://requirejs.org/docs/node.html#1
-	// By using RequireJS on the server, you can use one format for all your modules, whether they are running server side or in the browser. (hmm...)
+	// is it really the best way??? look up CommonJS/AMD (RequireJS)/ES6 import/export (<-- I guess this is OK so far)
 	module.exports = function () {
 		"use strict";
 
@@ -681,8 +658,8 @@
 
 		/**
 	  * Bind the focused element; it will call the callback when transition ends.
-	  * @param  {Object} the object which will be binded by a transition end listener
-	  * @param  {Function} the callback that will be called when transition end
+	  * @param  {Object} element - the object which will be binded by a transition end listener.
+	  * @param  {Function} callback - the callback that will be called when transition end.
 	  */
 		function transition_end(element, callback) {
 			const transition_event = which_transition_event();
@@ -691,7 +668,8 @@
 
 		/**
 	  * Display the element.
-	  * @param  {Object} The element that will be displayed.
+	  * @param  {Object} element - The element that will be displayed.
+	  * @param  {String} display - The display type.
 	  */
 		function show_element(element, display) {
 			if (typeof display !== 'undefined' && display !== '') {
@@ -703,7 +681,7 @@
 
 		/**
 	  * Hide the element.
-	  * @param  {Object} The element that will be hidden.
+	  * @param  {Object} element - The element that will be hidden.
 	  */
 		function hide_element(element) {
 			for (let i = 0; i < arguments.length; i++) {
@@ -713,8 +691,8 @@
 
 		/**
 	  * Add a CSS class to an element.
-	  * @param  {Object} The element that will have the added CSS class.
-	  * @param  {String} className - The CSS class name
+	  * @param  {Object} element - The element that will have the added CSS class.
+	  * @param  {String} className - The CSS class name.
 	  */
 		function add_class(element, className) {
 			if (!element.classList.contains(className)) {
@@ -724,8 +702,8 @@
 
 		/**
 	  * Remove a CSS class from an element.
-	  * @param  {Object} The element that will have the specified CSS class removed.
-	  * @param  {String} className - The CSS class name
+	  * @param  {Object} element - The element that will have the specified CSS class removed.
+	  * @param  {String} className - The CSS class name.
 	  */
 		function remove_class(element, className) {
 			if (element.classList.contains(className)) {
@@ -737,8 +715,8 @@
 
 		/**
 	  * Toggle whether to add or remove CSS class.
-	  * @param  {Object} The element that will add or remove the CSS class.
-	  * @param  {String} className - The CSS class name
+	  * @param  {Object} element - The element that will add or remove the CSS class.
+	  * @param  {String} className - The CSS class name.
 	  */
 		function toggle_class(element, className) {
 			if (element.classList.contains(className)) {
@@ -748,10 +726,11 @@
 			}
 		}
 
+		//IM TIRED, WHATS A GOOD NAME FOR THIS
 		/**
 	  * Toggle whether to add or remove CSS class.
-	  * @param  {Object} The element that will add or remove the CSS class.
-	  * @param  {String} className - The CSS class name
+	  * @param  {Object} element - The element that will add or remove the CSS class.
+	  * @param  {String} className - The CSS class name.
 	  */
 		function toggle_class_for_animation(element, className) {
 			if (element.classList.contains(className)) {
@@ -762,9 +741,10 @@
 
 		/**
 	  * Validate if user input is a string.
-	  * @param  {Object} The textfield that will be validated.
+	  * @param {Object} image - The image that is being validated.
+	  * @param  {Object} textfield - The textfield that has the user input.
 	  */
-		function validate_if_input_is_dota_hero_name(image, textfield) {
+		function validate_if_input_is_hero_name(image, textfield) {
 			if (image.name.toLowerCaseAndRemoveIllegalCharacters() === textfield.value.toLowerCaseAndRemoveIllegalCharacters()) {
 				return true;
 			}
@@ -780,12 +760,12 @@
 			remove_class,
 			toggle_class,
 			toggle_class_for_animation,
-			validate_if_input_is_dota_hero_name
+			validate_if_input_is_hero_name
 		};
 	}();
 
 /***/ },
-/* 10 */
+/* 9 */
 /***/ function(module, exports) {
 
 	module.exports = function () {
@@ -835,14 +815,16 @@
 				//win
 				success_message: 'Ez Win!',
 
-				images_json_url: 'http://lilmortal-test.apigee.net/getdotaheroes?key=6C1CF76C90768388618F348BB73EE015&language=en_us&format=JSON'
+				images_json_url: 'https://lilmortal-test.apigee.net/getdotaheroes?key=6C1CF76C90768388618F348BB73EE015&language=en_us&format=JSON',
+				image_url: 'http://cdn.dota2.com/apps/dota2/images/heroes/',
+				image_size: '_lg.png'
 			}
 		};
 		return config;
 	}();
 
 /***/ },
-/* 11 */
+/* 10 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -853,10 +835,10 @@
 	module.exports = function () {
 		"use strict";
 
-		const Helper = __webpack_require__(9);
-		const Config = __webpack_require__(10);
+		const Helper = __webpack_require__(8);
+		const Config = __webpack_require__(9);
 
-		const config = Config.elements;
+		const elements = Config.elements;
 		const constants = Config.constants;
 		const text = Config.text;
 
@@ -868,25 +850,25 @@
 			slider_panel: {
 				slide() {
 					const screen_width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-					const default_width = screen_width - config.images_panel.offsetWidth / 2 + config.images_panel.offsetWidth;
-					const warning_width = default_width * constants.WARNING_THRESHOLD / 100;
+					const images_panel_width = screen_width - elements.images_panel.offsetWidth / 2 + elements.images_panel.offsetWidth;
+					const warning_width_threshold = images_panel_width * constants.WARNING_THRESHOLD / 100;
 					let timer;
-					config.images.style.marginLeft = '0';
-					config.images.style.transition = constants.SLIDE_DURATION + 's linear';
-					Helper.remove_class(config.images_panel, 'warning_animation');
+					elements.images.style.marginLeft = '0';
+					elements.images.style.transition = constants.SLIDE_DURATION + 's linear';
+					Helper.remove_class(elements.images_panel, 'warning_animation');
 
 					timer = setInterval(() => {
-						if (Helper.get_position(config.images).x <= warning_width) {
-							Helper.add_class(config.images_panel, 'warning_animation');
+						if (Helper.get_position(elements.images).x <= warning_width_threshold) {
+							Helper.add_class(elements.images_panel, 'warning_animation');
 							clearInterval(timer);
 						}
 					}, 1000);
 				},
 				start_slider() {
 					const slider_promise = new Promise((resolve, reject) => {
-						Helper.show_element(config.slider_panel);
+						Helper.show_element(elements.slider_panel);
 						this.slide();
-						resolve(config.images);
+						resolve();
 					});
 					return slider_promise;
 				}
@@ -896,16 +878,16 @@
 	}();
 
 /***/ },
-/* 12 */
+/* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = function () {
 		"use strict";
 
-		const Button = __webpack_require__(7);
-		const Config = __webpack_require__(10);
+		const Button = __webpack_require__(6);
+		const Config = __webpack_require__(9);
 
-		const config = Config.elements;
+		const elements = Config.elements;
 
 		const Textfield = {
 			create_textfield(callback) {
@@ -917,7 +899,7 @@
 					submit() {
 						const submit_button = Button.create_button('submit_button');
 
-						config.submit_textfield.addEventListener('keyup', event => {
+						elements.submit_textfield.addEventListener('keyup', event => {
 							if (event.keyCode === 13) {
 								submit_button.submit();
 							}
@@ -930,21 +912,21 @@
 	}();
 
 /***/ },
-/* 13 */
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = function () {
 		"use strict";
 
-		const Config = __webpack_require__(10);
+		const Config = __webpack_require__(9);
 
-		const config = Config.elements;
+		const elements = Config.elements;
 		const text = Config.text;
 
 		const Images = {
 			get_status(response) {
 				if (response.status !== 200) {
-					return Promise.reject(new Error(response.statusText));
+					return Promise.reject(new Error("Failed to load images, error status: " + response.statusText));
 				} else {
 					return Promise.resolve(response);
 				}
@@ -960,7 +942,7 @@
 					for (let i = 0; i < heroes.length; i++) {
 						const image = document.createElement('img');
 						image.className = 'image';
-						image.src = 'http://cdn.dota2.com/apps/dota2/images/heroes/' + heroes[i].name.replace('npc_dota_hero_', '') + '_lg.png';
+						image.src = text.image_url + heroes[i].name.replace('npc_dota_hero_', '') + text.image_size;
 						//It should be Tuskar, not Tusk!
 						if (heroes[i].localized_name === 'Tusk') {
 							heroes[i].localized_name = 'Tuskar';
@@ -968,7 +950,7 @@
 						image.name = heroes[i].localized_name;
 						fragment.appendChild(image);
 					}
-					config.images.appendChild(fragment);
+					elements.images.appendChild(fragment);
 				});
 			}
 		};
