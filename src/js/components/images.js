@@ -23,7 +23,7 @@ module.exports = (function() {
 			.then(this.get_json)
 			.then((response) => {
 				const heroes = response.result.heroes;
-		        const fragment = document.createDocumentFragment();
+				const fragment = document.createDocumentFragment();
 
 				for (let i = 0; i < heroes.length; i++) {
 					const image = document.createElement('img');

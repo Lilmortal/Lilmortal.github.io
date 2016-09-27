@@ -21,13 +21,13 @@ module.exports = (function() {
 					Helper.show_element(elements.countdown_panel);
 					elements.countdown_panel.innerHTML = "";
 					const countdown_timer = setInterval(() => {
-			      		if (countdown_duration === 0) {
-			        		clearInterval(countdown_timer);
-			        		Helper.hide_element(elements.countdown_panel);
-			        		resolve();
-			        	}
-			        	elements.countdown_panel.innerHTML = countdown_duration--;
-			    	}, 1000);
+					if (countdown_duration === 0) {
+						clearInterval(countdown_timer);
+						Helper.hide_element(elements.countdown_panel);
+						resolve();
+					}
+						elements.countdown_panel.innerHTML = countdown_duration--;
+					}, 1000);
 				});
 				return countdown_promise;
 			}

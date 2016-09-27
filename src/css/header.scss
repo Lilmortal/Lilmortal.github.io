@@ -75,7 +75,6 @@ header {
 		display: none;
 	}
 
-	// alternative to tilde?
 	&:checked ~ .navigation_link {
 		display: flex;
 	}

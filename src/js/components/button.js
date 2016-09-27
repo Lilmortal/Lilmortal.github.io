@@ -57,25 +57,25 @@ module.exports = (function() {
 					});
 				},
 				submit() {
-			  		if (Helper.validate_if_input_is_hero_name(elements.image[image_iteration], elements.submit_textfield)) {
-			  			Helper.hide_element(elements.image[image_iteration]);
-			  			image_iteration++;
-			  			elements.add_points.innerHTML = '+' + constants.POINTS_ADDED;
-			  			for (let i = 0; i < elements.high_score.length; i++) {
-			  				elements.high_score[i].innerHTML = parseInt(elements.high_score[i].innerHTML) + parseInt(constants.POINTS_ADDED);
-			  			}
-			  			Helper.toggle_class_for_animation(elements.add_points, 'add_points_animation');
-			  			Helper.remove_class(elements.submit_textfield, 'shake_textfield_animation');
-			  		} else {
-						Helper.toggle_class_for_animation(elements.submit_textfield, 'shake_textfield_animation');
-			  		}
-			  		elements.submit_textfield.value = '';
-			  		if (typeof elements.image[image_iteration] === 'undefined') {
-			  			elements.result_text.innerHTML = text.success_message;
-			  			Helper.show_element(elements.fail_background);
-			  		}
+					if (Helper.validate_if_input_is_hero_name(elements.image[image_iteration], elements.submit_textfield)) {
+						Helper.hide_element(elements.image[image_iteration]);
+						image_iteration++;
+						elements.add_points.innerHTML = '+' + constants.POINTS_ADDED;
+						for (let i = 0; i < elements.high_score.length; i++) {
+							elements.high_score[i].innerHTML = parseInt(elements.high_score[i].innerHTML) + parseInt(constants.POINTS_ADDED);
+						}
+							Helper.toggle_class_for_animation(elements.add_points, 'add_points_animation');
+							Helper.remove_class(elements.submit_textfield, 'shake_textfield_animation');
+						} else {
+							Helper.toggle_class_for_animation(elements.submit_textfield, 'shake_textfield_animation');
+						}
+						elements.submit_textfield.value = '';
+						if (typeof elements.image[image_iteration] === 'undefined') {
+							elements.result_text.innerHTML = text.success_message;
+							Helper.show_element(elements.fail_background);
+						}
+					}
 				}
-			}
 		}
 	}
 
