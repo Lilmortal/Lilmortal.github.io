@@ -10,6 +10,7 @@ module.exports = (function() {
 	const Helper = require('../helper.js');
 	const Config = require('../config.js');
 
+	// FIND ALTERNATIVE TO THIS
 	const elements = Config.elements;
 	const constants = Config.constants;
 	const text = Config.text;
@@ -31,9 +32,9 @@ module.exports = (function() {
 				start_game() {
 					Helper.toggle_class_for_animation(elements.wrapper, 'grayscale_background_animation');
 					Helper.hide_element(elements.instruction_panel);
-					start_slider_countdown().then((response) => {
-						start_slider().then((response) => {
-							display_fail_panel(response);
+					Start_slider_countdown().then((response) => {
+						Start_slider().then((response) => {
+							Display_fail_panel(response);
 						})
 					});
 				}
@@ -46,7 +47,7 @@ module.exports = (function() {
 				},
 				restart_game() {
 					Helper.hide_element(elements.fail_background, elements.slider_panel);
-					reset_images();
+					Reset_images();
 					Helper.show_element(elements.instruction_panel);
 				}
 			},
@@ -61,8 +62,8 @@ module.exports = (function() {
 						Helper.hide_element(elements.image[image_iteration]);
 						image_iteration++;
 						elements.add_points.innerHTML = '+' + constants.POINTS_ADDED;
-						for (let i = 0; i < elements.high_score.length; i++) {
-							elements.high_score[i].innerHTML = parseInt(elements.high_score[i].innerHTML) + parseInt(constants.POINTS_ADDED);
+						for (let high_score of elements.high_score) {
+							high_score.innerHTML = parseInt(high_score.innerHTML) + parseInt(constants.POINTS_ADDED);
 						}
 							Helper.toggle_class_for_animation(elements.add_points, 'add_points_animation');
 							Helper.remove_class(elements.submit_textfield, 'shake_textfield_animation');
@@ -79,24 +80,24 @@ module.exports = (function() {
 		}
 	}
 
-	function start_slider_countdown() {
+	function Start_slider_countdown() {
 		const countdown_panel = Countdown_panel.create_countdown_panel();
 		return countdown_panel.start_countdown_timer();
 	}
 
-	function start_slider() {
+	function Start_slider() {
 		const slider = Slider.create_slider();
 		return slider.start_slider();
 	}
 
-	function display_fail_panel() {
+	function Display_fail_panel() {
 		Helper.transition_end(elements.images, () => {
 			elements.result_text.innerHTML = text.fail_message;
 			Helper.show_element(elements.fail_background);
 		});					
 	}
 
-	function reset_images() {
+	function Reset_images() {
 		elements.images.style.marginLeft = '100%';
 		elements.images.style.transition = '0s';
 		for (let i = 0; i < elements.image.length; i++) {

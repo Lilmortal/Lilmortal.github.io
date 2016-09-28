@@ -1,4 +1,5 @@
-// is it really the best way??? look up CommonJS/AMD (RequireJS)/ES6 import/export (<-- I guess this is OK so far)
+// ES6 import/export OR MODULE.EXPORTS?
+// OKAY THIS HELPER THING SUCKS! FIND ALTERNATIVE (AND UPPER CASE ALL THIS FUNCTIONS)
 module.exports = (function() {
 	"use strict";
 	

@@ -1,5 +1,6 @@
 module.exports = (function() {
 	const config = {
+			// HMMMM SHOULD ALL THE VARIABLES HERE HAVE UPPER CASE CHARACTERS?
 		elements: {
 			// images
 			images: document.getElementsByClassName('images')[0],

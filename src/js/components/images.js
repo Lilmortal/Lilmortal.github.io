@@ -22,22 +22,24 @@ module.exports = (function() {
 			.then(this.get_status)
 			.then(this.get_json)
 			.then((response) => {
-				const heroes = response.result.heroes;
 				const fragment = document.createDocumentFragment();
 
-				for (let i = 0; i < heroes.length; i++) {
+				for (let hero of response.result.heroes) {
 					const image = document.createElement('img');
 					image.className = 'image';
-					image.src = text.image_url + heroes[i].name.replace('npc_dota_hero_', '') + text.image_size;
+					image.src = text.image_url + hero.name.replace('npc_dota_hero_', '') + text.image_size;
 					//It should be Tuskar, not Tusk!
-					if (heroes[i].localized_name === 'Tusk') {
-						heroes[i].localized_name = 'Tuskar';
+					if (hero.localized_name === 'Tusk') {
+						hero.localized_name = 'Tuskar';
 					}
-					image.name = heroes[i].localized_name;
+					image.name = hero.localized_name;
 					fragment.appendChild(image);
 				}
 				elements.images.appendChild(fragment);
 			})
+			.catch((e) => {
+				console.log(e);
+			});
 		}
 	}
 

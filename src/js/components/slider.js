@@ -19,6 +19,7 @@ module.exports = (function() {
 		},
 
 		slider_panel: {
+			// USE REQUESTANIMATIONFRAME, DOESNT WORK WITH PROMISE.... TRY USING GENERATORS? SEE IF IT WORKS --- THIS IS SO LAGGY
 			slide() {
 				const screen_width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 				const images_panel_width = (screen_width - elements.images_panel.offsetWidth / 2) + elements.images_panel.offsetWidth;
@@ -40,6 +41,9 @@ module.exports = (function() {
 					Helper.show_element(elements.slider_panel);
 					this.slide();
 					resolve();
+				})
+				.catch((e) => {
+					console.log(e);
 				});
 				return slider_promise;
 			}
