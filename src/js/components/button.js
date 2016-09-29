@@ -10,10 +10,7 @@ module.exports = (function() {
 	const Helper = require('../helper.js');
 	const Config = require('../config.js');
 
-	// FIND ALTERNATIVE TO THIS
-	const elements = Config.elements;
-	const constants = Config.constants;
-	const text = Config.text;
+	const {elements, constants, text} = Config;
 	
 	let image_iteration = 0;
 

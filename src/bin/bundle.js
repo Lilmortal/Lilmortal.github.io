@@ -44,30 +44,26 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
-	(function () {
-		"use strict";
+	__webpack_require__(1);
+	__webpack_require__(4);
 
-		__webpack_require__(1);
-		__webpack_require__(4);
+	const Button = __webpack_require__(7);
+	const Textfield = __webpack_require__(12);
+	const Images = __webpack_require__(13);
 
-		const Button = __webpack_require__(6);
-		const Textfield = __webpack_require__(11);
-		const Images = __webpack_require__(12);
+	Images.load_images();
 
-		Images.load_images();
+	const start_button = Button.create_button('start_button');
+	start_button.click('start_game');
 
-		const start_button = Button.create_button('start_button');
-		start_button.click('start_game');
+	const fail_button = Button.create_button('fail_button');
+	fail_button.click('restart_game');
 
-		const fail_button = Button.create_button('fail_button');
-		fail_button.click('restart_game');
+	const submit_button = Button.create_button('submit_button');
+	submit_button.click('submit');
 
-		const submit_button = Button.create_button('submit_button');
-		submit_button.click('submit');
-
-		const submit_textfield = Textfield.create_textfield('submit_textfield');
-		submit_textfield.submit();
-	})();
+	const submit_textfield = Textfield.create_textfield('submit_textfield');
+	submit_textfield.submit();
 
 /***/ },
 /* 1 */
@@ -424,7 +420,8 @@
 
 
 /***/ },
-/* 6 */
+/* 6 */,
+/* 7 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -434,14 +431,12 @@
 	module.exports = function () {
 		"use strict";
 
-		const Countdown_panel = __webpack_require__(7);
-		const Slider = __webpack_require__(10);
-		const Helper = __webpack_require__(8);
-		const Config = __webpack_require__(9);
+		const Countdown_panel = __webpack_require__(8);
+		const Slider = __webpack_require__(11);
+		const Helper = __webpack_require__(9);
+		const Config = __webpack_require__(10);
 
-		const elements = Config.elements;
-		const constants = Config.constants;
-		const text = Config.text;
+		const { elements, constants, text } = Config;
 
 		let image_iteration = 0;
 
@@ -460,9 +455,9 @@
 					start_game() {
 						Helper.toggle_class_for_animation(elements.wrapper, 'grayscale_background_animation');
 						Helper.hide_element(elements.instruction_panel);
-						start_slider_countdown().then(response => {
-							start_slider().then(response => {
-								display_fail_panel(response);
+						Start_slider_countdown().then(response => {
+							Start_slider().then(response => {
+								Display_fail_panel(response);
 							});
 						});
 					}
@@ -475,7 +470,7 @@
 					},
 					restart_game() {
 						Helper.hide_element(elements.fail_background, elements.slider_panel);
-						reset_images();
+						Reset_images();
 						Helper.show_element(elements.instruction_panel);
 					}
 				},
@@ -490,8 +485,8 @@
 							Helper.hide_element(elements.image[image_iteration]);
 							image_iteration++;
 							elements.add_points.innerHTML = '+' + constants.POINTS_ADDED;
-							for (let i = 0; i < elements.high_score.length; i++) {
-								elements.high_score[i].innerHTML = parseInt(elements.high_score[i].innerHTML) + parseInt(constants.POINTS_ADDED);
+							for (let high_score of elements.high_score) {
+								high_score.innerHTML = parseInt(high_score.innerHTML) + parseInt(constants.POINTS_ADDED);
 							}
 							Helper.toggle_class_for_animation(elements.add_points, 'add_points_animation');
 							Helper.remove_class(elements.submit_textfield, 'shake_textfield_animation');
@@ -508,24 +503,24 @@
 			}
 		};
 
-		function start_slider_countdown() {
+		function Start_slider_countdown() {
 			const countdown_panel = Countdown_panel.create_countdown_panel();
 			return countdown_panel.start_countdown_timer();
 		}
 
-		function start_slider() {
+		function Start_slider() {
 			const slider = Slider.create_slider();
 			return slider.start_slider();
 		}
 
-		function display_fail_panel() {
+		function Display_fail_panel() {
 			Helper.transition_end(elements.images, () => {
 				elements.result_text.innerHTML = text.fail_message;
 				Helper.show_element(elements.fail_background);
 			});
 		}
 
-		function reset_images() {
+		function Reset_images() {
 			elements.images.style.marginLeft = '100%';
 			elements.images.style.transition = '0s';
 			for (let i = 0; i < elements.image.length; i++) {
@@ -545,7 +540,7 @@
 	}();
 
 /***/ },
-/* 7 */
+/* 8 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -554,11 +549,10 @@
 	module.exports = function () {
 		"use strict";
 
-		const Helper = __webpack_require__(8);
-		const Config = __webpack_require__(9);
+		const Helper = __webpack_require__(9);
+		const Config = __webpack_require__(10);
 
-		const elements = Config.elements;
-		const constants = Config.constants;
+		const { elements, constants } = Config;
 
 		const Countdown_panel = {
 			create_countdown_panel() {
@@ -587,27 +581,28 @@
 	}();
 
 /***/ },
-/* 8 */
+/* 9 */
 /***/ function(module, exports) {
 
-	// is it really the best way??? look up CommonJS/AMD (RequireJS)/ES6 import/export (<-- I guess this is OK so far)
+	// ES6 import/export OR MODULE.EXPORTS?
+	// OKAY THIS HELPER THING SUCKS! FIND ALTERNATIVE (AND UPPER CASE ALL THIS FUNCTIONS)
 	module.exports = function () {
 		"use strict";
 
 		const ILLEGAL_CHARACTERS = new RegExp(/[\-\s]+/);
 
 		/**
-	  * Convert string to lower case and remove illegal characters.
-	  */
+	 * Convert string to lower case and remove illegal characters.
+	 */
 		String.prototype.toLowerCaseAndRemoveIllegalCharacters = function () {
 			let lowerCaseValue = this.toLowerCase();
 			return lowerCaseValue.replace(ILLEGAL_CHARACTERS, '');
 		};
 
 		/**
-	  * Find which CSS transition events end.
-	  * https://jonsuh.com/blog/detect-the-end-of-css-animations-and-transitions-with-javascript/
-	  */
+	 * Find which CSS transition events end.
+	 * https://jonsuh.com/blog/detect-the-end-of-css-animations-and-transitions-with-javascript/
+	 */
 		function which_transition_event() {
 			var t,
 			    el = document.createElement("fakeelement");
@@ -765,66 +760,67 @@
 	}();
 
 /***/ },
-/* 9 */
+/* 10 */
 /***/ function(module, exports) {
 
 	module.exports = function () {
-		const config = {
-			elements: {
-				// images
-				images: document.getElementsByClassName('images')[0],
-				images_panel: document.getElementsByClassName('images_panel')[0],
-				image: document.getElementsByClassName('image'),
+				const config = {
+							// HMMMM SHOULD ALL THE VARIABLES HERE HAVE UPPER CASE CHARACTERS?
+							elements: {
+										// images
+										images: document.getElementsByClassName('images')[0],
+										images_panel: document.getElementsByClassName('images_panel')[0],
+										image: document.getElementsByClassName('image'),
 
-				//fail
-				fail_background: document.getElementsByClassName('fail_background')[0],
-				fail_button: document.getElementById('fail_button'),
+										//fail
+										fail_background: document.getElementsByClassName('fail_background')[0],
+										fail_button: document.getElementById('fail_button'),
 
-				//submit
-				submit_textfield: document.getElementById('submit_textfield'),
-				submit_button: document.getElementById('submit_button'),
+										//submit
+										submit_textfield: document.getElementById('submit_textfield'),
+										submit_button: document.getElementById('submit_button'),
 
-				//instruction
-				instruction_panel: document.getElementsByClassName('instruction_panel')[0],
-				start_button: document.getElementById('start_button'),
+										//instruction
+										instruction_panel: document.getElementsByClassName('instruction_panel')[0],
+										start_button: document.getElementById('start_button'),
 
-				//countdown
-				countdown_panel: document.getElementById('countdown_panel'),
+										//countdown
+										countdown_panel: document.getElementById('countdown_panel'),
 
-				//slider
-				add_points: document.getElementsByClassName('add_points')[0],
-				slider_panel: document.getElementsByClassName('slider_panel')[0],
-				high_score: document.getElementsByClassName('high_score'),
-				result_text: document.getElementsByClassName('result_text')[0],
+										//slider
+										add_points: document.getElementsByClassName('add_points')[0],
+										slider_panel: document.getElementsByClassName('slider_panel')[0],
+										high_score: document.getElementsByClassName('high_score'),
+										result_text: document.getElementsByClassName('result_text')[0],
 
-				//body
-				wrapper: document.getElementsByClassName('wrapper')[0]
-			},
+										//body
+										wrapper: document.getElementsByClassName('wrapper')[0]
+							},
 
-			constants: {
-				COUNTDOWN_DURATION: 3,
-				SLIDE_DURATION: 10,
-				WARNING_THRESHOLD: 30,
-				POINTS_ADDED: 100
-			},
+							constants: {
+										COUNTDOWN_DURATION: 3,
+										SLIDE_DURATION: 10,
+										WARNING_THRESHOLD: 30,
+										POINTS_ADDED: 100
+							},
 
-			text: {
-				//fail
-				fail_message: 'You lose...',
+							text: {
+										//fail
+										fail_message: 'You lose...',
 
-				//win
-				success_message: 'Ez Win!',
+										//win
+										success_message: 'Ez Win!',
 
-				images_json_url: 'https://lilmortal-test.apigee.net/getdotaheroes?key=6C1CF76C90768388618F348BB73EE015&language=en_us&format=JSON',
-				image_url: 'http://cdn.dota2.com/apps/dota2/images/heroes/',
-				image_size: '_lg.png'
-			}
-		};
-		return config;
+										images_json_url: 'https://lilmortal-test.apigee.net/getdotaheroes?key=6C1CF76C90768388618F348BB73EE015&language=en_us&format=JSON',
+										image_url: 'http://cdn.dota2.com/apps/dota2/images/heroes/',
+										image_size: '_lg.png'
+							}
+				};
+				return config;
 	}();
 
 /***/ },
-/* 10 */
+/* 11 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/**
@@ -835,12 +831,10 @@
 	module.exports = function () {
 		"use strict";
 
-		const Helper = __webpack_require__(8);
-		const Config = __webpack_require__(9);
+		const Helper = __webpack_require__(9);
+		const Config = __webpack_require__(10);
 
-		const elements = Config.elements;
-		const constants = Config.constants;
-		const text = Config.text;
+		const { elements, constants } = Config;
 
 		const Slider = {
 			create_slider() {
@@ -848,6 +842,7 @@
 			},
 
 			slider_panel: {
+				// USE REQUESTANIMATIONFRAME, DOESNT WORK WITH PROMISE.... TRY USING GENERATORS? SEE IF IT WORKS --- THIS IS SO LAGGY
 				slide() {
 					const screen_width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 					const images_panel_width = screen_width - elements.images_panel.offsetWidth / 2 + elements.images_panel.offsetWidth;
@@ -869,6 +864,8 @@
 						Helper.show_element(elements.slider_panel);
 						this.slide();
 						resolve();
+					}).catch(e => {
+						console.log(e);
 					});
 					return slider_promise;
 				}
@@ -878,16 +875,16 @@
 	}();
 
 /***/ },
-/* 11 */
+/* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = function () {
 		"use strict";
 
-		const Button = __webpack_require__(6);
-		const Config = __webpack_require__(9);
+		const Button = __webpack_require__(7);
+		const Config = __webpack_require__(10);
 
-		const elements = Config.elements;
+		const { elements } = Config;
 
 		const Textfield = {
 			create_textfield(callback) {
@@ -912,21 +909,20 @@
 	}();
 
 /***/ },
-/* 12 */
+/* 13 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = function () {
 		"use strict";
 
-		const Config = __webpack_require__(9);
+		const Config = __webpack_require__(10);
 
-		const elements = Config.elements;
-		const text = Config.text;
+		const { elements, text } = Config;
 
 		const Images = {
 			get_status(response) {
 				if (response.status !== 200) {
-					return Promise.reject(new Error("Failed to load images, error status: " + response.statusText));
+					return Promise.reject(new Error(response.statusText));
 				} else {
 					return Promise.resolve(response);
 				}
@@ -942,7 +938,7 @@
 					for (let i = 0; i < heroes.length; i++) {
 						const image = document.createElement('img');
 						image.className = 'image';
-						image.src = text.image_url + heroes[i].name.replace('npc_dota_hero_', '') + text.image_size;
+						image.src = 'http://cdn.dota2.com/apps/dota2/images/heroes/' + heroes[i].name.replace('npc_dota_hero_', '') + '_lg.png';
 						//It should be Tuskar, not Tusk!
 						if (heroes[i].localized_name === 'Tusk') {
 							heroes[i].localized_name = 'Tuskar';

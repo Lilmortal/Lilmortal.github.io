@@ -7,8 +7,7 @@ module.exports = (function() {
 	const Helper = require('../helper.js');
 	const Config = require('../config.js');
 
-	const elements = Config.elements;
-	const constants = Config.constants;
+	const {elements, constants} = Config;
 
 	const Countdown_panel = {
 		create_countdown_panel() {

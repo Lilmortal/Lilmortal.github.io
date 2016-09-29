@@ -9,9 +9,7 @@ module.exports = (function() {
 	const Helper = require('../helper.js');
 	const Config = require('../config.js');
 
-	const elements = Config.elements;
-	const constants = Config.constants;
-	const text = Config.text;
+	const {elements, constants} = Config;
 
 	const Slider = {	
 		create_slider() {

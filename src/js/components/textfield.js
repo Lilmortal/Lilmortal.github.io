@@ -3,7 +3,7 @@ module.exports = (function() {
 	const Button = require('./button.js');
 	const Config = require('../config.js');
 
-	const elements = Config.elements;
+	const {elements} = Config;
 	
 	const Textfield = {
 		create_textfield(callback) {
