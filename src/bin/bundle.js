@@ -44,25 +44,29 @@
 /* 0 */
 /***/ function(module, exports, __webpack_require__) {
 
+	'use strict';
+
+	var _button = __webpack_require__(6);
+
+	var _textfield = __webpack_require__(11);
+
+	var _images = __webpack_require__(12);
+
 	__webpack_require__(1);
 	__webpack_require__(4);
 
-	const Button = __webpack_require__(7);
-	const Textfield = __webpack_require__(12);
-	const Images = __webpack_require__(13);
+	_images.Images.load_images();
 
-	Images.load_images();
-
-	const start_button = Button.create_button('start_button');
+	var start_button = _button.Button.create_button('start_button');
 	start_button.click('start_game');
 
-	const fail_button = Button.create_button('fail_button');
+	var fail_button = _button.Button.create_button('fail_button');
 	fail_button.click('restart_game');
 
-	const submit_button = Button.create_button('submit_button');
+	var submit_button = _button.Button.create_button('submit_button');
 	submit_button.click('submit');
 
-	const submit_textfield = Textfield.create_textfield('submit_textfield');
+	var submit_textfield = _textfield.Textfield.create_textfield('submit_textfield');
 	submit_textfield.submit();
 
 /***/ },
@@ -420,212 +424,265 @@
 
 
 /***/ },
-/* 6 */,
-/* 7 */
+/* 6 */
 /***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	exports.Button = undefined;
+
+	var _countdown_panel = __webpack_require__(7);
+
+	var _slider = __webpack_require__(10);
+
+	var _helper = __webpack_require__(8);
+
+	var _config = __webpack_require__(9);
 
 	/**
 	 * This is a generic button, which has a multitude of generic to specific functions for all possible scenarios.
 	 * @param {Object} Button
 	 */
-	module.exports = function () {
-		"use strict";
+	var elements = _config.Config.elements;
+	var constants = _config.Config.constants;
+	var text = _config.Config.text;
 
-		const Countdown_panel = __webpack_require__(8);
-		const Slider = __webpack_require__(11);
-		const Helper = __webpack_require__(9);
-		const Config = __webpack_require__(10);
 
-		const { elements, constants, text } = Config;
+	var image_iteration = 0;
 
-		let image_iteration = 0;
+	var Button = exports.Button = {
+		create_button: function create_button(type) {
+			return Object.create(this.button[type]);
+		},
 
-		const Button = {
-			create_button(type) {
-				return Object.create(this.button[type]);
+
+		button: {
+			start_button: {
+				click: function click(callback) {
+					var _this = this;
+
+					elements.start_button.addEventListener('click', function () {
+						_this[callback]();
+					});
+				},
+				start_game: function start_game() {
+					_helper.Helper.toggle_class_for_animation(elements.wrapper, 'grayscale_background_animation');
+					_helper.Helper.hide_element(elements.instruction_panel);
+					Start_slider_countdown().then(function (response) {
+						Start_slider().then(function (response) {
+							Display_fail_panel(response);
+						});
+					});
+				}
 			},
+			fail_button: {
+				click: function click(callback) {
+					var _this2 = this;
 
-			button: {
-				start_button: {
-					click(callback) {
-						elements.start_button.addEventListener('click', () => {
-							this[callback]();
-						});
-					},
-					start_game() {
-						Helper.toggle_class_for_animation(elements.wrapper, 'grayscale_background_animation');
-						Helper.hide_element(elements.instruction_panel);
-						Start_slider_countdown().then(response => {
-							Start_slider().then(response => {
-								Display_fail_panel(response);
-							});
-						});
-					}
+					elements.fail_button.addEventListener('click', function () {
+						_this2[callback]();
+					});
 				},
-				fail_button: {
-					click(callback) {
-						elements.fail_button.addEventListener('click', () => {
-							this[callback]();
-						});
-					},
-					restart_game() {
-						Helper.hide_element(elements.fail_background, elements.slider_panel);
-						Reset_images();
-						Helper.show_element(elements.instruction_panel);
-					}
+				restart_game: function restart_game() {
+					_helper.Helper.hide_element(elements.fail_background, elements.slider_panel);
+					Reset_images();
+					_helper.Helper.show_element(elements.instruction_panel);
+				}
+			},
+			submit_button: {
+				click: function click(callback) {
+					var _this3 = this;
+
+					elements.submit_button.addEventListener('click', function () {
+						_this3[callback]();
+					});
 				},
-				submit_button: {
-					click(callback) {
-						elements.submit_button.addEventListener('click', () => {
-							this[callback]();
-						});
-					},
-					submit() {
-						if (Helper.validate_if_input_is_hero_name(elements.image[image_iteration], elements.submit_textfield)) {
-							Helper.hide_element(elements.image[image_iteration]);
-							image_iteration++;
-							elements.add_points.innerHTML = '+' + constants.POINTS_ADDED;
-							for (let high_score of elements.high_score) {
+				submit: function submit() {
+					if (_helper.Helper.validate_if_input_is_hero_name(elements.image[image_iteration], elements.submit_textfield)) {
+						_helper.Helper.hide_element(elements.image[image_iteration]);
+						image_iteration++;
+						elements.add_points.innerHTML = '+' + constants.POINTS_ADDED;
+						var _iteratorNormalCompletion = true;
+						var _didIteratorError = false;
+						var _iteratorError = undefined;
+
+						try {
+							for (var _iterator = elements.high_score[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+								var high_score = _step.value;
+
 								high_score.innerHTML = parseInt(high_score.innerHTML) + parseInt(constants.POINTS_ADDED);
 							}
-							Helper.toggle_class_for_animation(elements.add_points, 'add_points_animation');
-							Helper.remove_class(elements.submit_textfield, 'shake_textfield_animation');
-						} else {
-							Helper.toggle_class_for_animation(elements.submit_textfield, 'shake_textfield_animation');
+						} catch (err) {
+							_didIteratorError = true;
+							_iteratorError = err;
+						} finally {
+							try {
+								if (!_iteratorNormalCompletion && _iterator.return) {
+									_iterator.return();
+								}
+							} finally {
+								if (_didIteratorError) {
+									throw _iteratorError;
+								}
+							}
 						}
-						elements.submit_textfield.value = '';
-						if (typeof elements.image[image_iteration] === 'undefined') {
-							elements.result_text.innerHTML = text.success_message;
-							Helper.show_element(elements.fail_background);
-						}
+
+						_helper.Helper.toggle_class_for_animation(elements.add_points, 'add_points_animation');
+						_helper.Helper.remove_class(elements.submit_textfield, 'shake_textfield_animation');
+					} else {
+						_helper.Helper.toggle_class_for_animation(elements.submit_textfield, 'shake_textfield_animation');
+					}
+					elements.submit_textfield.value = '';
+					if (typeof elements.image[image_iteration] === 'undefined') {
+						elements.result_text.innerHTML = text.success_message;
+						_helper.Helper.show_element(elements.fail_background);
 					}
 				}
 			}
-		};
-
-		function Start_slider_countdown() {
-			const countdown_panel = Countdown_panel.create_countdown_panel();
-			return countdown_panel.start_countdown_timer();
 		}
+	};
 
-		function Start_slider() {
-			const slider = Slider.create_slider();
-			return slider.start_slider();
+	function Start_slider_countdown() {
+		var countdown_panel = _countdown_panel.Countdown_panel.create_countdown_panel();
+		return countdown_panel.start_countdown_timer();
+	}
+
+	function Start_slider() {
+		var slider = _slider.Slider.create_slider();
+		return slider.start_slider();
+	}
+
+	function Display_fail_panel() {
+		_helper.Helper.transition_end(elements.images, function () {
+			elements.result_text.innerHTML = text.fail_message;
+			_helper.Helper.show_element(elements.fail_background);
+		});
+	}
+
+	function Reset_images() {
+		elements.images.style.marginLeft = '100%';
+		elements.images.style.transition = '0s';
+		for (var i = 0; i < elements.image.length; i++) {
+			elements.image[i].style.display = 'block';
 		}
-
-		function Display_fail_panel() {
-			Helper.transition_end(elements.images, () => {
-				elements.result_text.innerHTML = text.fail_message;
-				Helper.show_element(elements.fail_background);
-			});
+		image_iteration = 0;
+		for (var _i = 0; _i < elements.high_score.length; _i++) {
+			elements.high_score[_i].innerHTML = 0;
 		}
-
-		function Reset_images() {
-			elements.images.style.marginLeft = '100%';
-			elements.images.style.transition = '0s';
-			for (let i = 0; i < elements.image.length; i++) {
-				elements.image[i].style.display = 'block';
-			}
-			image_iteration = 0;
-			for (let i = 0; i < elements.high_score.length; i++) {
-				elements.high_score[i].innerHTML = 0;
-			}
-			elements.submit_textfield.value = '';
-			Helper.remove_class(elements.submit_textfield, 'shake_textfield_animation');
-			Helper.remove_class(elements.add_points, 'add_points_animation');
-			elements.add_points.style.opacity = 0;
-		}
-
-		return Button;
-	}();
+		elements.submit_textfield.value = '';
+		_helper.Helper.remove_class(elements.submit_textfield, 'shake_textfield_animation');
+		_helper.Helper.remove_class(elements.add_points, 'add_points_animation');
+		elements.add_points.style.opacity = 0;
+	}
 
 /***/ },
-/* 8 */
+/* 7 */
 /***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	exports.Countdown_panel = undefined;
+
+	var _helper = __webpack_require__(8);
+
+	var _config = __webpack_require__(9);
 
 	/**
 	 * This is the countdown panel; it will countdown until it reaches 0 before it displays the slider panel.
 	 */
-	module.exports = function () {
-		"use strict";
 
-		const Helper = __webpack_require__(9);
-		const Config = __webpack_require__(10);
+	var elements = _config.Config.elements;
+	var constants = _config.Config.constants;
+	var Countdown_panel = exports.Countdown_panel = {
+		create_countdown_panel: function create_countdown_panel() {
+			return Object.create(this.countdown_panel);
+		},
 
-		const { elements, constants } = Config;
-
-		const Countdown_panel = {
-			create_countdown_panel() {
-				return Object.create(this.countdown_panel);
-			},
-			countdown_panel: {
-				start_countdown_timer() {
-					let countdown_duration = constants.COUNTDOWN_DURATION;
-					const countdown_promise = new Promise((resolve, reject) => {
-						Helper.show_element(elements.countdown_panel);
-						elements.countdown_panel.innerHTML = "";
-						const countdown_timer = setInterval(() => {
-							if (countdown_duration === 0) {
-								clearInterval(countdown_timer);
-								Helper.hide_element(elements.countdown_panel);
-								resolve();
-							}
-							elements.countdown_panel.innerHTML = countdown_duration--;
-						}, 1000);
-					});
-					return countdown_promise;
-				}
-			}
-		};
-		return Countdown_panel;
-	}();
-
-/***/ },
-/* 9 */
-/***/ function(module, exports) {
-
-	// ES6 import/export OR MODULE.EXPORTS?
-	// OKAY THIS HELPER THING SUCKS! FIND ALTERNATIVE (AND UPPER CASE ALL THIS FUNCTIONS)
-	module.exports = function () {
-		"use strict";
-
-		const ILLEGAL_CHARACTERS = new RegExp(/[\-\s]+/);
-
-		/**
-	 * Convert string to lower case and remove illegal characters.
-	 */
-		String.prototype.toLowerCaseAndRemoveIllegalCharacters = function () {
-			let lowerCaseValue = this.toLowerCase();
-			return lowerCaseValue.replace(ILLEGAL_CHARACTERS, '');
-		};
-
-		/**
-	 * Find which CSS transition events end.
-	 * https://jonsuh.com/blog/detect-the-end-of-css-animations-and-transitions-with-javascript/
-	 */
-		function which_transition_event() {
-			var t,
-			    el = document.createElement("fakeelement");
-
-			var transitions = {
-				"transition": "transitionend",
-				"OTransition": "oTransitionEnd",
-				"MozTransition": "transitionend",
-				"WebkitTransition": "webkitTransitionEnd"
-			};
-
-			for (t in transitions) {
-				if (el.style[t] !== undefined) {
-					return transitions[t];
-				}
+		countdown_panel: {
+			start_countdown_timer: function start_countdown_timer() {
+				var countdown_duration = constants.COUNTDOWN_DURATION;
+				var countdown_promise = new Promise(function (resolve, reject) {
+					_helper.Helper.show_element(elements.countdown_panel);
+					elements.countdown_panel.innerHTML = "";
+					var countdown_timer = setInterval(function () {
+						if (countdown_duration === 0) {
+							clearInterval(countdown_timer);
+							_helper.Helper.hide_element(elements.countdown_panel);
+							resolve();
+						}
+						elements.countdown_panel.innerHTML = countdown_duration--;
+					}, 1000);
+				});
+				return countdown_promise;
 			}
 		}
+	};
+
+/***/ },
+/* 8 */
+/***/ function(module, exports) {
+
+	"use strict";
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	// OKAY THIS HELPER THING SUCKS! FIND ALTERNATIVE (AND UPPER CASE ALL THIS FUNCTIONS)
+	var ILLEGAL_CHARACTERS = new RegExp(/[\-\s]+/);
+
+	/**
+	* Convert string to lower case and remove illegal characters.
+	*/
+	String.prototype.toLowerCaseAndRemoveIllegalCharacters = function () {
+		var lowerCaseValue = this.toLowerCase();
+		return lowerCaseValue.replace(ILLEGAL_CHARACTERS, '');
+	};
+
+	/**
+	* Find which CSS transition events end.
+	* https://jonsuh.com/blog/detect-the-end-of-css-animations-and-transitions-with-javascript/
+	*/
+	function which_transition_event() {
+		var t,
+		    el = document.createElement("fakeelement");
+
+		var transitions = {
+			"transition": "transitionend",
+			"OTransition": "oTransitionEnd",
+			"MozTransition": "transitionend",
+			"WebkitTransition": "webkitTransitionEnd"
+		};
+
+		for (t in transitions) {
+			if (el.style[t] !== undefined) {
+				return transitions[t];
+			}
+		}
+	}
+
+	var Helper = exports.Helper = {
+		/**
+	  * Bind the focused element; it will call the callback when transition ends.
+	  * @param  {Object} element - the object which will be binded by a transition end listener.
+	  * @param  {Function} callback - the callback that will be called when transition end.
+	  */
+		transition_end: function transition_end(element, callback) {
+			var transition_event = which_transition_event();
+			element.addEventListener(transition_event, callback);
+		},
+
 
 		/**
 	  * @param {Object} el - The element that we want to find the current position is relative to the window.
 	  * https://www.kirupa.com/html5/get_element_position_using_javascript.htm
 	  */
-		function get_position(el) {
+		get_position: function get_position(el) {
 			var xPos = 0;
 			var yPos = 0;
 
@@ -649,77 +706,72 @@
 				x: xPos,
 				y: yPos
 			};
-		}
-
-		/**
-	  * Bind the focused element; it will call the callback when transition ends.
-	  * @param  {Object} element - the object which will be binded by a transition end listener.
-	  * @param  {Function} callback - the callback that will be called when transition end.
-	  */
-		function transition_end(element, callback) {
-			const transition_event = which_transition_event();
-			element.addEventListener(transition_event, callback);
-		}
+		},
 
 		/**
 	  * Display the element.
 	  * @param  {Object} element - The element that will be displayed.
 	  * @param  {String} display - The display type.
 	  */
-		function show_element(element, display) {
+		show_element: function show_element(element, display) {
 			if (typeof display !== 'undefined' && display !== '') {
 				element.style.display = display;
 			} else {
 				element.style.display = 'flex';
 			}
-		}
+		},
+
 
 		/**
 	  * Hide the element.
 	  * @param  {Object} element - The element that will be hidden.
 	  */
-		function hide_element(element) {
-			for (let i = 0; i < arguments.length; i++) {
+		hide_element: function hide_element(element) {
+			for (var i = 0; i < arguments.length; i++) {
 				arguments[i].style.display = 'none';
 			}
-		}
+		},
+
 
 		/**
 	  * Add a CSS class to an element.
 	  * @param  {Object} element - The element that will have the added CSS class.
 	  * @param  {String} className - The CSS class name.
 	  */
-		function add_class(element, className) {
+		add_class: function add_class(element, className) {
 			if (!element.classList.contains(className)) {
 				element.classList.add(className);
 			}
-		}
+		},
+
 
 		/**
 	  * Remove a CSS class from an element.
 	  * @param  {Object} element - The element that will have the specified CSS class removed.
 	  * @param  {String} className - The CSS class name.
 	  */
-		function remove_class(element, className) {
+		remove_class: function remove_class(element, className) {
 			if (element.classList.contains(className)) {
 				element.classList.remove(className);
 			}
 			// weird hack rule - https://css-tricks.com/restart-css-animation/
 			void element.offsetWidth;
-		}
+		},
+
 
 		/**
 	  * Toggle whether to add or remove CSS class.
 	  * @param  {Object} element - The element that will add or remove the CSS class.
 	  * @param  {String} className - The CSS class name.
 	  */
-		function toggle_class(element, className) {
+		toggle_class: function toggle_class(element, className) {
 			if (element.classList.contains(className)) {
-				remove_class(element, className);
+				this.remove_class(element, className);
 			} else {
-				add_class(element, className);
+				this.add_class(element, className);
 			}
-		}
+		},
+
 
 		//IM TIRED, WHATS A GOOD NAME FOR THIS
 		/**
@@ -727,232 +779,233 @@
 	  * @param  {Object} element - The element that will add or remove the CSS class.
 	  * @param  {String} className - The CSS class name.
 	  */
-		function toggle_class_for_animation(element, className) {
+		toggle_class_for_animation: function toggle_class_for_animation(element, className) {
 			if (element.classList.contains(className)) {
-				remove_class(element, className);
+				this.remove_class(element, className);
 			}
-			add_class(element, className);
-		}
+			this.add_class(element, className);
+		},
+
 
 		/**
 	  * Validate if user input is a string.
 	  * @param {Object} image - The image that is being validated.
 	  * @param  {Object} textfield - The textfield that has the user input.
 	  */
-		function validate_if_input_is_hero_name(image, textfield) {
+		validate_if_input_is_hero_name: function validate_if_input_is_hero_name(image, textfield) {
 			if (image.name.toLowerCaseAndRemoveIllegalCharacters() === textfield.value.toLowerCaseAndRemoveIllegalCharacters()) {
 				return true;
 			}
 			return false;
 		}
+	};
 
-		return {
-			transition_end,
-			get_position,
-			show_element,
-			hide_element,
-			add_class,
-			remove_class,
-			toggle_class,
-			toggle_class_for_animation,
-			validate_if_input_is_hero_name
-		};
-	}();
+/***/ },
+/* 9 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+			value: true
+	});
+	var Config = exports.Config = {
+			// HMMMM SHOULD ALL THE VARIABLES HERE HAVE UPPER CASE CHARACTERS?
+			elements: {
+					// images
+					images: document.getElementsByClassName('images')[0],
+					images_panel: document.getElementsByClassName('images_panel')[0],
+					image: document.getElementsByClassName('image'),
+
+					//fail
+					fail_background: document.getElementsByClassName('fail_background')[0],
+					fail_button: document.getElementById('fail_button'),
+
+					//submit
+					submit_textfield: document.getElementById('submit_textfield'),
+					submit_button: document.getElementById('submit_button'),
+
+					//instruction
+					instruction_panel: document.getElementsByClassName('instruction_panel')[0],
+					start_button: document.getElementById('start_button'),
+
+					//countdown
+					countdown_panel: document.getElementById('countdown_panel'),
+
+					//slider
+					add_points: document.getElementsByClassName('add_points')[0],
+					slider_panel: document.getElementsByClassName('slider_panel')[0],
+					high_score: document.getElementsByClassName('high_score'),
+					result_text: document.getElementsByClassName('result_text')[0],
+
+					//body
+					wrapper: document.getElementsByClassName('wrapper')[0]
+			},
+
+			constants: {
+					COUNTDOWN_DURATION: 3,
+					SLIDE_DURATION: 10,
+					WARNING_THRESHOLD: 30,
+					POINTS_ADDED: 100
+			},
+
+			text: {
+					//fail
+					fail_message: 'You lose...',
+
+					//win
+					success_message: 'Ez Win!',
+
+					images_json_url: 'https://lilmortal-test.apigee.net/getdotaheroes?key=6C1CF76C90768388618F348BB73EE015&language=en_us&format=JSON',
+					image_url: 'http://cdn.dota2.com/apps/dota2/images/heroes/',
+					image_size: '_lg.png'
+			}
+	};
 
 /***/ },
 /* 10 */
-/***/ function(module, exports) {
-
-	module.exports = function () {
-				const config = {
-							// HMMMM SHOULD ALL THE VARIABLES HERE HAVE UPPER CASE CHARACTERS?
-							elements: {
-										// images
-										images: document.getElementsByClassName('images')[0],
-										images_panel: document.getElementsByClassName('images_panel')[0],
-										image: document.getElementsByClassName('image'),
-
-										//fail
-										fail_background: document.getElementsByClassName('fail_background')[0],
-										fail_button: document.getElementById('fail_button'),
-
-										//submit
-										submit_textfield: document.getElementById('submit_textfield'),
-										submit_button: document.getElementById('submit_button'),
-
-										//instruction
-										instruction_panel: document.getElementsByClassName('instruction_panel')[0],
-										start_button: document.getElementById('start_button'),
-
-										//countdown
-										countdown_panel: document.getElementById('countdown_panel'),
-
-										//slider
-										add_points: document.getElementsByClassName('add_points')[0],
-										slider_panel: document.getElementsByClassName('slider_panel')[0],
-										high_score: document.getElementsByClassName('high_score'),
-										result_text: document.getElementsByClassName('result_text')[0],
-
-										//body
-										wrapper: document.getElementsByClassName('wrapper')[0]
-							},
-
-							constants: {
-										COUNTDOWN_DURATION: 3,
-										SLIDE_DURATION: 10,
-										WARNING_THRESHOLD: 30,
-										POINTS_ADDED: 100
-							},
-
-							text: {
-										//fail
-										fail_message: 'You lose...',
-
-										//win
-										success_message: 'Ez Win!',
-
-										images_json_url: 'https://lilmortal-test.apigee.net/getdotaheroes?key=6C1CF76C90768388618F348BB73EE015&language=en_us&format=JSON',
-										image_url: 'http://cdn.dota2.com/apps/dota2/images/heroes/',
-										image_size: '_lg.png'
-							}
-				};
-				return config;
-	}();
-
-/***/ },
-/* 11 */
 /***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	exports.Slider = undefined;
+
+	var _helper = __webpack_require__(8);
+
+	var _config = __webpack_require__(9);
 
 	/**
 	 * This is the slider that will be displayed after the countdown. It will display an endless stream of dota images that are retrieved via Dota API.
 	 * It will constantly transition to the left until it reaches to the starting position of the panel that holds the images, which in that case the game
 	 * lose. 
 	 */
-	module.exports = function () {
-		"use strict";
+	var elements = _config.Config.elements;
+	var constants = _config.Config.constants;
+	var Slider = exports.Slider = {
+		create_slider: function create_slider() {
+			return Object.create(this.slider_panel);
+		},
 
-		const Helper = __webpack_require__(9);
-		const Config = __webpack_require__(10);
 
-		const { elements, constants } = Config;
+		slider_panel: {
+			// USE REQUESTANIMATIONFRAME, DOESNT WORK WITH PROMISE.... TRY USING GENERATORS? SEE IF IT WORKS --- THIS IS SO LAGGY
+			slide: function slide() {
+				var screen_width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+				var images_panel_width = screen_width - elements.images_panel.offsetWidth / 2 + elements.images_panel.offsetWidth;
+				var warning_width_threshold = images_panel_width * constants.WARNING_THRESHOLD / 100;
+				var timer = void 0;
+				elements.images.style.marginLeft = '0';
+				elements.images.style.transition = constants.SLIDE_DURATION + 's linear';
+				_helper.Helper.remove_class(elements.images_panel, 'warning_animation');
 
-		const Slider = {
-			create_slider() {
-				return Object.create(this.slider_panel);
+				timer = setInterval(function () {
+					if (_helper.Helper.get_position(elements.images).x <= warning_width_threshold) {
+						_helper.Helper.add_class(elements.images_panel, 'warning_animation');
+						clearInterval(timer);
+					}
+				}, 1000);
 			},
+			start_slider: function start_slider() {
+				var _this = this;
 
-			slider_panel: {
-				// USE REQUESTANIMATIONFRAME, DOESNT WORK WITH PROMISE.... TRY USING GENERATORS? SEE IF IT WORKS --- THIS IS SO LAGGY
-				slide() {
-					const screen_width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-					const images_panel_width = screen_width - elements.images_panel.offsetWidth / 2 + elements.images_panel.offsetWidth;
-					const warning_width_threshold = images_panel_width * constants.WARNING_THRESHOLD / 100;
-					let timer;
-					elements.images.style.marginLeft = '0';
-					elements.images.style.transition = constants.SLIDE_DURATION + 's linear';
-					Helper.remove_class(elements.images_panel, 'warning_animation');
+				var slider_promise = new Promise(function (resolve, reject) {
+					_helper.Helper.show_element(elements.slider_panel);
+					_this.slide();
+					resolve();
+				}).catch(function (e) {
+					console.log(e);
+				});
+				return slider_promise;
+			}
+		}
+	};
 
-					timer = setInterval(() => {
-						if (Helper.get_position(elements.images).x <= warning_width_threshold) {
-							Helper.add_class(elements.images_panel, 'warning_animation');
-							clearInterval(timer);
+/***/ },
+/* 11 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	exports.Textfield = undefined;
+
+	var _button = __webpack_require__(6);
+
+	var _config = __webpack_require__(9);
+
+	var elements = _config.Config.elements;
+	var Textfield = exports.Textfield = {
+		create_textfield: function create_textfield(callback) {
+			return Object.create(this.textfield[callback]);
+		},
+
+
+		textfield: {
+			submit_textfield: {
+				submit: function submit() {
+					var submit_button = _button.Button.create_button('submit_button');
+
+					elements.submit_textfield.addEventListener('keyup', function (event) {
+						if (event.keyCode === 13) {
+							submit_button.submit();
 						}
-					}, 1000);
-				},
-				start_slider() {
-					const slider_promise = new Promise((resolve, reject) => {
-						Helper.show_element(elements.slider_panel);
-						this.slide();
-						resolve();
-					}).catch(e => {
-						console.log(e);
 					});
-					return slider_promise;
 				}
 			}
-		};
-		return Slider;
-	}();
+		}
+	};
 
 /***/ },
 /* 12 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = function () {
-		"use strict";
+	'use strict';
 
-		const Button = __webpack_require__(7);
-		const Config = __webpack_require__(10);
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	exports.Images = undefined;
 
-		const { elements } = Config;
+	var _config = __webpack_require__(9);
 
-		const Textfield = {
-			create_textfield(callback) {
-				return Object.create(this.textfield[callback]);
-			},
-
-			textfield: {
-				submit_textfield: {
-					submit() {
-						const submit_button = Button.create_button('submit_button');
-
-						elements.submit_textfield.addEventListener('keyup', event => {
-							if (event.keyCode === 13) {
-								submit_button.submit();
-							}
-						});
-					}
-				}
+	var elements = _config.Config.elements;
+	var text = _config.Config.text;
+	var Images = exports.Images = {
+		get_status: function get_status(response) {
+			if (response.status !== 200) {
+				return Promise.reject(new Error(response.statusText));
+			} else {
+				return Promise.resolve(response);
 			}
-		};
-		return Textfield;
-	}();
+		},
+		get_json: function get_json(response) {
+			return response.json();
+		},
+		load_images: function load_images() {
+			fetch(text.images_json_url).then(this.get_status).then(this.get_json).then(function (response) {
+				var heroes = response.result.heroes;
+				var fragment = document.createDocumentFragment();
 
-/***/ },
-/* 13 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = function () {
-		"use strict";
-
-		const Config = __webpack_require__(10);
-
-		const { elements, text } = Config;
-
-		const Images = {
-			get_status(response) {
-				if (response.status !== 200) {
-					return Promise.reject(new Error(response.statusText));
-				} else {
-					return Promise.resolve(response);
-				}
-			},
-			get_json(response) {
-				return response.json();
-			},
-			load_images() {
-				fetch(text.images_json_url).then(this.get_status).then(this.get_json).then(response => {
-					const heroes = response.result.heroes;
-					const fragment = document.createDocumentFragment();
-
-					for (let i = 0; i < heroes.length; i++) {
-						const image = document.createElement('img');
-						image.className = 'image';
-						image.src = 'http://cdn.dota2.com/apps/dota2/images/heroes/' + heroes[i].name.replace('npc_dota_hero_', '') + '_lg.png';
-						//It should be Tuskar, not Tusk!
-						if (heroes[i].localized_name === 'Tusk') {
-							heroes[i].localized_name = 'Tuskar';
-						}
-						image.name = heroes[i].localized_name;
-						fragment.appendChild(image);
+				for (var i = 0; i < heroes.length; i++) {
+					var image = document.createElement('img');
+					image.className = 'image';
+					image.src = 'http://cdn.dota2.com/apps/dota2/images/heroes/' + heroes[i].name.replace('npc_dota_hero_', '') + '_lg.png';
+					//It should be Tuskar, not Tusk!
+					if (heroes[i].localized_name === 'Tusk') {
+						heroes[i].localized_name = 'Tuskar';
 					}
-					elements.images.appendChild(fragment);
-				});
-			}
-		};
-
-		return Images;
-	}();
+					image.name = heroes[i].localized_name;
+					fragment.appendChild(image);
+				}
+				elements.images.appendChild(fragment);
+			});
+		}
+	};
 
 /***/ }
 /******/ ]);

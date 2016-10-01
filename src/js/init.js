@@ -1,9 +1,9 @@
 require('../css/main.scss');
 require('../img/background_image.jpg');
 
-const Button = require('./components/button.js');
-const Textfield = require('./components/textfield.js');
-const Images = require('./components/images.js');
+import {Button} from './components/button.js';
+import {Textfield} from './components/textfield.js';
+import {Images} from './components/images.js';
 
 Images.load_images();
 
