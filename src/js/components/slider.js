@@ -7,6 +7,7 @@ import {Helper} from'../helper.js';
 import {Config} from'../config.js';
 
 const {elements, constants} = Config;
+const {remove_class, get_position, add_class, show_element} = Helper;
 
 export const Slider = {	
 	create_slider() {
@@ -14,7 +15,7 @@ export const Slider = {
 	},
 
 	slider_panel: {
-		// USE REQUESTANIMATIONFRAME, DOESNT WORK WITH PROMISE.... TRY USING GENERATORS? SEE IF IT WORKS --- THIS IS SO LAGGY
+		// USE REQUESTANIMATIONFRAME, NEED TO FIND OUT HOW TO CHECK WHEN ANIMATION FRAME ENDS
 		slide() {
 			const screen_width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
 			const images_panel_width = (screen_width - elements.images_panel.offsetWidth / 2) + elements.images_panel.offsetWidth;
@@ -22,18 +23,18 @@ export const Slider = {
 			let timer;
 			elements.images.style.marginLeft = '0';
 			elements.images.style.transition = constants.SLIDE_DURATION + 's linear';
-			Helper.remove_class(elements.images_panel, 'warning_animation');
+			remove_class(elements.images_panel, 'warning_animation');
 
 			timer = setInterval(() => {
-				if (Helper.get_position(elements.images).x <= warning_width_threshold) {
-					Helper.add_class(elements.images_panel, 'warning_animation');
+				if (get_position(elements.images).x <= warning_width_threshold) {
+					add_class(elements.images_panel, 'warning_animation');
 					clearInterval(timer);
 				}
 			}, 1000);
 		},
 		start_slider() {
 			const slider_promise = new Promise((resolve, reject) => {
-				Helper.show_element(elements.slider_panel);
+				show_element(elements.slider_panel);
 				this.slide();
 				resolve();
 			})

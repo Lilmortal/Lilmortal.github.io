@@ -125,9 +125,10 @@ export const Helper = {
 	 */
 	toggle_class(element, className) {
 		if (element.classList.contains(className)) {
-			this.remove_class(element, className);
+			// find alternative to remove this Helper
+			Helper.remove_class(element, className);
 		} else {
-			this.add_class(element, className);	
+			Helper.add_class(element, className);	
 		}
 	},
 
@@ -139,9 +140,9 @@ export const Helper = {
 	 */
 	toggle_class_for_animation(element, className) {
 		if (element.classList.contains(className)) {
-			this.remove_class(element, className);
+			Helper.remove_class(element, className);
 		}
-		this.add_class(element, className);
+		Helper.add_class(element, className);
 	},
 
 	/**

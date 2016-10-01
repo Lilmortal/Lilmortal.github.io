@@ -8,6 +8,7 @@ import {Helper} from '../helper.js';
 import {Config} from '../config.js';
 
 const {elements, constants, text} = Config;
+const {toggle_class_for_animation, hide_element, validate_if_input_is_hero_name, show_element, add_class, remove_class, transition_end} = Helper;
 
 let image_iteration = 0;
 
@@ -24,8 +25,8 @@ export const Button = {
 				});
 			},
 			start_game() {
-				Helper.toggle_class_for_animation(elements.wrapper, 'grayscale_background_animation');
-				Helper.hide_element(elements.instruction_panel);
+				toggle_class_for_animation(elements.wrapper, 'grayscale_background_animation');
+				hide_element(elements.instruction_panel);
 				Start_slider_countdown().then((response) => {
 					Start_slider().then((response) => {
 						Display_fail_panel(response);
@@ -40,9 +41,9 @@ export const Button = {
 				});
 			},
 			restart_game() {
-				Helper.hide_element(elements.fail_background, elements.slider_panel);
+				hide_element(elements.fail_background, elements.slider_panel);
 				Reset_images();
-				Helper.show_element(elements.instruction_panel);
+				show_element(elements.instruction_panel);
 			}
 		},
 		submit_button: {
@@ -52,22 +53,22 @@ export const Button = {
 				});
 			},
 			submit() {
-				if (Helper.validate_if_input_is_hero_name(elements.image[image_iteration], elements.submit_textfield)) {
-					Helper.hide_element(elements.image[image_iteration]);
+				if (validate_if_input_is_hero_name(elements.image[image_iteration], elements.submit_textfield)) {
+					hide_element(elements.image[image_iteration]);
 					image_iteration++;
 					elements.add_points.innerHTML = '+' + constants.POINTS_ADDED;
 					for (let high_score of elements.high_score) {
 						high_score.innerHTML = parseInt(high_score.innerHTML) + parseInt(constants.POINTS_ADDED);
 					}
-						Helper.toggle_class_for_animation(elements.add_points, 'add_points_animation');
-						Helper.remove_class(elements.submit_textfield, 'shake_textfield_animation');
+					toggle_class_for_animation(elements.add_points, 'add_points_animation');
+					remove_class(elements.submit_textfield, 'shake_textfield_animation');
 					} else {
-						Helper.toggle_class_for_animation(elements.submit_textfield, 'shake_textfield_animation');
+						toggle_class_for_animation(elements.submit_textfield, 'shake_textfield_animation');
 					}
 					elements.submit_textfield.value = '';
 					if (typeof elements.image[image_iteration] === 'undefined') {
 						elements.result_text.innerHTML = text.success_message;
-						Helper.show_element(elements.fail_background);
+						show_element(elements.fail_background);
 					}
 				}
 			}
@@ -85,9 +86,9 @@ function Start_slider() {
 }
 
 function Display_fail_panel() {
-	Helper.transition_end(elements.images, () => {
+	transition_end(elements.images, () => {
 		elements.result_text.innerHTML = text.fail_message;
-		Helper.show_element(elements.fail_background);
+		show_element(elements.fail_background);
 	});					
 }
 
@@ -102,7 +103,7 @@ function Reset_images() {
 		elements.high_score[i].innerHTML = 0;
 	}
 	elements.submit_textfield.value = '';
-	Helper.remove_class(elements.submit_textfield, 'shake_textfield_animation');
-	Helper.remove_class(elements.add_points, 'add_points_animation');
+	remove_class(elements.submit_textfield, 'shake_textfield_animation');
+	remove_class(elements.add_points, 'add_points_animation');
 	elements.add_points.style.opacity = 0;
 }
