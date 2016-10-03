@@ -1,62 +1,62 @@
 .submit_panel {
-	display: flex;
-	justify-content: center;
-  flex-direction: column;
-  width: 100%;
-  padding: 0 1em 0 1em;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    width: 100%;
+    padding: 0 1em 0 1em;
 
-  & button {
-    width: 90%;
-    margin: 2em 5% 0 5%;    
-  }
-
-  @media (min-width: 630px) {
-    flex-direction: row;
-    width: initial;
     & button {
-      margin: 0 0 0 2em;
+        width: 90%;
+        margin: 2em 5% 0 5%;
     }
-  }
+
+    @media (min-width: 630px) {
+        flex-direction: row;
+        width: initial;
+        & button {
+            margin: 0 0 0 2em;
+        }
+    }
 } 
 
 #submit_textfield {
-	border: 4px solid $color-textfield-border;
-	@include border-radius(5px);
-	@include transition(0.30s);
-	font-size: 200%;
-	margin: 0 5% 0 5%;
-	outline: 0;
-  padding-left: 20px;
+    border: 4px solid $color-textfield-border;
+    @include border-radius(5px);
+    @include transition(0.30s);
+    font-size: 200%;
+    margin: 0 5% 0 5%;
+    outline: 0;
+    padding-left: 20px;
 
-  &:focus {
-    border: 4px solid $color-textfield-border-focus;
-    box-shadow: inset 0px 0px 20px $color-textfield-box-shadow-focus;
-  }
+    &:focus {
+        border: 4px solid $color-textfield-border-focus;
+        box-shadow: inset 0px 0px 20px $color-textfield-box-shadow-focus;
+    }
 }
 
 .shake_textfield_animation {
-	border: 4px solid $color-textfield-border-shake-animation !important;
-	animation: SHAKE_TEXTFIELD_ANIMATION 0.5s;
+    border: 4px solid $color-textfield-border-shake-animation !important;
+    animation: SHAKE_TEXTFIELD_ANIMATION 0.5s;
 }
 
 @keyframes SHAKE_TEXTFIELD_ANIMATION {
-  10%, 90% {
-    transform: translate3d(-1px, 0, 0);
-  }
-  
-  20%, 80% {
-    transform: translate3d(2px, 0, 0);
-  }
+    10%, 90% {
+        transform: translate3d(-1px, 0, 0);
+    }
 
-  30%, 50%, 70% {
-    transform: translate3d(-4px, 0, 0);
-  }
+    20%, 80% {
+        transform: translate3d(2px, 0, 0);
+    }
 
-  40%, 60% {
-    transform: translate3d(4px, 0, 0);
-  }
+    30%, 50%, 70% {
+        transform: translate3d(-4px, 0, 0);
+    }
 
-  100% {
-  	display: none;
-  }
+    40%, 60% {
+        transform: translate3d(4px, 0, 0);
+    }
+
+    100% {
+        display: none;
+    }
 }

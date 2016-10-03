@@ -25,6 +25,7 @@ export const Button = {
 				});
 			},
 			start_game() {
+				// Would be cool to make this elements.wrapper.toggle_class_for_animation() instead like JQuery
 				toggle_class_for_animation(elements.wrapper, 'grayscale_background_animation');
 				hide_element(elements.instruction_panel);
 				Start_slider_countdown().then((response) => {
