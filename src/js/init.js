@@ -28,3 +28,5 @@ for (let element of Object.values(Config.elements)) {
 		}
 	}
 }
+
+console.log('tessddssssssssssqqqqqsssssssst')
