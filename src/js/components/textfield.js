@@ -1,7 +1,7 @@
-import {Button} from './button.js';
-import {Config} from '../config.js';
+import { Button } from './button';
+import { Config } from '../config';
 
-const {elements} = Config;
+const { submit_textfield } = Config.elements;
 
 export const Textfield = {
 	create_textfield(callback) {
@@ -13,7 +13,7 @@ export const Textfield = {
 			submit() {
 				const submit_button = Button.create_button('submit_button');
 
-				elements.submit_textfield.addEventListener('keyup', (event) => {
+				submit_textfield.addEventListener('keyup', (event) => {
 					if (event.keyCode === 13) {
 						submit_button.submit();
 					}

@@ -1,6 +1,8 @@
-import {Config} from '../config.js';
+import { Config } from '../config';
+import { Helper } from '../helper';
 
-const {elements, text} = Config;
+const { images } = Config.elements;
+const { images_json_url } = Config.text;
 
 export const Images = {
 	get_status(response) {
@@ -14,7 +16,7 @@ export const Images = {
 		return response.json();
 	},
 	load_images() {
-		fetch(text.images_json_url)
+		fetch(images_json_url)
 		.then(this.get_status)
 		.then(this.get_json)
 		.then((response) => {
@@ -32,7 +34,13 @@ export const Images = {
 				image.name = heroes[i].localized_name;
 				fragment.appendChild(image);
 			}
-			elements.images.appendChild(fragment);
+			images.appendChild(fragment);
+
+			for (let [a,b] of Object.entries(images.children)) {
+				for (let [k,v] of Object.entries(Helper)) {
+					b[k] = v;
+				}
+			}
 		})
 	}
 }

@@ -34,36 +34,36 @@ function which_transition_event(){
 export const Helper = {
 	/**
 	 * Bind the focused element; it will call the callback when transition ends.
-	 * @param  {Object} element - the object which will be binded by a transition end listener.
 	 * @param  {Function} callback - the callback that will be called when transition end.
 	 */
-	transition_end(element, callback) {
+	transition_end(callback) {
 		const transition_event = which_transition_event();
-		element.addEventListener(transition_event, callback);
+		this.addEventListener(transition_event, callback);
 	},
 
 	/**
 	 * @param {Object} el - The element that we want to find the current position is relative to the window.
 	 * https://www.kirupa.com/html5/get_element_position_using_javascript.htm
 	 */
-	get_position(el) {
-		var xPos = 0;
-		var yPos = 0;
+	get_position() {
+		let xPos = 0;
+		let yPos = 0;
 
-		while (el) {
-			if (el.tagName == "BODY") {
+		let element = this;
+		while (element) {
+			if (element.tagName == "BODY") {
 				// deal with browser quirks with body/window/document and page scroll
-				var xScroll = el.scrollLeft || document.documentElement.scrollLeft;
-				var yScroll = el.scrollTop || document.documentElement.scrollTop;
+				var xScroll = element.scrollLeft || document.documentElement.scrollLeft;
+				var yScroll = element.scrollTop || document.documentElement.scrollTop;
 
-				xPos += (el.offsetLeft - xScroll + el.clientLeft);
-				yPos += (el.offsetTop - yScroll + el.clientTop);
+				xPos += (element.offsetLeft - xScroll + element.clientLeft);
+				yPos += (element.offsetTop - yScroll + element.clientTop);
 			} else {
 				// for all other non-BODY elements
-				xPos += (el.offsetLeft - el.scrollLeft + el.clientLeft);
-				yPos += (el.offsetTop - el.scrollTop + el.clientTop);
+				xPos += (element.offsetLeft - element.scrollLeft + element.clientLeft);
+				yPos += (element.offsetTop - element.scrollTop + element.clientTop);
 			}
-			el = el.offsetParent;
+			element = element.offsetParent;
 		}
 
 		return {
@@ -73,57 +73,50 @@ export const Helper = {
 	},
 	/**
 	 * Display the element.
-	 * @param  {Object} element - The element that will be displayed.
 	 * @param  {String} display - The display type.
 	 */
-	show_element(element, display) {
+	show(display) {
 		if (typeof display !== 'undefined' && display !== '') {
-			element.style.display = display;
+			this.style.display = display;
 		} else {
-			element.style.display = 'flex';
+			this.style.display = 'flex';
 		}
 	},
 
 	/**
 	 * Hide the element.
-	 * @param  {Object} element - The element that will be hidden.
 	 */
-	hide_element(element) {
-		for (let i = 0; i < arguments.length; i++) {
-			arguments[i].style.display = 'none';
-		}
+	hide() {
+		this.style.display = 'none';
 	},
 
 	/**
 	 * Add a CSS class to an element.
-	 * @param  {Object} element - The element that will have the added CSS class.
 	 * @param  {String} className - The CSS class name.
 	 */
-	add_class(element, className) {
-		if (!element.classList.contains(className)) {
-			element.classList.add(className);
+	add_class(className) {
+		if (!this.classList.contains(className)) {
+			this.classList.add(className);
 		}
 	},
 
 	/**
 	 * Remove a CSS class from an element.
-	 * @param  {Object} element - The element that will have the specified CSS class removed.
 	 * @param  {String} className - The CSS class name.
 	 */
-	remove_class(element, className) {
-		if (element.classList.contains(className)) {
-			element.classList.remove(className);
+	remove_class(className) {
+		if (this.classList.contains(className)) {
+			this.classList.remove(className);
 		}
 		// weird hack rule - https://css-tricks.com/restart-css-animation/
-		void element.offsetWidth;		
+		void this.offsetWidth;		
 	},
 
 	/**
 	 * Toggle whether to add or remove CSS class.
-	 * @param  {Object} element - The element that will add or remove the CSS class.
 	 * @param  {String} className - The CSS class name.
 	 */
-	toggle_class(element, className) {
+	toggle_class(className) {
 		if (element.classList.contains(className)) {
 			// find alternative to remove this Helper
 			Helper.remove_class(element, className);
@@ -135,25 +128,12 @@ export const Helper = {
 	//IM TIRED, WHATS A GOOD NAME FOR THIS
 	/**
 	 * Toggle whether to add or remove CSS class.
-	 * @param  {Object} element - The element that will add or remove the CSS class.
 	 * @param  {String} className - The CSS class name.
 	 */
-	toggle_class_for_animation(element, className) {
-		if (element.classList.contains(className)) {
-			Helper.remove_class(element, className);
+	toggle_class_for_animation(className) {
+		if (this.classList.contains(className)) {
+			Helper.remove_class.call(this, className);
 		}
-		Helper.add_class(element, className);
-	},
-
-	/**
-	 * Validate if user input is a string.
-	 * @param {Object} image - The image that is being validated.
-	 * @param  {Object} textfield - The textfield that has the user input.
-	 */
-	validate_if_input_is_hero_name(image, textfield) {
-		if (image.name.toLowerCaseAndRemoveIllegalCharacters() === textfield.value.toLowerCaseAndRemoveIllegalCharacters()) {
-			return true;
-		}
-		return false;
+		Helper.add_class.call(this, className);
 	}
 }

@@ -46,28 +46,107 @@
 
 	'use strict';
 
+	var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
+
 	var _button = __webpack_require__(1);
 
 	var _textfield = __webpack_require__(6);
 
 	var _images = __webpack_require__(7);
 
+	var _config = __webpack_require__(3);
+
+	var _helper = __webpack_require__(5);
+
 	__webpack_require__(8);
 	__webpack_require__(11);
 
 	_images.Images.load_images();
 
-	var start_button = _button.Button.create_button('start_button');
-	start_button.click('start_game');
+	var start_button = _button.Button.create_button('start_button').click('start_game');
 
-	var fail_button = _button.Button.create_button('fail_button');
-	fail_button.click('restart_game');
+	var fail_button = _button.Button.create_button('fail_button').click('restart_game');
 
-	var submit_button = _button.Button.create_button('submit_button');
-	submit_button.click('submit');
+	var submit_button = _button.Button.create_button('submit_button').click('submit');
 
-	var submit_textfield = _textfield.Textfield.create_textfield('submit_textfield');
-	submit_textfield.submit();
+	var submit_textfield = _textfield.Textfield.create_textfield('submit_textfield').submit();
+
+	var _iteratorNormalCompletion = true;
+	var _didIteratorError = false;
+	var _iteratorError = undefined;
+
+	try {
+		for (var _iterator = Object.values(_config.Config.elements)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+			var element = _step.value;
+			var _iteratorNormalCompletion2 = true;
+			var _didIteratorError2 = false;
+			var _iteratorError2 = undefined;
+
+			try {
+				for (var _iterator2 = Object.entries(_helper.Helper)[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+					var _step2$value = _slicedToArray(_step2.value, 2);
+
+					var k = _step2$value[0];
+					var v = _step2$value[1];
+
+					if (element.length >= 0) {
+						var _iteratorNormalCompletion3 = true;
+						var _didIteratorError3 = false;
+						var _iteratorError3 = undefined;
+
+						try {
+							for (var _iterator3 = element[Symbol.iterator](), _step3; !(_iteratorNormalCompletion3 = (_step3 = _iterator3.next()).done); _iteratorNormalCompletion3 = true) {
+								var el = _step3.value;
+
+								el[k] = v;
+							}
+						} catch (err) {
+							_didIteratorError3 = true;
+							_iteratorError3 = err;
+						} finally {
+							try {
+								if (!_iteratorNormalCompletion3 && _iterator3.return) {
+									_iterator3.return();
+								}
+							} finally {
+								if (_didIteratorError3) {
+									throw _iteratorError3;
+								}
+							}
+						}
+					} else {
+						element[k] = v;
+					}
+				}
+			} catch (err) {
+				_didIteratorError2 = true;
+				_iteratorError2 = err;
+			} finally {
+				try {
+					if (!_iteratorNormalCompletion2 && _iterator2.return) {
+						_iterator2.return();
+					}
+				} finally {
+					if (_didIteratorError2) {
+						throw _iteratorError2;
+					}
+				}
+			}
+		}
+	} catch (err) {
+		_didIteratorError = true;
+		_iteratorError = err;
+	} finally {
+		try {
+			if (!_iteratorNormalCompletion && _iterator.return) {
+				_iterator.return();
+			}
+		} finally {
+			if (_didIteratorError) {
+				throw _iteratorError;
+			}
+		}
+	}
 
 /***/ },
 /* 1 */
@@ -82,25 +161,34 @@
 
 	var _countdown_panel = __webpack_require__(2);
 
-	var _slider = __webpack_require__(5);
+	var _slider = __webpack_require__(4);
 
-	var _helper = __webpack_require__(3);
+	var _helper = __webpack_require__(5);
 
-	var _config = __webpack_require__(4);
+	var _config = __webpack_require__(3);
 
 	/**
 	 * This is a generic button, which has a multitude of generic to specific functions for all possible scenarios.
 	 * @param {Object} Button
 	 */
-	var elements = _config.Config.elements;
-	var constants = _config.Config.constants;
-	var text = _config.Config.text;
-	var toggle_class_for_animation = _helper.Helper.toggle_class_for_animation;
-	var hide_element = _helper.Helper.hide_element;
-	var validate_if_input_is_hero_name = _helper.Helper.validate_if_input_is_hero_name;
-	var show_element = _helper.Helper.show_element;
-	var add_class = _helper.Helper.add_class;
-	var remove_class = _helper.Helper.remove_class;
+	var _Config$elements = _config.Config.elements;
+	var start_button = _Config$elements.start_button;
+	var wrapper = _Config$elements.wrapper;
+	var instruction_panel = _Config$elements.instruction_panel;
+	var fail_button = _Config$elements.fail_button;
+	var fail_background = _Config$elements.fail_background;
+	var slider_panel = _Config$elements.slider_panel;
+	var submit_button = _Config$elements.submit_button;
+	var image = _Config$elements.image;
+	var submit_textfield = _Config$elements.submit_textfield;
+	var add_points = _Config$elements.add_points;
+	var high_score = _Config$elements.high_score;
+	var result_text = _Config$elements.result_text;
+	var images = _Config$elements.images;
+	var POINTS_ADDED = _config.Config.constants.POINTS_ADDED;
+	var _Config$text = _config.Config.text;
+	var success_message = _Config$text.success_message;
+	var fail_message = _Config$text.fail_message;
 	var transition_end = _helper.Helper.transition_end;
 
 
@@ -117,14 +205,13 @@
 				click: function click(callback) {
 					var _this = this;
 
-					elements.start_button.addEventListener('click', function () {
+					start_button.addEventListener('click', function () {
 						_this[callback]();
 					});
 				},
 				start_game: function start_game() {
-					// Would be cool to make this elements.wrapper.toggle_class_for_animation() instead like JQuery
-					toggle_class_for_animation(elements.wrapper, 'grayscale_background_animation');
-					hide_element(elements.instruction_panel);
+					wrapper.toggle_class_for_animation('grayscale_background_animation');
+					instruction_panel.hide();
 					Start_slider_countdown().then(function (response) {
 						Start_slider().then(function (response) {
 							Display_fail_panel(response);
@@ -136,38 +223,39 @@
 				click: function click(callback) {
 					var _this2 = this;
 
-					elements.fail_button.addEventListener('click', function () {
+					fail_button.addEventListener('click', function () {
 						_this2[callback]();
 					});
 				},
 				restart_game: function restart_game() {
-					hide_element(elements.fail_background, elements.slider_panel);
+					fail_background.hide();
+					slider_panel.hide();
+					instruction_panel.show();
 					Reset_images();
-					show_element(elements.instruction_panel);
 				}
 			},
 			submit_button: {
 				click: function click(callback) {
 					var _this3 = this;
 
-					elements.submit_button.addEventListener('click', function () {
+					submit_button.addEventListener('click', function () {
 						_this3[callback]();
 					});
 				},
 				submit: function submit() {
-					if (validate_if_input_is_hero_name(elements.image[image_iteration], elements.submit_textfield)) {
-						hide_element(elements.image[image_iteration]);
+					if (Validate_if_input_is_hero_name(image[image_iteration], submit_textfield)) {
+						image[image_iteration].hide();
 						image_iteration++;
-						elements.add_points.innerHTML = '+' + constants.POINTS_ADDED;
+						add_points.innerHTML = '+' + POINTS_ADDED;
 						var _iteratorNormalCompletion = true;
 						var _didIteratorError = false;
 						var _iteratorError = undefined;
 
 						try {
-							for (var _iterator = elements.high_score[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
-								var high_score = _step.value;
+							for (var _iterator = high_score[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+								var score = _step.value;
 
-								high_score.innerHTML = parseInt(high_score.innerHTML) + parseInt(constants.POINTS_ADDED);
+								score.innerHTML = parseInt(score.innerHTML) + parseInt(POINTS_ADDED);
 							}
 						} catch (err) {
 							_didIteratorError = true;
@@ -184,15 +272,15 @@
 							}
 						}
 
-						toggle_class_for_animation(elements.add_points, 'add_points_animation');
-						remove_class(elements.submit_textfield, 'shake_textfield_animation');
+						add_points.toggle_class_for_animation('add_points_animation');
+						submit_textfield.remove_class('shake_textfield_animation');
 					} else {
-						toggle_class_for_animation(elements.submit_textfield, 'shake_textfield_animation');
+						submit_textfield.toggle_class_for_animation('shake_textfield_animation');
 					}
-					elements.submit_textfield.value = '';
-					if (typeof elements.image[image_iteration] === 'undefined') {
-						elements.result_text.innerHTML = text.success_message;
-						show_element(elements.fail_background);
+					submit_textfield.value = '';
+					if (typeof image[image_iteration] === 'undefined') {
+						result_text.innerHTML = success_message;
+						fail_background.show();
 					}
 				}
 			}
@@ -210,51 +298,58 @@
 	}
 
 	function Display_fail_panel() {
-		transition_end(elements.images, function () {
-			elements.result_text.innerHTML = text.fail_message;
-			show_element(elements.fail_background);
+		images.transition_end(function () {
+			result_text.innerHTML = fail_message;
+			fail_background.show();
 		});
 	}
 
 	function Reset_images() {
-		elements.images.style.marginLeft = '100%';
-		elements.images.style.transition = '0s';
-		for (var i = 0; i < elements.image.length; i++) {
-			elements.image[i].style.display = 'block';
+		images.style.marginLeft = '100%';
+		images.style.transition = '0s';
+		for (var i = 0; i < image.length; i++) {
+			image[i].style.display = 'block';
 		}
 		image_iteration = 0;
-		for (var _i = 0; _i < elements.high_score.length; _i++) {
-			elements.high_score[_i].innerHTML = 0;
+		for (var _i = 0; _i < high_score.length; _i++) {
+			high_score[_i].innerHTML = 0;
 		}
-		elements.submit_textfield.value = '';
-		remove_class(elements.submit_textfield, 'shake_textfield_animation');
-		remove_class(elements.add_points, 'add_points_animation');
-		elements.add_points.style.opacity = 0;
+		submit_textfield.value = '';
+		submit_textfield.remove_class('shake_textfield_animation');
+		add_points.remove_class('add_points_animation');
+		add_points.style.opacity = 0;
+	}
+
+	/**
+	 * Validate if user input is a string.
+	 * @param {Object} image - The image that is being validated.
+	 * @param  {Object} textfield - The textfield that has the user input.
+	 */
+	function Validate_if_input_is_hero_name(hero_image, textfield) {
+		if (hero_image.name.toLowerCaseAndRemoveIllegalCharacters() === textfield.value.toLowerCaseAndRemoveIllegalCharacters()) {
+			return true;
+		}
+		return false;
 	}
 
 /***/ },
 /* 2 */
 /***/ function(module, exports, __webpack_require__) {
 
-	'use strict';
+	"use strict";
 
 	Object.defineProperty(exports, "__esModule", {
 		value: true
 	});
 	exports.Countdown_panel = undefined;
 
-	var _helper = __webpack_require__(3);
+	var _config = __webpack_require__(3);
 
-	var _config = __webpack_require__(4);
+	var countdown_panel = _config.Config.elements.countdown_panel; /**
+	                                                                * This is the countdown panel; it will countdown until it reaches 0 before it displays the slider panel.
+	                                                                */
 
-	/**
-	 * This is the countdown panel; it will countdown until it reaches 0 before it displays the slider panel.
-	 */
-
-	var elements = _config.Config.elements;
-	var constants = _config.Config.constants;
-	var show_element = _helper.Helper.show_element;
-	var hide_element = _helper.Helper.hide_element;
+	var COUNTDOWN_DURATION = _config.Config.constants.COUNTDOWN_DURATION;
 	var Countdown_panel = exports.Countdown_panel = {
 		create_countdown_panel: function create_countdown_panel() {
 			return Object.create(this.countdown_panel);
@@ -262,17 +357,17 @@
 
 		countdown_panel: {
 			start_countdown_timer: function start_countdown_timer() {
-				var countdown_duration = constants.COUNTDOWN_DURATION;
+				var countdown_duration = COUNTDOWN_DURATION;
 				var countdown_promise = new Promise(function (resolve, reject) {
-					show_element(elements.countdown_panel);
-					elements.countdown_panel.innerHTML = "";
+					countdown_panel.show();
+					countdown_panel.innerHTML = "";
 					var countdown_timer = setInterval(function () {
 						if (countdown_duration === 0) {
 							clearInterval(countdown_timer);
-							hide_element(elements.countdown_panel);
+							countdown_panel.hide();
 							resolve();
 						}
-						elements.countdown_panel.innerHTML = countdown_duration--;
+						countdown_panel.innerHTML = countdown_duration--;
 					}, 1000);
 				});
 				return countdown_promise;
@@ -282,6 +377,128 @@
 
 /***/ },
 /* 3 */
+/***/ function(module, exports) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	var Config = exports.Config = {
+		// HMMMM SHOULD ALL THE VARIABLES HERE HAVE UPPER CASE CHARACTERS?
+		elements: {
+			// images
+			images: document.getElementsByClassName('images')[0],
+			images_panel: document.getElementsByClassName('images_panel')[0],
+			image: document.getElementsByClassName('image'),
+			//fail
+			fail_background: document.getElementsByClassName('fail_background')[0],
+			fail_button: document.getElementById('fail_button'),
+			//submit
+			submit_textfield: document.getElementById('submit_textfield'),
+			submit_button: document.getElementById('submit_button'),
+			//instruction
+			instruction_panel: document.getElementsByClassName('instruction_panel')[0],
+			start_button: document.getElementById('start_button'),
+			//countdown
+			countdown_panel: document.getElementById('countdown_panel'),
+			//slider
+			add_points: document.getElementsByClassName('add_points')[0],
+			slider_panel: document.getElementsByClassName('slider_panel')[0],
+			high_score: document.getElementsByClassName('high_score'),
+			result_text: document.getElementsByClassName('result_text')[0],
+			//body
+			wrapper: document.getElementsByClassName('wrapper')[0]
+		},
+
+		constants: {
+			COUNTDOWN_DURATION: 3,
+			SLIDE_DURATION: 10,
+			WARNING_THRESHOLD: 30,
+			POINTS_ADDED: 100
+		},
+
+		text: {
+			//fail
+			fail_message: 'You lose...',
+
+			//win
+			success_message: 'Ez Win!',
+
+			images_json_url: 'https://lilmortal-test.apigee.net/getdotaheroes?key=6C1CF76C90768388618F348BB73EE015&language=en_us&format=JSON',
+			image_url: 'http://cdn.dota2.com/apps/dota2/images/heroes/',
+			image_size: '_lg.png'
+		}
+	};
+
+/***/ },
+/* 4 */
+/***/ function(module, exports, __webpack_require__) {
+
+	'use strict';
+
+	Object.defineProperty(exports, "__esModule", {
+		value: true
+	});
+	exports.Slider = undefined;
+
+	var _helper = __webpack_require__(5);
+
+	var _config = __webpack_require__(3);
+
+	/**
+	 * This is the slider that will be displayed after the countdown. It will display an endless stream of dota images that are retrieved via Dota API.
+	 * It will constantly transition to the left until it reaches to the starting position of the panel that holds the images, which in that case the game
+	 * lose. 
+	 */
+	var _Config$elements = _config.Config.elements;
+	var images = _Config$elements.images;
+	var images_panel = _Config$elements.images_panel;
+	var slider_panel = _Config$elements.slider_panel;
+	var _Config$constants = _config.Config.constants;
+	var WARNING_THRESHOLD = _Config$constants.WARNING_THRESHOLD;
+	var SLIDE_DURATION = _Config$constants.SLIDE_DURATION;
+	var Slider = exports.Slider = {
+		create_slider: function create_slider() {
+			return Object.create(this.slider_panel);
+		},
+
+
+		slider_panel: {
+			// USE REQUESTANIMATIONFRAME, NEED TO FIND OUT HOW TO CHECK WHEN ANIMATION FRAME ENDS
+			slide: function slide() {
+				var screen_width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
+				var images_panel_width = screen_width - images_panel.offsetWidth / 2 + images_panel.offsetWidth;
+				var warning_width_threshold = images_panel_width * WARNING_THRESHOLD / 100;
+				var timer = void 0;
+				images.style.marginLeft = '0';
+				images.style.transition = SLIDE_DURATION + 's linear';
+				images_panel.remove_class('warning_animation');
+
+				timer = setInterval(function () {
+					if (images.get_position().x <= warning_width_threshold) {
+						images_panel.add_class('warning_animation');
+						clearInterval(timer);
+					}
+				}, 1000);
+			},
+			start_slider: function start_slider() {
+				var _this = this;
+
+				var slider_promise = new Promise(function (resolve, reject) {
+					slider_panel.show();
+					_this.slide();
+					resolve();
+				}).catch(function (e) {
+					console.log(e);
+				});
+				return slider_promise;
+			}
+		}
+	};
+
+/***/ },
+/* 5 */
 /***/ function(module, exports) {
 
 	"use strict";
@@ -325,12 +542,11 @@
 	var Helper = exports.Helper = {
 		/**
 	  * Bind the focused element; it will call the callback when transition ends.
-	  * @param  {Object} element - the object which will be binded by a transition end listener.
 	  * @param  {Function} callback - the callback that will be called when transition end.
 	  */
-		transition_end: function transition_end(element, callback) {
+		transition_end: function transition_end(callback) {
 			var transition_event = which_transition_event();
-			element.addEventListener(transition_event, callback);
+			this.addEventListener(transition_event, callback);
 		},
 
 
@@ -338,24 +554,25 @@
 	  * @param {Object} el - The element that we want to find the current position is relative to the window.
 	  * https://www.kirupa.com/html5/get_element_position_using_javascript.htm
 	  */
-		get_position: function get_position(el) {
+		get_position: function get_position() {
 			var xPos = 0;
 			var yPos = 0;
 
-			while (el) {
-				if (el.tagName == "BODY") {
+			var element = this;
+			while (element) {
+				if (element.tagName == "BODY") {
 					// deal with browser quirks with body/window/document and page scroll
-					var xScroll = el.scrollLeft || document.documentElement.scrollLeft;
-					var yScroll = el.scrollTop || document.documentElement.scrollTop;
+					var xScroll = element.scrollLeft || document.documentElement.scrollLeft;
+					var yScroll = element.scrollTop || document.documentElement.scrollTop;
 
-					xPos += el.offsetLeft - xScroll + el.clientLeft;
-					yPos += el.offsetTop - yScroll + el.clientTop;
+					xPos += element.offsetLeft - xScroll + element.clientLeft;
+					yPos += element.offsetTop - yScroll + element.clientTop;
 				} else {
 					// for all other non-BODY elements
-					xPos += el.offsetLeft - el.scrollLeft + el.clientLeft;
-					yPos += el.offsetTop - el.scrollTop + el.clientTop;
+					xPos += element.offsetLeft - element.scrollLeft + element.clientLeft;
+					yPos += element.offsetTop - element.scrollTop + element.clientTop;
 				}
-				el = el.offsetParent;
+				element = element.offsetParent;
 			}
 
 			return {
@@ -366,61 +583,54 @@
 
 		/**
 	  * Display the element.
-	  * @param  {Object} element - The element that will be displayed.
 	  * @param  {String} display - The display type.
 	  */
-		show_element: function show_element(element, display) {
+		show: function show(display) {
 			if (typeof display !== 'undefined' && display !== '') {
-				element.style.display = display;
+				this.style.display = display;
 			} else {
-				element.style.display = 'flex';
+				this.style.display = 'flex';
 			}
 		},
 
 
 		/**
 	  * Hide the element.
-	  * @param  {Object} element - The element that will be hidden.
 	  */
-		hide_element: function hide_element(element) {
-			for (var i = 0; i < arguments.length; i++) {
-				arguments[i].style.display = 'none';
-			}
+		hide: function hide() {
+			this.style.display = 'none';
 		},
 
 
 		/**
 	  * Add a CSS class to an element.
-	  * @param  {Object} element - The element that will have the added CSS class.
 	  * @param  {String} className - The CSS class name.
 	  */
-		add_class: function add_class(element, className) {
-			if (!element.classList.contains(className)) {
-				element.classList.add(className);
+		add_class: function add_class(className) {
+			if (!this.classList.contains(className)) {
+				this.classList.add(className);
 			}
 		},
 
 
 		/**
 	  * Remove a CSS class from an element.
-	  * @param  {Object} element - The element that will have the specified CSS class removed.
 	  * @param  {String} className - The CSS class name.
 	  */
-		remove_class: function remove_class(element, className) {
-			if (element.classList.contains(className)) {
-				element.classList.remove(className);
+		remove_class: function remove_class(className) {
+			if (this.classList.contains(className)) {
+				this.classList.remove(className);
 			}
 			// weird hack rule - https://css-tricks.com/restart-css-animation/
-			void element.offsetWidth;
+			void this.offsetWidth;
 		},
 
 
 		/**
 	  * Toggle whether to add or remove CSS class.
-	  * @param  {Object} element - The element that will add or remove the CSS class.
 	  * @param  {String} className - The CSS class name.
 	  */
-		toggle_class: function toggle_class(element, className) {
+		toggle_class: function toggle_class(className) {
 			if (element.classList.contains(className)) {
 				// find alternative to remove this Helper
 				Helper.remove_class(element, className);
@@ -433,154 +643,13 @@
 		//IM TIRED, WHATS A GOOD NAME FOR THIS
 		/**
 	  * Toggle whether to add or remove CSS class.
-	  * @param  {Object} element - The element that will add or remove the CSS class.
 	  * @param  {String} className - The CSS class name.
 	  */
-		toggle_class_for_animation: function toggle_class_for_animation(element, className) {
-			if (element.classList.contains(className)) {
-				Helper.remove_class(element, className);
+		toggle_class_for_animation: function toggle_class_for_animation(className) {
+			if (this.classList.contains(className)) {
+				Helper.remove_class.call(this, className);
 			}
-			Helper.add_class(element, className);
-		},
-
-
-		/**
-	  * Validate if user input is a string.
-	  * @param {Object} image - The image that is being validated.
-	  * @param  {Object} textfield - The textfield that has the user input.
-	  */
-		validate_if_input_is_hero_name: function validate_if_input_is_hero_name(image, textfield) {
-			if (image.name.toLowerCaseAndRemoveIllegalCharacters() === textfield.value.toLowerCaseAndRemoveIllegalCharacters()) {
-				return true;
-			}
-			return false;
-		}
-	};
-
-/***/ },
-/* 4 */
-/***/ function(module, exports) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-			value: true
-	});
-	var Config = exports.Config = {
-			// HMMMM SHOULD ALL THE VARIABLES HERE HAVE UPPER CASE CHARACTERS?
-			elements: {
-					// images
-					images: document.getElementsByClassName('images')[0],
-					images_panel: document.getElementsByClassName('images_panel')[0],
-					image: document.getElementsByClassName('image'),
-
-					//fail
-					fail_background: document.getElementsByClassName('fail_background')[0],
-					fail_button: document.getElementById('fail_button'),
-
-					//submit
-					submit_textfield: document.getElementById('submit_textfield'),
-					submit_button: document.getElementById('submit_button'),
-
-					//instruction
-					instruction_panel: document.getElementsByClassName('instruction_panel')[0],
-					start_button: document.getElementById('start_button'),
-
-					//countdown
-					countdown_panel: document.getElementById('countdown_panel'),
-
-					//slider
-					add_points: document.getElementsByClassName('add_points')[0],
-					slider_panel: document.getElementsByClassName('slider_panel')[0],
-					high_score: document.getElementsByClassName('high_score'),
-					result_text: document.getElementsByClassName('result_text')[0],
-
-					//body
-					wrapper: document.getElementsByClassName('wrapper')[0]
-			},
-
-			constants: {
-					COUNTDOWN_DURATION: 3,
-					SLIDE_DURATION: 10,
-					WARNING_THRESHOLD: 30,
-					POINTS_ADDED: 100
-			},
-
-			text: {
-					//fail
-					fail_message: 'You lose...',
-
-					//win
-					success_message: 'Ez Win!',
-
-					images_json_url: 'https://lilmortal-test.apigee.net/getdotaheroes?key=6C1CF76C90768388618F348BB73EE015&language=en_us&format=JSON',
-					image_url: 'http://cdn.dota2.com/apps/dota2/images/heroes/',
-					image_size: '_lg.png'
-			}
-	};
-
-/***/ },
-/* 5 */
-/***/ function(module, exports, __webpack_require__) {
-
-	'use strict';
-
-	Object.defineProperty(exports, "__esModule", {
-		value: true
-	});
-	exports.Slider = undefined;
-
-	var _helper = __webpack_require__(3);
-
-	var _config = __webpack_require__(4);
-
-	/**
-	 * This is the slider that will be displayed after the countdown. It will display an endless stream of dota images that are retrieved via Dota API.
-	 * It will constantly transition to the left until it reaches to the starting position of the panel that holds the images, which in that case the game
-	 * lose. 
-	 */
-	var elements = _config.Config.elements;
-	var constants = _config.Config.constants;
-	var remove_class = _helper.Helper.remove_class;
-	var get_position = _helper.Helper.get_position;
-	var add_class = _helper.Helper.add_class;
-	var show_element = _helper.Helper.show_element;
-	var Slider = exports.Slider = {
-		create_slider: function create_slider() {
-			return Object.create(this.slider_panel);
-		},
-
-
-		slider_panel: {
-			// USE REQUESTANIMATIONFRAME, NEED TO FIND OUT HOW TO CHECK WHEN ANIMATION FRAME ENDS
-			slide: function slide() {
-				var screen_width = window.innerWidth || document.documentElement.clientWidth || document.body.clientWidth;
-				var images_panel_width = screen_width - elements.images_panel.offsetWidth / 2 + elements.images_panel.offsetWidth;
-				var warning_width_threshold = images_panel_width * constants.WARNING_THRESHOLD / 100;
-				var timer = void 0;
-				elements.images.style.marginLeft = '0';
-				elements.images.style.transition = constants.SLIDE_DURATION + 's linear';
-				remove_class(elements.images_panel, 'warning_animation');
-
-				timer = setInterval(function () {
-					if (get_position(elements.images).x <= warning_width_threshold) {
-						add_class(elements.images_panel, 'warning_animation');
-						clearInterval(timer);
-					}
-				}, 1000);
-			},
-			start_slider: function start_slider() {
-				var _this = this;
-
-				var slider_promise = new Promise(function (resolve, reject) {
-					show_element(elements.slider_panel);
-					_this.slide();
-					resolve();
-				}).catch(function (e) {
-					console.log(e);
-				});
-				return slider_promise;
-			}
+			Helper.add_class.call(this, className);
 		}
 	};
 
@@ -597,9 +666,9 @@
 
 	var _button = __webpack_require__(1);
 
-	var _config = __webpack_require__(4);
+	var _config = __webpack_require__(3);
 
-	var elements = _config.Config.elements;
+	var submit_textfield = _config.Config.elements.submit_textfield;
 	var Textfield = exports.Textfield = {
 		create_textfield: function create_textfield(callback) {
 			return Object.create(this.textfield[callback]);
@@ -611,7 +680,7 @@
 				submit: function submit() {
 					var submit_button = _button.Button.create_button('submit_button');
 
-					elements.submit_textfield.addEventListener('keyup', function (event) {
+					submit_textfield.addEventListener('keyup', function (event) {
 						if (event.keyCode === 13) {
 							submit_button.submit();
 						}
@@ -632,10 +701,14 @@
 	});
 	exports.Images = undefined;
 
-	var _config = __webpack_require__(4);
+	var _slicedToArray = function () { function sliceIterator(arr, i) { var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"]) _i["return"](); } finally { if (_d) throw _e; } } return _arr; } return function (arr, i) { if (Array.isArray(arr)) { return arr; } else if (Symbol.iterator in Object(arr)) { return sliceIterator(arr, i); } else { throw new TypeError("Invalid attempt to destructure non-iterable instance"); } }; }();
 
-	var elements = _config.Config.elements;
-	var text = _config.Config.text;
+	var _config = __webpack_require__(3);
+
+	var _helper = __webpack_require__(5);
+
+	var images = _config.Config.elements.images;
+	var images_json_url = _config.Config.text.images_json_url;
 	var Images = exports.Images = {
 		get_status: function get_status(response) {
 			if (response.status !== 200) {
@@ -648,7 +721,7 @@
 			return response.json();
 		},
 		load_images: function load_images() {
-			fetch(text.images_json_url).then(this.get_status).then(this.get_json).then(function (response) {
+			fetch(images_json_url).then(this.get_status).then(this.get_json).then(function (response) {
 				var heroes = response.result.heroes;
 				var fragment = document.createDocumentFragment();
 
@@ -663,7 +736,60 @@
 					image.name = heroes[i].localized_name;
 					fragment.appendChild(image);
 				}
-				elements.images.appendChild(fragment);
+				images.appendChild(fragment);
+
+				var _iteratorNormalCompletion = true;
+				var _didIteratorError = false;
+				var _iteratorError = undefined;
+
+				try {
+					for (var _iterator = Object.entries(images.children)[Symbol.iterator](), _step; !(_iteratorNormalCompletion = (_step = _iterator.next()).done); _iteratorNormalCompletion = true) {
+						var _step$value = _slicedToArray(_step.value, 2);
+
+						var a = _step$value[0];
+						var b = _step$value[1];
+						var _iteratorNormalCompletion2 = true;
+						var _didIteratorError2 = false;
+						var _iteratorError2 = undefined;
+
+						try {
+							for (var _iterator2 = Object.entries(_helper.Helper)[Symbol.iterator](), _step2; !(_iteratorNormalCompletion2 = (_step2 = _iterator2.next()).done); _iteratorNormalCompletion2 = true) {
+								var _step2$value = _slicedToArray(_step2.value, 2);
+
+								var k = _step2$value[0];
+								var v = _step2$value[1];
+
+								b[k] = v;
+							}
+						} catch (err) {
+							_didIteratorError2 = true;
+							_iteratorError2 = err;
+						} finally {
+							try {
+								if (!_iteratorNormalCompletion2 && _iterator2.return) {
+									_iterator2.return();
+								}
+							} finally {
+								if (_didIteratorError2) {
+									throw _iteratorError2;
+								}
+							}
+						}
+					}
+				} catch (err) {
+					_didIteratorError = true;
+					_iteratorError = err;
+				} finally {
+					try {
+						if (!_iteratorNormalCompletion && _iterator.return) {
+							_iterator.return();
+						}
+					} finally {
+						if (_didIteratorError) {
+							throw _iteratorError;
+						}
+					}
+				}
 			});
 		}
 	};

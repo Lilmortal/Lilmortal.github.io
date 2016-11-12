@@ -2,13 +2,16 @@
  * This is a generic button, which has a multitude of generic to specific functions for all possible scenarios.
  * @param {Object} Button
  */
-import {Countdown_panel} from './countdown_panel.js';
-import {Slider} from './slider.js';
-import {Helper} from '../helper.js';
-import {Config} from '../config.js';
+import { Countdown_panel } from './countdown_panel';
+import { Slider } from './slider';
+import { Helper } from '../helper';
+import { Config } from '../config';
 
-const {elements, constants, text} = Config;
-const {toggle_class_for_animation, hide_element, validate_if_input_is_hero_name, show_element, add_class, remove_class, transition_end} = Helper;
+const { start_button, wrapper, instruction_panel, fail_button, fail_background, slider_panel, submit_button, image, submit_textfield,
+		add_points, high_score, result_text, images } = Config.elements;
+const { POINTS_ADDED } = Config.constants;
+const { success_message, fail_message } = Config.text;
+const { transition_end } = Helper;
 
 let image_iteration = 0;
 
@@ -20,14 +23,13 @@ export const Button = {
 	button: {
 		start_button: {	
 			click(callback) {
-				elements.start_button.addEventListener('click', () => {
+				start_button.addEventListener('click', () => {
 					this[callback]();
 				});
 			},
 			start_game() {
-				// Would be cool to make this elements.wrapper.toggle_class_for_animation() instead like JQuery
-				toggle_class_for_animation(elements.wrapper, 'grayscale_background_animation');
-				hide_element(elements.instruction_panel);
+				wrapper.toggle_class_for_animation('grayscale_background_animation');
+				instruction_panel.hide();
 				Start_slider_countdown().then((response) => {
 					Start_slider().then((response) => {
 						Display_fail_panel(response);
@@ -37,39 +39,40 @@ export const Button = {
 		},
 		fail_button: {
 			click(callback) {
-				elements.fail_button.addEventListener('click', () => {
+				fail_button.addEventListener('click', () => {
 					this[callback]();
 				});
 			},
 			restart_game() {
-				hide_element(elements.fail_background, elements.slider_panel);
+				fail_background.hide();
+				slider_panel.hide();
+				instruction_panel.show();
 				Reset_images();
-				show_element(elements.instruction_panel);
 			}
 		},
 		submit_button: {
 			click(callback) {
-				elements.submit_button.addEventListener('click', () => {
+				submit_button.addEventListener('click', () => {
 					this[callback]();
 				});
 			},
 			submit() {
-				if (validate_if_input_is_hero_name(elements.image[image_iteration], elements.submit_textfield)) {
-					hide_element(elements.image[image_iteration]);
+				if (Validate_if_input_is_hero_name(image[image_iteration], submit_textfield)) {
+					image[image_iteration].hide();
 					image_iteration++;
-					elements.add_points.innerHTML = '+' + constants.POINTS_ADDED;
-					for (let high_score of elements.high_score) {
-						high_score.innerHTML = parseInt(high_score.innerHTML) + parseInt(constants.POINTS_ADDED);
+					add_points.innerHTML = '+' + POINTS_ADDED;
+					for (let score of high_score) {
+						score.innerHTML = parseInt(score.innerHTML) + parseInt(POINTS_ADDED);
 					}
-					toggle_class_for_animation(elements.add_points, 'add_points_animation');
-					remove_class(elements.submit_textfield, 'shake_textfield_animation');
+					add_points.toggle_class_for_animation('add_points_animation');
+					submit_textfield.remove_class('shake_textfield_animation');
 					} else {
-						toggle_class_for_animation(elements.submit_textfield, 'shake_textfield_animation');
+						submit_textfield.toggle_class_for_animation('shake_textfield_animation');
 					}
-					elements.submit_textfield.value = '';
-					if (typeof elements.image[image_iteration] === 'undefined') {
-						elements.result_text.innerHTML = text.success_message;
-						show_element(elements.fail_background);
+					submit_textfield.value = '';
+					if (typeof image[image_iteration] === 'undefined') {
+						result_text.innerHTML = success_message;
+						fail_background.show();
 					}
 				}
 			}
@@ -87,24 +90,36 @@ function Start_slider() {
 }
 
 function Display_fail_panel() {
-	transition_end(elements.images, () => {
-		elements.result_text.innerHTML = text.fail_message;
-		show_element(elements.fail_background);
+	images.transition_end(() => {
+		result_text.innerHTML = fail_message;
+		fail_background.show();
 	});					
 }
 
 function Reset_images() {
-	elements.images.style.marginLeft = '100%';
-	elements.images.style.transition = '0s';
-	for (let i = 0; i < elements.image.length; i++) {
-		elements.image[i].style.display = 'block';
+	images.style.marginLeft = '100%';
+	images.style.transition = '0s';
+	for (let i = 0; i < image.length; i++) {
+		image[i].style.display = 'block';
 	}
 	image_iteration = 0;
-	for (let i = 0; i < elements.high_score.length; i++) {
-		elements.high_score[i].innerHTML = 0;
+	for (let i = 0; i < high_score.length; i++) {
+		high_score[i].innerHTML = 0;
 	}
-	elements.submit_textfield.value = '';
-	remove_class(elements.submit_textfield, 'shake_textfield_animation');
-	remove_class(elements.add_points, 'add_points_animation');
-	elements.add_points.style.opacity = 0;
+	submit_textfield.value = '';
+	submit_textfield.remove_class('shake_textfield_animation');
+	add_points.remove_class('add_points_animation');
+	add_points.style.opacity = 0;
+}
+
+/**
+ * Validate if user input is a string.
+ * @param {Object} image - The image that is being validated.
+ * @param  {Object} textfield - The textfield that has the user input.
+ */
+function Validate_if_input_is_hero_name(hero_image, textfield) {
+	if (hero_image.name.toLowerCaseAndRemoveIllegalCharacters() === textfield.value.toLowerCaseAndRemoveIllegalCharacters()) {
+		return true;
+	}
+	return false;
 }
