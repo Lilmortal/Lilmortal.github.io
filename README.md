@@ -12,6 +12,8 @@ and SASS as my CSS compiler. It is not perfect yet, and so here are a list of bu
 	<li>Modularize my files instead of having HTML/CSS/JS folders. What about files like base.scss? Do I put that out in the root folder? Do I create a new folder for it? Do I need a
 	template for HTML like Jade?</li>
 	<li>Maybe think about using BEM + SMACSS + OOCSS</li>
+	<li>Test this using Mocha or Jasmine. Need to structure it so it is more testable (e.g. use import * as something instead of import { something }); think about using 
+	dependency injection here.</li>
 	<li>Make the website design better... It looks so 90s</li>
 	<li>Maybe have a high score? Try implement a HTML5 local storage</li>
 </ul>
