@@ -17,6 +17,7 @@ const submit_button = Button.create_button('submit_button').click('submit');
 
 const submit_textfield = Textfield.create_textfield('submit_textfield').submit();
 
+// Add helper functions to each elements (e.g. so each element have methods like show(), hide() etc)
 for (let element of Object.values(Config.elements)) {
 	for (let [k,v] of Object.entries(Helper)) {
 		if (element.length >= 0) {
