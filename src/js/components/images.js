@@ -32,18 +32,10 @@ export const Images = {
 					heroes[i].localized_name = 'Tuskar';
 				}
 				image.name = heroes[i].localized_name;
+				Object.assign(image, Helper);
 				fragment.appendChild(image);
 			}
 			images.appendChild(fragment);
-
-			// Added helper functions to each image so they have methods like show(), hide() etc; problem is this
-			// has been done on init.js for other elements already. This is added here because this images are added to the DOM AFTER. 
-			// Need to figure out if there is another solution to this.
-			for (let [a,b] of Object.entries(images.children)) {
-				for (let [k,v] of Object.entries(Helper)) {
-					b[k] = v;
-				}
-			}
 		})
 	}
 }

@@ -70,7 +70,7 @@ export const Button = {
 						submit_textfield.toggle_class_for_animation('shake_textfield_animation');
 					}
 					submit_textfield.value = '';
-					if (typeof image[image_iteration] === 'undefined') {
+					if (typeof image[image_iteration] == 'undefined') {
 						result_text.innerHTML = success_message;
 						fail_background.show();
 					}
