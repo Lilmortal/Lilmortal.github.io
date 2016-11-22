@@ -22,14 +22,42 @@ export const Config = {
 		high_score: document.getElementsByClassName('high_score'),
 		result_text: document.getElementsByClassName('result_text')[0],
 		//body
-		wrapper: document.getElementsByClassName('wrapper')[0]
+		wrapper: document.getElementsByClassName('wrapper')[0],
+
+		[Symbol.iterator]() {
+			var self = this;
+			var values = Object.keys(this);
+			var i = 0;
+			return {
+				next: function() {
+					return {
+						value: self[values[i++]],
+						done: i > values.length
+					}
+				}
+			}
+		}
 	},
 
 	constants: {
 		COUNTDOWN_DURATION: 3,
 		SLIDE_DURATION: 10,
 		WARNING_THRESHOLD: 30,
-		POINTS_ADDED: 100
+		POINTS_ADDED: 100,
+
+		[Symbol.iterator]() {
+			var self = this;
+			var values = Object.keys(this);
+			var i = 0;
+			return {
+				next: function() {
+					return {
+						value: self[values[i++]],
+						done: i > values.length
+					}
+				}
+			}
+		}
 	},
 
 	text: {
@@ -41,9 +69,20 @@ export const Config = {
 
 		images_json_url: 'https://lilmortal-test.apigee.net/getdotaheroes?key=6C1CF76C90768388618F348BB73EE015&language=en_us&format=JSON',
 		image_url: 'http://cdn.dota2.com/apps/dota2/images/heroes/',
-		image_size: '_lg.png'
-	}
+		image_size: '_lg.png',
+
+		[Symbol.iterator]() {
+			var self = this;
+			var values = Object.keys(this);
+			var i = 0;
+			return {
+				next: function() {
+					return {
+						value: self[values[i++]],
+						done: i > values.length
+					}
+				}
+			}
+		}
+	},
 }
-
-
-

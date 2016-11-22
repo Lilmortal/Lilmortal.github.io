@@ -18,13 +18,12 @@ const submit_button = Button.create_button('submit_button').click('submit');
 const submit_textfield = Textfield.create_textfield('submit_textfield').submit();
 
 // Add helper functions to each elements (e.g. so each element have methods like show(), hide() etc)
-const elements = Config.elements;
-for (let element in elements) {
-	if (elements[element] instanceof HTMLCollection) {
-		for (let htmlCollectionElement of elements[element]) {
+for (let element of Config.elements) {
+	if (element instanceof HTMLCollection) {
+		for (let htmlCollectionElement of element) {
 			Object.assign(htmlCollectionElement, Helper);
 		}
 	} else {
-		Object.assign(elements[element], Helper);	
+		Object.assign(element, Helper);	
 	}
 }

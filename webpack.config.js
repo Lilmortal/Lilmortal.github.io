@@ -11,6 +11,7 @@ module.exports = {
 		filename: 'bundle.js',
 		publicPath: './bin/'
 	},
+	watch: true,
 	module: {
 		loaders: [{
 			test:/\.js$/,

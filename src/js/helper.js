@@ -4,9 +4,11 @@ const ILLEGAL_CHARACTERS = new RegExp(/[\-\s]+/);
 /**
 * Convert string to lower case and remove illegal characters.
 */
-String.prototype.toLowerCaseAndRemoveIllegalCharacters = function() {
-	let lowerCaseValue = this.toLowerCase();
-	return lowerCaseValue.replace(ILLEGAL_CHARACTERS, '');
+if (!String.prototype.toLowerCaseAndRemoveIllegalCharacters) {
+	String.prototype.toLowerCaseAndRemoveIllegalCharacters = function() {
+		let lowerCaseValue = this.toLowerCase();
+		return lowerCaseValue.replace(ILLEGAL_CHARACTERS, '');
+	}
 }
 
 /**
