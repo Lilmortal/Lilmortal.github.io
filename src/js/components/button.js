@@ -99,13 +99,15 @@ function Display_fail_panel() {
 function Reset_images() {
 	images.style.marginLeft = '100%';
 	images.style.transition = '0s';
-	for (let i = 0; i < image.length; i++) {
-		image[i].style.display = 'block';
-	}
+	Array.from(image).map((img) => {
+		img.show('block')
+	})
+
 	image_iteration = 0;
-	for (let i = 0; i < high_score.length; i++) {
-		high_score[i].innerHTML = 0;
-	}
+	Array.from(high_score).map((score) => {
+		score.innerHTML = 0;
+	})
+	
 	submit_textfield.value = '';
 	submit_textfield.remove_class('shake_textfield_animation');
 	add_points.remove_class('add_points_animation');
